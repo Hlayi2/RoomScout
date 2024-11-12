@@ -1,4 +1,6 @@
-﻿namespace RoomScout
+﻿using RoomScout.Views.AdminSide;
+
+namespace RoomScout
 {
     public partial class App : Application
     {
@@ -7,6 +9,7 @@
             InitializeComponent();
 
             MainPage = new AppShell();
+           // MainPage = new NavigationPage(new LandlordDashboardPage());
         }
     }
 }
