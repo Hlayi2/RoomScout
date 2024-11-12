@@ -8,8 +8,8 @@ namespace RoomScout
         {
             InitializeComponent();
 
-            
-            MainPage = new NavigationPage(new LandlordDashboardPage());
+            MainPage = new AppShell();
+           // MainPage = new NavigationPage(new LandlordDashboardPage());
         }
     }
 }
