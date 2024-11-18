@@ -4,12 +4,18 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:RoomScout"
+    xmlns:Auth="clr-namespace:RoomScout.Views.Auth" 
+    xmlns:AdminSide="clr-namespace:RoomScout.Views.AdminSide"
+    xmlns:StudentSide="clr-namespace:RoomScout.Views.StudentSide"
     Shell.FlyoutBehavior="Disabled"
     Title="RoomScout">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
 
+    
+        
+        <ShellContent Title="Register" Route="register" ContentTemplate="{DataTemplate Auth:RegisterPage}" />
+        <ShellContent Title="Landlord Dashboard" Route="landlordDashbord" ContentTemplate="{DataTemplate AdminSide:LandlordDashboardPage}" />
+        <ShellContent Title="Browse Listings" Route="browseListings" ContentTemplate="{DataTemplate StudentSide:BrowseListingsPage}" />
+
+    
 </Shell>
