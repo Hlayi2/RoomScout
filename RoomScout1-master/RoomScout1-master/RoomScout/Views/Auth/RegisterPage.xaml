@@ -2,11 +2,117 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RoomScout.Views.Auth.RegisterPage"
+             BackgroundColor="#31353D"
              Title="RegisterPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="25" Padding="30,0" VerticalOptions="Center">
+            <Label 
+                Text="Create Account"
+                SemanticProperties.HeadingLevel="Level1"
+                FontSize="32"
+                TextColor="White"
+                HorizontalOptions="Start" />
+
+            <Frame BorderColor="Transparent" BackgroundColor="white" Padding="15,5">
+                <Entry 
+                    Text="{Binding Email}"  
+                    Placeholder="Email"
+                    PlaceholderColor="Gray"
+                    TextColor="black"
+                    BackgroundColor="Transparent"/>
+            </Frame>
+
+            <Frame BorderColor="Transparent" BackgroundColor="White" Padding="15,5">
+                <Entry 
+                    Text="{Binding Phone}"  
+                    Placeholder="Phone No."
+                    PlaceholderColor="Gray"
+                    TextColor="Black"
+                    BackgroundColor="Transparent"/>
+            </Frame>
+
+            <Frame BorderColor="Transparent" BackgroundColor="White" Padding="15,5">
+                <Grid ColumnDefinitions="*, Auto">
+                    <Entry
+                        x:Name="PasswordEntry"
+                        Text="{Binding Password}" 
+                        Grid.Column="0"
+                        Placeholder="Password"
+                        IsPassword="True"
+                        PlaceholderColor="Gray"
+                        TextColor="Black"
+                        BackgroundColor="Transparent"/>
+
+                    <ImageButton 
+                        Grid.Column="1"
+                        Source="eye.png"
+                        HeightRequest="24"
+                        WidthRequest="24"
+                        Opacity="0.6"
+                        Clicked="OnPasswordVisibilityToggle"/>
+                </Grid>
+            </Frame>
+
+            <Frame BorderColor="Transparent" BackgroundColor="White" Padding="15,5">
+                <Grid ColumnDefinitions="*, Auto">
+                    <Entry
+                        x:Name="ConfirmPasswordEntry"
+                        Text="{Binding ConfirmPassword}"  
+                        Grid.Column="0"
+                        Placeholder="Confirm Password"
+                        IsPassword="True"
+                        PlaceholderColor="Gray"
+                        TextColor="Black"
+                        BackgroundColor="Transparent"/>
+
+                    <ImageButton 
+                        Grid.Column="1"
+                        Source="eye.png"
+                        HeightRequest="24"
+                        WidthRequest="24"
+                        Opacity="0.6"
+                        Clicked="OnPasswordVisibilityToggle"/>
+                </Grid>
+            </Frame>
+
+            <Picker
+                x:Name="RolePicker"
+                SelectedItem="{Binding Role}"  
+                Title="Select Role"
+                BackgroundColor="White"
+                TitleColor="Black"
+                TextColor="Black">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Register as a Student</x:String>
+                        <x:String>Register as a Landlord</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <Button 
+                Text="REGISTER"
+                BackgroundColor="#76ABAE" 
+                TextColor="White"
+                CornerRadius="25"
+                HeightRequest="50"
+                Clicked="OnRegisterButtonClicked" />
+
+            <HorizontalStackLayout Spacing="5">
+                <Label Text="Already have an account?"
+                       TextColor="White"
+                       VerticalOptions="Center"/>
+
+                <Button 
+                    Text="Sign In"
+                    HorizontalOptions="End"
+                    VerticalOptions="Center"
+                    TextColor="White"
+                    BackgroundColor="Transparent"
+                    Clicked="OnSignInClicked"/>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+
 </ContentPage>
