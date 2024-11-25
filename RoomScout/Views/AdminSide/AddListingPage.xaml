@@ -34,9 +34,9 @@
                    TextColor="White"/>
             <Frame BackgroundColor="#333333" 
                    Padding="0" 
+                   BorderColor="#76ABAE"
                    CornerRadius="5"
-                   IsClippedToBounds="True"
-                   BorderColor="Transparent">
+                   IsClippedToBounds="True" >
                 <Grid ColumnDefinitions="Auto,*">
                     <Label Text="R" 
                            TextColor="White"
@@ -58,20 +58,21 @@
                    TextColor="White"/>
             <Frame BackgroundColor="#333333" 
                    Padding="15" 
+                   BorderColor="#76ABAE"
                    CornerRadius="10">
 
                 <Grid ColumnDefinitions="Auto,*,Auto,*,Auto,*" 
-                      RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                      RowDefinitions="Auto,Auto,Auto,Auto,Auto"
                       RowSpacing="10" 
                       ColumnSpacing="10">
-                    <CheckBox Grid.Row="0" Grid.Column="0" VerticalOptions="Center" Margin="-20,0,0,0"/>
+                    <CheckBox Grid.Row="0" Grid.Column="0" VerticalOptions="Center" Margin="-6,0,0,0"/>
                     <Label Text="Wifi" 
                            TextColor="White" 
                            VerticalOptions="Center" 
                            Grid.Row="0" Grid.Column="1" 
                            Margin="-20,0,0,0"/>
 
-                    <CheckBox Grid.Row="0" Grid.Column="2" VerticalOptions="Center" Margin="-10,0,0,0" />
+                    <CheckBox Grid.Row="0" Grid.Column="2" VerticalOptions="Center" Margin="-30,0,0,0" />
                     <Label Text="Free Electricity" 
                            TextColor="White" 
                            VerticalOptions="Center" 
@@ -85,14 +86,15 @@
                            Grid.Row="0" Grid.Column="5" 
                            Margin="-20,0,0,0"/>
 
-                    <CheckBox Grid.Row="1" Grid.Column="0" VerticalOptions="Center"  Margin="-20,0,0,0" />
+                    <!--Row 1-->
+                    <CheckBox Grid.Row="1" Grid.Column="0" VerticalOptions="Center"  Margin="-6,0,0,0" />
                     <Label Text="Washing Machine" 
                            TextColor="White" 
                            VerticalOptions="Center" 
                            Grid.Row="1" Grid.Column="1" 
                            Margin="-20,0,0,0"/>
 
-                    <CheckBox Grid.Row="1" Grid.Column="2" VerticalOptions="Center"  Margin="-20,0,0,0"/>
+                    <CheckBox Grid.Row="1" Grid.Column="2" VerticalOptions="Center"  Margin="-30,0,0,0"/>
                     <Label Text="Study Table" 
                            TextColor="White" 
                            VerticalOptions="Center" 
@@ -105,6 +107,62 @@
                            VerticalOptions="Center" 
                            Grid.Row="1" Grid.Column="5" 
                            Margin="-20,0,0,0"/>
+                    
+                    <!--Row 2-->
+                    <CheckBox Grid.Row="2" Grid.Column="0" VerticalOptions="Center"  Margin="-6,0,0,0" />
+                    <Label Text="Chair" 
+                           TextColor="White" 
+                           VerticalOptions="Center" 
+                           Grid.Row="2" Grid.Column="1" 
+                           Margin="-20,0,0,0"/>
+                    <CheckBox Grid.Row="2" Grid.Column="2" VerticalOptions="Center"  Margin="-30,0,0,0"/>
+                    <Label Text="Kitchenette" 
+                           TextColor="White" 
+                           VerticalOptions="Center" 
+                           Grid.Row="2" Grid.Column="3" 
+                           Margin="-20,0,0,0"/>
+                    <CheckBox Grid.Row="2" Grid.Column="4" VerticalOptions="Center"  Margin="-20,0,0,0"/>
+                    <Label Text="Sink" 
+                           TextColor="White" 
+                           VerticalOptions="Center" 
+                           Grid.Row="2" Grid.Column="5" 
+                           Margin="-20,0,0,0"/>
+                    
+                    <!--Row 3-->
+                    <CheckBox Grid.Row="3" Grid.Column="0" VerticalOptions="Center"  Margin="-6,0,0,0"/>
+                    <Label Text="Shared Kitchen" 
+                           TextColor="White" 
+                           VerticalOptions="Center" 
+                           Grid.Row="3" Grid.Column="1" 
+                           Margin="-20,0,0,0"/>
+                    <CheckBox Grid.Row="3" Grid.Column="2" VerticalOptions="Center"  Margin="-30,0,0,0"/>
+                    <Label Text="Security" 
+                           TextColor="White" 
+                           VerticalOptions="Center" 
+                           Grid.Row="3" Grid.Column="3" 
+                           Margin="-20,0,0,0"/>
+                    <CheckBox Grid.Row="3" Grid.Column="4" VerticalOptions="Center"  Margin="-20,0,0,0"/>
+                    <Label Text="Backup Electricity" 
+                           TextColor="White" 
+                           VerticalOptions="Center" 
+                           Grid.Row="3" Grid.Column="5" 
+                           Margin="-20,0,0,0"/>
+                    
+                    <!--Row 4-->
+                    <CheckBox Grid.Row="4" Grid.Column="0" VerticalOptions="Center"  Margin="-6,0,0,0"/>
+                    <Label Text="24/7 Water" 
+                           TextColor="White" 
+                           VerticalOptions="Center" 
+                           Grid.Row="4" Grid.Column="1" 
+                           Margin="-20,0,0,0"/>
+                    <CheckBox Grid.Row="4" Grid.Column="2" VerticalOptions="Center"  Margin="-30,0,0,0"/>
+                    <Label Text="Parking" 
+                           TextColor="White" 
+                           VerticalOptions="Center" 
+                           Grid.Row="4" Grid.Column="3" 
+                           Margin="-22,0,0,0"/>
+
+
                 </Grid>
 
             </Frame>
@@ -112,60 +170,63 @@
             <Label Text="Cons:" 
                    TextColor="White"/>
             <Frame BackgroundColor="#333333" 
+                   BorderColor="#76ABAE"
                    Padding="15" 
                    CornerRadius="10">
                 <Grid ColumnDefinitions="*,*" 
-                      RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                      RowDefinitions="Auto,Auto,Auto,Auto"
                       RowSpacing="10" 
-                      ColumnSpacing="8">
-                    <CheckBox Grid.Row="0" Grid.Column="0" />
+                      ColumnSpacing="10">
+                    <!--Row 0-->
+                    <CheckBox Grid.Row="0" Grid.Column="0" VerticalOptions="Center" Margin="-100,0,0,0"/>
                     <Label Text="Buy Electricity" 
                            TextColor="White" 
                            VerticalOptions="Center" 
-                           Grid.Row="0" Grid.Column="0" 
-                           Margin="50,0,0,0"/>
-
-                    <CheckBox Grid.Row="0" Grid.Column="1" />
+                           Grid.Row="0" Grid.Column="1" 
+                           Margin="-128,0,0,0"/>
+                    <CheckBox Grid.Row="0" Grid.Column="2" VerticalOptions="Center" Margin="-80,0,0,0" />
                     <Label Text="No Showers" 
                            TextColor="White" 
                            VerticalOptions="Center" 
-                           Grid.Row="0" Grid.Column="1" 
-                           Margin="50,0,0,0"/>
+                           Grid.Row="0" Grid.Column="3" 
+                           Margin="60,0,0,0"/>
 
-                    <CheckBox Grid.Row="1" Grid.Column="0" />
+                    <!--Row 1-->
+                    <CheckBox Grid.Row="1" Grid.Column="0" VerticalOptions="Center" Margin="-100,0,0,0"/>
                     <Label Text="Minimal Security" 
                            TextColor="White" 
                            VerticalOptions="Center" 
-                           Grid.Row="1" Grid.Column="0" 
-                           Margin="50,0,0,0"/>
-
-                    <CheckBox Grid.Row="1" Grid.Column="1" />
+                           Grid.Row="1" Grid.Column="1" 
+                           Margin="-128,0,0,0"/>
+                    <CheckBox Grid.Row="1" Grid.Column="2" VerticalOptions="Center" Margin="-80,0,0,0"/>
                     <Label Text="No Hot Water" 
                            TextColor="White" 
                            VerticalOptions="Center" 
-                           Grid.Row="1" Grid.Column="1" 
-                           Margin="50,0,0,0"/>
-
-                    <CheckBox Grid.Row="2" Grid.Column="0" />
+                           Grid.Row="1" Grid.Column="3" 
+                           Margin="60,0,0,0"/>
+                    
+                    <!--Row 2-->
+                    <CheckBox Grid.Row="2" Grid.Column="0" VerticalOptions="Center" Margin="-100,0,0,0"/>
                     <Label Text="Bring Own Bed" 
                            TextColor="White" 
                            VerticalOptions="Center" 
-                           Grid.Row="2" Grid.Column="0" 
-                           Margin="50,0,0,0"/>
-
-                    <CheckBox Grid.Row="2" Grid.Column="1" />
+                           Grid.Row="2" Grid.Column="1" 
+                           Margin="-128,0,0,0"/>
+                    <CheckBox Grid.Row="2" Grid.Column="2" VerticalOptions="Center" Margin="-80,0,0,0" />
                     <Label Text="Yard has Dogs" 
                            TextColor="White" 
                            VerticalOptions="Center" 
-                           Grid.Row="2" Grid.Column="1" 
-                           Margin="50,0,0,0"/>
+                           Grid.Row="2" Grid.Column="3" 
+                           Margin="60,0,0,0"/>
 
-                    <CheckBox Grid.Row="3" Grid.Column="0" />
-                    <Label Text="No Packing" 
+                    <!--Row 3-->
+                    <CheckBox Grid.Row="3" Grid.Column="0" VerticalOptions="Center" Margin="-100,0,0,0"/>
+                    <Label Text="No Parking" 
                            TextColor="White" 
                            VerticalOptions="Center" 
-                           Grid.Row="3" Grid.Column="0" 
-                           Margin="50,0,0,0"/>
+                           Grid.Row="3" Grid.Column="1" 
+                           Margin="-128,0,0,0"/>
+
 
                 </Grid>
             </Frame>
@@ -181,6 +242,7 @@
                    TextColor="White"/>
             <Frame BackgroundColor="#333333" 
                    Padding="15" 
+                   BorderColor="#76ABAE"
                    CornerRadius="10">
                 <VerticalStackLayout Spacing="10">
                     <!-- Input field for new rule -->
