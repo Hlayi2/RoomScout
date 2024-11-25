@@ -2,11 +2,253 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RoomScout.Views.AdminSide.AddListingPage"
-             Title="AddListingPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="AddListingPage"
+             BackgroundColor="#222831">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Label 
+                Text="Add My Listing"
+                TextColor="White"
+                FontSize="32"
+                FontAttributes="Bold"/>
+
+
+            <Label
+              Text="Type of Room:"
+              TextColor="White"
+              FontAttributes="Bold"/>
+              <Picker 
+              BackgroundColor="#333333"
+              TextColor="White">
+                <Picker.Items>
+                    <x:String>Select an option</x:String>
+                    <x:String>Single Room</x:String>
+                    <x:String>Bachelor Room</x:String>
+                    <x:String>Sharing Room</x:String>
+                  </Picker.Items>
+              </Picker>
+
+            <Label Text="Price:" 
+                   TextColor="White"/>
+            <Frame BackgroundColor="#333333" 
+                   Padding="0" 
+                   CornerRadius="5"
+                   IsClippedToBounds="True"
+                   BorderColor="Transparent">
+                <Grid ColumnDefinitions="Auto,*">
+                    <Label Text="R" 
+                           TextColor="White"
+                           VerticalOptions="Center"
+                           Padding="10,0"
+                           FontSize="16"/>
+                    <Entry Grid.Column="1"
+                           x:Name="PriceEntry"
+                           TextColor="White"
+                           Keyboard="Numeric"
+                           BackgroundColor="#333333"
+                           TextChanged="OnPriceTextChanged"/>
+                </Grid>
+            </Frame>
+
+
+
+            <Label Text="Pros:" 
+                   TextColor="White"/>
+            <Frame BackgroundColor="#333333" 
+                   Padding="15" 
+                   CornerRadius="10">
+
+                <Grid ColumnDefinitions="Auto,*,Auto,*,Auto,*" 
+                      RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                      RowSpacing="10" 
+                      ColumnSpacing="10">
+                    <CheckBox Grid.Row="0" Grid.Column="0" VerticalOptions="Center" Margin="-20,0,0,0"/>
+                    <Label Text="Wifi" 
+                           TextColor="White" 
+                           VerticalOptions="Center" 
+                           Grid.Row="0" Grid.Column="1" 
+                           Margin="-20,0,0,0"/>
+
+                    <CheckBox Grid.Row="0" Grid.Column="2" VerticalOptions="Center" Margin="-10,0,0,0" />
+                    <Label Text="Free Electricity" 
+                           TextColor="White" 
+                           VerticalOptions="Center" 
+                           Grid.Row="0" Grid.Column="3" 
+                           Margin="-20,0,0,0"/>
+
+                    <CheckBox Grid.Row="0" Grid.Column="4" VerticalOptions="Center"  Margin="-20,0,0,0"/>
+                    <Label Text="Bed" 
+                           TextColor="White" 
+                           VerticalOptions="Center" 
+                           Grid.Row="0" Grid.Column="5" 
+                           Margin="-20,0,0,0"/>
+
+                    <CheckBox Grid.Row="1" Grid.Column="0" VerticalOptions="Center"  Margin="-20,0,0,0" />
+                    <Label Text="Washing Machine" 
+                           TextColor="White" 
+                           VerticalOptions="Center" 
+                           Grid.Row="1" Grid.Column="1" 
+                           Margin="-20,0,0,0"/>
+
+                    <CheckBox Grid.Row="1" Grid.Column="2" VerticalOptions="Center"  Margin="-20,0,0,0"/>
+                    <Label Text="Study Table" 
+                           TextColor="White" 
+                           VerticalOptions="Center" 
+                           Grid.Row="1" Grid.Column="3" 
+                           Margin="-20,0,0,0"/>
+
+                    <CheckBox Grid.Row="1" Grid.Column="4" VerticalOptions="Center"  Margin="-20,0,0,0" />
+                    <Label Text="Showers" 
+                           TextColor="White" 
+                           VerticalOptions="Center" 
+                           Grid.Row="1" Grid.Column="5" 
+                           Margin="-20,0,0,0"/>
+                </Grid>
+
+            </Frame>
+
+            <Label Text="Cons:" 
+                   TextColor="White"/>
+            <Frame BackgroundColor="#333333" 
+                   Padding="15" 
+                   CornerRadius="10">
+                <Grid ColumnDefinitions="*,*" 
+                      RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                      RowSpacing="10" 
+                      ColumnSpacing="8">
+                    <CheckBox Grid.Row="0" Grid.Column="0" />
+                    <Label Text="Buy Electricity" 
+                           TextColor="White" 
+                           VerticalOptions="Center" 
+                           Grid.Row="0" Grid.Column="0" 
+                           Margin="50,0,0,0"/>
+
+                    <CheckBox Grid.Row="0" Grid.Column="1" />
+                    <Label Text="No Showers" 
+                           TextColor="White" 
+                           VerticalOptions="Center" 
+                           Grid.Row="0" Grid.Column="1" 
+                           Margin="50,0,0,0"/>
+
+                    <CheckBox Grid.Row="1" Grid.Column="0" />
+                    <Label Text="Minimal Security" 
+                           TextColor="White" 
+                           VerticalOptions="Center" 
+                           Grid.Row="1" Grid.Column="0" 
+                           Margin="50,0,0,0"/>
+
+                    <CheckBox Grid.Row="1" Grid.Column="1" />
+                    <Label Text="No Hot Water" 
+                           TextColor="White" 
+                           VerticalOptions="Center" 
+                           Grid.Row="1" Grid.Column="1" 
+                           Margin="50,0,0,0"/>
+
+                    <CheckBox Grid.Row="2" Grid.Column="0" />
+                    <Label Text="Bring Own Bed" 
+                           TextColor="White" 
+                           VerticalOptions="Center" 
+                           Grid.Row="2" Grid.Column="0" 
+                           Margin="50,0,0,0"/>
+
+                    <CheckBox Grid.Row="2" Grid.Column="1" />
+                    <Label Text="Yard has Dogs" 
+                           TextColor="White" 
+                           VerticalOptions="Center" 
+                           Grid.Row="2" Grid.Column="1" 
+                           Margin="50,0,0,0"/>
+
+                    <CheckBox Grid.Row="3" Grid.Column="0" />
+                    <Label Text="No Packing" 
+                           TextColor="White" 
+                           VerticalOptions="Center" 
+                           Grid.Row="3" Grid.Column="0" 
+                           Margin="50,0,0,0"/>
+
+                </Grid>
+            </Frame>
+
+            <Label Text="Additional Information:" 
+                   TextColor="White"/>
+            <Editor BackgroundColor="#333333" 
+                    TextColor="White" 
+                    HeightRequest="100"/>
+
+            <!-- New Rules and Regulations section -->
+            <Label Text="Rules and Regulations:" 
+                   TextColor="White"/>
+            <Frame BackgroundColor="#333333" 
+                   Padding="15" 
+                   CornerRadius="10">
+                <VerticalStackLayout Spacing="10">
+                    <!-- Input field for new rule -->
+                    <Grid ColumnDefinitions="*, Auto">
+                        <Entry x:Name="RuleEntry"
+                               TextColor="White"
+                               PlaceholderColor="#666666"
+                               Placeholder="Enter a rule..."
+                               BackgroundColor="#444444"/>
+                        <Button Grid.Column="1"
+                                Text="Add"
+                                Clicked="OnAddRuleClicked"
+                                BackgroundColor="#81B7B7"
+                                Margin="5,0,0,0"/>
+                    </Grid>
+
+                    <!-- List of rules -->
+                    <CollectionView x:Name="RulesList"
+                                  HeightRequest="200">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnDefinitions="Auto, *, Auto" 
+                                      Padding="5">
+                                    <Label Text="{Binding Number}" 
+                                           TextColor="White"
+                                           WidthRequest="30"/>
+                                    <Label Grid.Column="1" 
+                                           Text="{Binding Text}" 
+                                           TextColor="White"/>
+                                    <Button Grid.Column="2"
+                                            Text="✕"
+                                            BackgroundColor="Transparent"
+                                            TextColor="Red"
+                                            Clicked="OnDeleteRuleClicked"
+                                            CommandParameter="{Binding .}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+
+                    <Button Text="Save Rules"
+                            BackgroundColor="#81B7B7"
+                            TextColor="White"
+                            Clicked="OnSaveRulesClicked"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Label Text="Upload images:" 
+                   TextColor="White"/>
+            <Button Text="Upload file(s)" 
+                    BackgroundColor="#333333" 
+                    TextColor="White"
+                    Clicked="OnUploadClicked"/>
+            <Label x:Name="FileNameLabel" 
+                   Text="No file chosen" 
+                   TextColor="#666666"/>
+
+            <Button Text="Upload Room" 
+                    BackgroundColor="#81B7B7" 
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    Margin="0,20,0,0"
+                    Clicked="OnSubmitClicked"/>
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+
 </ContentPage>
