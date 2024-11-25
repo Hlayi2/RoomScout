@@ -1,11 +1,22 @@
 namespace RoomScout.Views.AdminSide;
+using RoomScout.Models.AdminSide;
 
 public partial class DashboardProfile : ContentPage
 {
-	public DashboardProfile()
+    private Landlord _landlord;
+
+    public DashboardProfile()
 	{
 		InitializeComponent();
-	}
+
+        _landlord = new Landlord
+        {
+            FullNames = Preferences.Get("FullNames", "John Doe"),
+            ProfilePicture = Preferences.Get("ProfilePicture", "profiles.png")
+        };
+
+        BindingContext = _landlord;
+    }
 
     private async void OnUpdateProfileClicked(object sender, EventArgs e)
     {

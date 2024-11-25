@@ -12,12 +12,12 @@
                    Padding="0"
                    HorizontalOptions="Center">
                 <VerticalStackLayout Spacing="5">
-                    <Image Source="profiles.png"
+                    <Image Source="{Binding ProfilePicture}"
                            HeightRequest="60"
                            WidthRequest="60"
                            HorizontalOptions="Center"/>
                     <Grid ColumnDefinitions="Auto,Auto" ColumnSpacing="5">
-                        <Label Text="John Doe" 
+                        <Label Text="{Binding FullNames}" 
                                TextColor="White"
                                FontSize="20"
                                HorizontalOptions="Center"/>
@@ -34,17 +34,17 @@
                 </VerticalStackLayout>
             </Frame>
             <!-- Form Fields -->
-            <Label Text="Full Names:" TextColor="White"/>
-            <Entry BackgroundColor="White" Placeholder="Enter full names"/>
+            <Label Text="{Binding FullNames}" TextColor="White"/>
+            <Entry Text="{Binding FullNames}" BackgroundColor="White" Placeholder="Enter full names"/>
 
-            <Label Text="Email Address:" TextColor="White"/>
-            <Entry BackgroundColor="White" Placeholder="Enter email"/>
+            <Label Text="{Binding Email}" TextColor="White"/>
+            <Entry Text="{Binding Email}" BackgroundColor="White" Placeholder="Enter email"/>
 
-            <Label Text="Contact Details:" TextColor="White"/>
-            <Entry BackgroundColor="White" Placeholder="Enter contact details"/>
+            <Label Text="{Binding ContactDetails}" TextColor="White"/>
+            <Entry Text="{Binding ContactDetails}" BackgroundColor="White" Placeholder="Enter contact details"/>
 
-            <Label Text="ID/Passport No:" TextColor="White"/>
-            <Entry BackgroundColor="White" Placeholder="Enter ID/Passport number"/>
+            <Label Text="{Binding IdOrPassportNo}" TextColor="White"/>
+            <Entry Text="{Binding  IdOrPassportNo}" BackgroundColor="White" Placeholder="Enter ID/Passport number"/>
 
             <!-- Upload Button -->
             <Button x:Name="UploadIdButton"
@@ -56,15 +56,15 @@
                     Padding="10"
                     ClassId="IdDocument"
                     Clicked="OnUploadFileClicked"/>
-            
-            <Label Text="Name of Accomodation:" TextColor="White"/>
-            <Entry BackgroundColor="White" Placeholder="Enter accommodation name"/>
 
-            <Label Text="Address:" TextColor="White"/>
-            <Entry BackgroundColor="White" Placeholder="Enter address"/>
+            <Label Text="{Binding AccommodationName}" TextColor="White"/>
+            <Entry Text="{Binding AccommodationName}" BackgroundColor="White" Placeholder="Enter accommodation name"/>
 
-            <Label Text="Location:" TextColor="White"/>
-            <Entry BackgroundColor="White" Placeholder="Enter location"/>
+            <Label Text="{Binding Address}" TextColor="White"/>
+            <Entry Text="{Binding Address}"  BackgroundColor="White" Placeholder="Enter address"/>
+
+            <Label Text="{Binding Location}" TextColor="White"/>
+            <Entry Text="{Binding Location}"  BackgroundColor="White" Placeholder="Enter location"/>
 
             <Label Text="Upload proof of address:" TextColor="White"/>
 
