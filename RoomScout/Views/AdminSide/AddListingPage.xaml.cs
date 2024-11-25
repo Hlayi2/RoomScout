@@ -116,7 +116,11 @@ public partial class AddListingPage : ContentPage
     private async void OnSubmitClicked(object sender, EventArgs e)
     {
         // Add your submission logic here
-        await DisplayAlert("Success", "Listing uploaded successfully!", "OK");
+        await DisplayAlert("Success", " Room Listing uploaded successfully! You will be redirected in 2 seconds", "OK");
+        await Task.Delay(2000);
+
+        // Navigate to the DashboardProfile page
+        await Navigation.PushAsync(new DashboardProfile());
     }
 }
 
