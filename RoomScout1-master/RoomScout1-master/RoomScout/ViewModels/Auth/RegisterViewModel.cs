@@ -58,7 +58,12 @@ namespace RoomScout.ViewModels.Auth
         // Validate phone number format using regex
         private bool IsValidPhone(string phone)
         {
-            string phonePattern = @"^\+?[1-9]\d{1,14}$"; // International phone number format
+            if (!phone.StartsWith("+27"))
+            {
+                phone = "+27" + phone.TrimStart('0'); 
+            }
+
+            string phonePattern = @"^\+27\d{9}$"; 
             return Regex.IsMatch(phone, phonePattern);
         }
 
