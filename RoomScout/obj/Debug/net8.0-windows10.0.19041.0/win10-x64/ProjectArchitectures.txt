@@ -1,0 +1,1 @@
+C:\Users\User\source\repos\RoomScout3\RoomScout\RoomScout.csproj;x64
