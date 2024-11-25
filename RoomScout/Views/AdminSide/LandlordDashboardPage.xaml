@@ -47,12 +47,16 @@
             <Entry BackgroundColor="White" Placeholder="Enter ID/Passport number"/>
 
             <!-- Upload Button -->
-            <Button Text="Upload file" 
+            <Button x:Name="UploadIdButton"
+                    Text="Upload file" 
                     BackgroundColor="#333333"
                     TextColor="#FF0000"
                     BorderColor="#666666"
                     BorderWidth="1"
-                    Padding="10"/>
+                    Padding="10"
+                    ClassId="IdDocument"
+                    Clicked="OnUploadFileClicked"/>
+            
             <Label Text="Name of Accomodation:" TextColor="White"/>
             <Entry BackgroundColor="White" Placeholder="Enter accommodation name"/>
 
@@ -63,27 +67,44 @@
             <Entry BackgroundColor="White" Placeholder="Enter location"/>
 
             <Label Text="Upload proof of address:" TextColor="White"/>
-            <Button Text="Upload file" 
+
+            <Button x:Name="UploadAddressButton"
+                    Text="Upload file" 
                     BackgroundColor="#333333"
                     TextColor="#FF0000"
                     BorderColor="#666666"
                     BorderWidth="1"
-                    Padding="10"/>
+                    Padding="10"
+                    ClassId="ProofOfAddress"
+                    Clicked="OnUploadFileClicked"/>
 
             <Label Text="Upload proof of title deed(Affidavit):" TextColor="White"/>
-            <Button Text="Upload file" 
+
+            <Button x:Name="UploadTitleDeedButton"
+                    Text="Upload file" 
                     BackgroundColor="#333333"
                     TextColor="#FF0000"
                     BorderColor="#666666"
                     BorderWidth="1"
-                    Padding="10"/>
+                    Padding="10"
+                    ClassId="TitleDeed"
+                    Clicked="OnUploadFileClicked"/>
+
+            <!-- Add an ActivityIndicator -->
+            <ActivityIndicator x:Name="LoadingIndicator"
+                               IsVisible="false"
+                               IsRunning="false"
+                               Color="#5F9EA0"
+                               HorizontalOptions="Center"/>
 
             <!-- Action Buttons -->
-            <Button Text="Add Room"
+            <Button Text="Add Listing"
                     BackgroundColor="#5F9EA0"
                     TextColor="White"
                     CornerRadius="20"
-                    Margin="0,10"/>
+                    Margin="0,10"
+                    Clicked="OnAddRoomClicked"/>
+            
             <Button Text="View my Listings"
                     BackgroundColor="#5F9EA0"
                     TextColor="White"
