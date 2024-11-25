@@ -88,7 +88,8 @@ public partial class DashboardProfile : ContentPage
             BindingContext = null;
 
             // Navigate back to the LandingPage
-            await Navigation.PopToRootAsync();  // This will take the user to the root page (LandingPage)
+            await Navigation.PushAsync(new LandingPage());
+            // This will take the user to the root page (LandingPage)
         }
     }
 
