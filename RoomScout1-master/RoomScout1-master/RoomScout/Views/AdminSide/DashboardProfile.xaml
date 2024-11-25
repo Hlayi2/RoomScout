@@ -21,8 +21,8 @@
                 <Button Text="Add New Listing" BackgroundColor="#76ABAE" TextColor="White" FontAttributes="Bold" Clicked="OnNewListingClicked"/>
                 <Button Text="View Listings" BackgroundColor="#76ABAE" TextColor="White" FontAttributes="Bold" Clicked="OnViewListingsClicked" />
                 <Button Text="Report an Issue" BackgroundColor="#E85C0D" TextColor="White" FontAttributes="Bold"/>
-                <Button Text="Logout" BackgroundColor="#FF3B30" TextColor="White" FontAttributes="Bold"/>
-                <Button Text="Delete Account" BackgroundColor="#C40C0C" TextColor="White" FontAttributes="Bold"/>
+                <Button Text="Logout" BackgroundColor="#FF3B30" TextColor="White" FontAttributes="Bold" Clicked="OnLogoutButtonClicked"/>
+                <Button Text="Delete Account" BackgroundColor="#C40C0C" TextColor="White" FontAttributes="Bold"  Clicked="OnDeleteAccountButtonClicked"/>
             </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
