@@ -153,5 +153,43 @@ public partial class LandlordDashboardPage : ContentPage
         await Navigation.PushAsync(new DashboardProfile());
     }
 
+    private async void OnProfileImageTapped(object sender, EventArgs e)
+    {
+        var action = await DisplayActionSheet("Profile Picture", "Cancel", null, "Upload", "Remove");
+
+        if (action == "Upload")
+        {
+            // Handle image upload logic here, such as opening a file picker
+            var pickedImage = await PickAndShowImage();
+            if (pickedImage != null)
+            {
+                // Update the profile picture source
+                ProfileImage.Source = pickedImage;
+            }
+        }
+        else if (action == "Remove")
+        {
+            // Handle removing the profile picture
+            ProfileImage.Source = "profiles.png"; // Set to default image
+        }
+    }
+
+    private async Task<ImageSource> PickAndShowImage()
+    {
+        var fileResult = await FilePicker.PickAsync(new PickOptions
+        {
+            FileTypes = FilePickerFileType.Images
+        });
+
+        if (fileResult != null)
+        {
+            return ImageSource.FromFile(fileResult.FullPath);
+        }
+
+        return null;
+    }
+
+
+
 }
 

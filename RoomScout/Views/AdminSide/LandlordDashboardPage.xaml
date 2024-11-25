@@ -12,10 +12,17 @@
                    Padding="0"
                    HorizontalOptions="Center">
                 <VerticalStackLayout Spacing="5">
-                    <Image Source="{Binding ProfilePicture}"
-                           HeightRequest="60"
-                           WidthRequest="60"
-                           HorizontalOptions="Center"/>
+
+                    <Image x:Name="ProfileImage"
+                       Source="{Binding ProfilePicture}" 
+                        HeightRequest="100"
+                       WidthRequest="100"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" >
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnProfileImageTapped"/>
+                        </Image.GestureRecognizers>
+                    </Image>
                     <Grid ColumnDefinitions="Auto,Auto" ColumnSpacing="5">
                         <Label Text="{Binding FullNames}" 
                                TextColor="White"
@@ -34,16 +41,16 @@
                 </VerticalStackLayout>
             </Frame>
             <!-- Form Fields -->
-            <Label Text="{Binding FullNames}" TextColor="White"/>
+            <Label Text="Full Name(s):" TextColor="White"/>
             <Entry Text="{Binding FullNames}" BackgroundColor="White" Placeholder="Enter full names"/>
 
-            <Label Text="{Binding Email}" TextColor="White"/>
+            <Label Text="Email Address:" TextColor="White"/>
             <Entry Text="{Binding Email}" BackgroundColor="White" Placeholder="Enter email"/>
 
-            <Label Text="{Binding ContactDetails}" TextColor="White"/>
+            <Label Text="Contact Information:" TextColor="White"/>
             <Entry Text="{Binding ContactDetails}" BackgroundColor="White" Placeholder="Enter contact details"/>
 
-            <Label Text="{Binding IdOrPassportNo}" TextColor="White"/>
+            <Label Text="ID or Passport No:" TextColor="White"/>
             <Entry Text="{Binding  IdOrPassportNo}" BackgroundColor="White" Placeholder="Enter ID/Passport number"/>
 
             <!-- Upload Button -->
