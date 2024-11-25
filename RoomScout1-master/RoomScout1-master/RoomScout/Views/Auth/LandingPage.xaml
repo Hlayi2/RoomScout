@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RoomScout.Views.Auth.LandingPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#1A1F25">
+
+    
+        <Grid RowDefinitions="*,*,*"  >
+            <!-- Logo -->
+            <Image Source="logo.png"
+                   Grid.Row="0"
+                   HeightRequest="90"
+                   InputTransparent="True"
+                   HorizontalOptions="Center"
+                   ZIndex="2"
+                   Margin="0,0,0,120"
+                   />
+
+            <!-- Welcome Text -->
+        <Label Text="Welcome to RoomScout"
+                   Grid.Row="1"
+                   TextColor="White"
+                   WidthRequest="170"
+                   FontSize="29"
+                   Margin="0,-90,220,0"
+                   ZIndex="1"
+                  
+                   
+                   HorizontalOptions="Center"/>
+
+        
+
+            <!-- House Image -->
+        <Frame CornerRadius="20"
+                   Grid.Row="1"
+                   IsClippedToBounds="True"
+                   Padding="0"
+                   HeightRequest="900"
+                   Margin="0,20">
+            <Image Source="modernhouse.jpg"
+                       
+                   Aspect="AspectFill"/>
+            </Frame>
+
+            <!-- Get Started Button -->
+            <Button Text="Get Started"
+                    Clicked="OnGetStartedClicked"
+                    Grid.Row="2"
+                    Command="{Binding NavigateToLoginCommand}"
+                    BackgroundColor="#7FB5B5"
+                    TextColor="White"
+                    FontSize="18"
+                    CornerRadius="25"
+                    HeightRequest="50"
+                    Margin="30,100,30,0"/>
+        </Grid>
+    
+</ContentPage>
