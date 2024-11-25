@@ -78,6 +78,7 @@ public partial class LandlordDashboardPage : ContentPage
         {
             await DisplayAlert("Warning", "Please upload all required documents before saving.", "OK");
             return;
+
         }
 
         // Handle saving the form data along with the uploaded files
@@ -95,6 +96,16 @@ public partial class LandlordDashboardPage : ContentPage
             await DisplayAlert("Error", "Unable to navigate to Add Listing page.", "OK");
         }
 
+    }
+
+    private async void OnSaveButtonClicked(object sender, EventArgs e)
+    {
+        // Add your submission logic here
+        await DisplayAlert("Success", " Information uploaded successfully! You will be redirected in 2 seconds", "OK");
+        await Task.Delay(2000);
+
+        // Navigate to the DashboardProfile page
+        await Navigation.PushAsync(new DashboardProfile());
     }
 
 }

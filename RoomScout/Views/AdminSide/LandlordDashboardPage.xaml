@@ -129,6 +129,7 @@
                     BackgroundColor="#5F9EA0"
                     TextColor="White"
                     CornerRadius="20"
+                    Clicked="OnSaveButtonClicked"
                     Margin="0,10,0,20"/>
 
         </VerticalStackLayout>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RoomScout.Views.AdminSide.DashboardProfile"
+             Title="DashboardProfile"
+             BackgroundColor="#222831">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+            <!-- Profile Section -->
+            <Frame CornerRadius="10" Padding="10" HasShadow="True" BackgroundColor="LightGray">
+                <VerticalStackLayout Spacing="10" HorizontalOptions="Center">
+                    <Image Source="profile1.png" HeightRequest="100" WidthRequest="100" Aspect="AspectFill" />
+                    <Label Text="Landlord: John Doe" FontSize="18" FontAttributes="Bold" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Buttons Section -->
+            <VerticalStackLayout Spacing="10">
+                <Button Text="Update My Profile" BackgroundColor="#76ABAE" TextColor="White" FontAttributes="Bold" Clicked="OnUpdateProfileClicked" />
+                <Button Text="Add New Listing" BackgroundColor="#76ABAE" TextColor="White" FontAttributes="Bold" Clicked="OnNewListingClicked"/>
+                <Button Text="View Listings" BackgroundColor="#76ABAE" TextColor="White" FontAttributes="Bold" Clicked="OnViewListingsClicked" />
+                <Button Text="Report an Issue" BackgroundColor="#E85C0D" TextColor="White" FontAttributes="Bold"/>
+                <Button Text="Logout" BackgroundColor="#FF3B30" TextColor="White" FontAttributes="Bold"/>
+                <Button Text="Delete Account" BackgroundColor="#C40C0C" TextColor="White" FontAttributes="Bold"/>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
