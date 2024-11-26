@@ -18,7 +18,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RoomScout")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+85985c8e67d02d06210fe80dea09c4bb8f922117")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+f5b72a2f96d48926f2aee9ed0b0292499386e3c1")]
 [assembly: System.Reflection.AssemblyProductAttribute("RoomScout")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RoomScout")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

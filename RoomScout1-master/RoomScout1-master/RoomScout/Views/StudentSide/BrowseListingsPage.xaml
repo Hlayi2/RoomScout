@@ -2,11 +2,174 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RoomScout.Views.StudentSide.BrowseListingsPage"
+             BackgroundColor="#31353D"
              Title="BrowseListingsPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    
+    <ScrollView>
+        <VerticalStackLayout
+        Spacing="15"
+        Padding="10">
+            <!-- search bar -->
+            <Frame
+            CornerRadius="5"
+            Padding="0"
+            Background="Gray"
+            HeightRequest="40"
+            WidthRequest="300"
+            HorizontalOptions="Center">
+                <HorizontalStackLayout
+                VerticalOptions="Center">
+                    <Image
+                    Grid.Column="0"
+                    Source="search.png"
+                    HeightRequest="20"
+                    WidthRequest="20"
+                    Aspect="AspectFit"
+                    Margin="0,0,10,0"/>
+                    <Entry
+                    Grid.Column="1"
+                    Placeholder="Search Now"
+                    PlaceholderColor="White"
+                    TextColor="White"
+                    FontSize="15"
+                    VerticalOptions="Center"/>
+                </HorizontalStackLayout>
+            </Frame>
+
+            <HorizontalStackLayout
+            VerticalOptions="Center"
+            Spacing="20"
+            Padding="15">
+                <!-- near by frame -->
+                <Frame
+                CornerRadius="15"
+                Padding="0"
+                Background="White"
+                HeightRequest="100"
+                WidthRequest="110"
+                HorizontalOptions="Center">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnNearByTapped"/>
+                    </Frame.GestureRecognizers>
+                    <VerticalStackLayout HorizontalOptions="Center">
+                        <Image
+                        Source="location.png"
+                        HeightRequest="30"
+                        WidthRequest="30"
+                        Aspect="AspectFit"
+                        Margin="0,20, 0, 10"/>
+                        <Label
+                        Text="Near By"
+                        TextColor="Black"
+                        FontSize="15"
+                        HorizontalOptions="Start"/>
+                    </VerticalStackLayout>
+                </Frame>
+                <!-- book viewing frame -->
+                <Frame
+                CornerRadius="15"
+                Padding="0"
+                Background="White"
+                HeightRequest="100"
+                WidthRequest="110"
+                HorizontalOptions="Center">
+                    <VerticalStackLayout
+                    HorizontalOptions="Center">
+                        <Image
+                        Source="booking.png"
+                        HeightRequest="30"
+                        WidthRequest="30"
+                        Aspect="AspectFit"
+                        Margin="0,20, 0, 10"/>
+                        <Label
+                        Text="View Booking"
+                        TextColor="Black"
+                        FontSize="15"
+                        HorizontalOptions="Start"/>
+                    </VerticalStackLayout>
+                </Frame>
+                <!-- add event frame -->
+                <Frame
+                CornerRadius="15"
+                Padding="0"
+                Background="White"
+                HeightRequest="100"
+                WidthRequest="110"
+                HorizontalOptions="Center">
+                    <VerticalStackLayout
+                    HorizontalOptions="Center">
+                        <Image
+                        Source="event.png"
+                        HeightRequest="30"
+                        WidthRequest="30"
+                        Aspect="AspectFit"
+                        Margin="0,20, 0, 10"/>
+                        <Label
+                        Text="Add Event"
+                        TextColor="Black"
+                        FontSize="15"
+                        HorizontalOptions="Start"/>
+                    </VerticalStackLayout>
+                </Frame>
+            </HorizontalStackLayout>
+
+            <Label
+            Text="Category"
+            TextColor="White"
+            FontSize="25"
+            FontAttributes="Bold"
+            HorizontalTextAlignment="Start"/>
+
+            <HorizontalStackLayout
+            VerticalOptions="Center"
+            Spacing="20"
+            Padding="15">
+                <!-- all button -->
+                <Button
+                BorderColor="#76ABAE"
+                BorderWidth="2"
+                HeightRequest="40"
+                WidthRequest="65"
+                CornerRadius="5"
+                Background="White"
+                Text="All"
+                TextColor="Black"
+                FontSize="15"
+                FontAttributes="Bold"/>
+                <!-- bachelor button -->
+                <Button
+                BorderColor="#76ABAE"
+                BorderWidth="2"
+                HeightRequest="40"
+                CornerRadius="5"
+                Background="White"
+                Text="Bachelor"
+                TextColor="Black"
+                FontSize="15"
+                FontAttributes="Bold"/>
+                <!-- sharing button -->
+                <Button
+                BorderColor="#76ABAE"
+                BorderWidth="2"
+                HeightRequest="40"
+                CornerRadius="5"
+                Background="White"
+                Text="Sharing"
+                TextColor="Black"
+                FontSize="15"
+                FontAttributes="Bold"/>
+                <!-- single button -->
+                <Button
+                BorderColor="#76ABAE"
+                BorderWidth="2"
+                HeightRequest="40"
+                CornerRadius="5"
+                Background="White"
+                Text="Single"
+                TextColor="Black"
+                FontSize="15"
+                FontAttributes="Bold"/>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
