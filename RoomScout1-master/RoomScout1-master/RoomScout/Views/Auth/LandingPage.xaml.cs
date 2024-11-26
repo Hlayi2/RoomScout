@@ -8,6 +8,6 @@ public partial class LandingPage : ContentPage
     }
     private async void OnGetStartedClicked(object sender, EventArgs e)
     {
-        await Navigation.PushModalAsync(new LoginPage());
+        await AppShell.Current.GoToAsync("register");
     }
 }

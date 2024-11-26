@@ -41,9 +41,9 @@
                     Text="{Binding Password}"
                     IsPassword="{Binding IsPasswordHidden}"
                     TextColor="Black"/>
-                    <ImageButton Grid.Column="1"
+              <ImageButton Grid.Column="1"
                     
-                        Source="{Binding EyeIcon}"
+                    Source="{Binding EyeIcon}"
                     Command="{Binding TogglePasswordCommand}"
                     HeightRequest="34"
                     WidthRequest="30"

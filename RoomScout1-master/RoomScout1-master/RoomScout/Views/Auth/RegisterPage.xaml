@@ -43,14 +43,8 @@
                         PlaceholderColor="Gray"
                         TextColor="Black"
                         BackgroundColor="Transparent"/>
+                   
 
-                    <ImageButton 
-                        Grid.Column="1"
-                        Source="eye.png"
-                        HeightRequest="24"
-                        WidthRequest="24"
-                        Opacity="0.6"
-                        Clicked="OnPasswordVisibilityToggle"/>
                 </Grid>
             </Frame>
 
