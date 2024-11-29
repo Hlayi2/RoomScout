@@ -63,6 +63,13 @@
 	  <None Remove="Resources\Images\logo.png" />
 	  <None Remove="Resources\Images\modernhouse.png" />
 	  <None Remove="Resources\Images\welcome.png" />
+	  <None Remove="Views\StudentSide\AddEventxaml" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Include="Views\StudentSide\AddEventxaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -70,6 +77,15 @@
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Views\StudentSide\AddEventxaml.cs">
+	    <DependentUpon>AddEventxaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\StudentSide\ViewBooking.xaml.cs">
+	    <DependentUpon>ViewBooking.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -116,6 +132,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\StudentSide\NearByPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\StudentSide\ViewBooking.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

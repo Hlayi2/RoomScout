@@ -73,6 +73,9 @@
                 HeightRequest="100"
                 WidthRequest="110"
                 HorizontalOptions="Center">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnViewBookingTapped"/>
+                    </Frame.GestureRecognizers>
                     <VerticalStackLayout
                     HorizontalOptions="Center">
                         <Image
@@ -96,6 +99,9 @@
                 HeightRequest="100"
                 WidthRequest="110"
                 HorizontalOptions="Center">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnAddEventTapped"/>
+                    </Frame.GestureRecognizers>
                     <VerticalStackLayout
                     HorizontalOptions="Center">
                         <Image
