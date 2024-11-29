@@ -14,7 +14,7 @@ namespace RoomScout.Models.AdminSide
         public string IdOrPassportNo { get; set; }
         public string AccommodationName { get; set; }
         public string Address { get; set; }
-        public string Location { get; set; }
-        public string ProfilePicture { get; set; }
+        public string Location { get; set; } 
+        public string ProfilePicture { get; set; }  
     }
 }
