@@ -63,6 +63,14 @@
 	  <None Remove="Resources\Images\logo.png" />
 	  <None Remove="Resources\Images\modernhouse.png" />
 	  <None Remove="Resources\Images\welcome.png" />
+	  <None Remove="Resources\Images\booking.png" />
+	  <None Remove="Resources\Images\category_24.png" />
+	  <None Remove="Resources\Images\event.png" />
+	  <None Remove="Resources\Images\filter.png" />
+	  <None Remove="Resources\Images\home_24.png" />
+	  <None Remove="Resources\Images\location.png" />
+	  <None Remove="Resources\Images\profile_24.png" />
+	  <None Remove="Resources\Images\search.png" />
 	  <None Remove="Views\StudentSide\AddEventxaml" />
 	</ItemGroup>
 
@@ -119,6 +127,21 @@
 	  <MauiXaml Update="Views\Auth\RoleSelectionPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\CategoryPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\HomePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ProfilePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\StudentSide\AllPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\StudentSide\BachelorPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\StudentSide\BookingHistoryPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -132,6 +155,12 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\StudentSide\NearByPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\StudentSide\SharingPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\StudentSide\SinglePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\StudentSide\ViewBooking.xaml">

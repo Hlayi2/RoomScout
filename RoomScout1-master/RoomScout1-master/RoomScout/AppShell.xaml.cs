@@ -17,5 +17,10 @@ namespace RoomScout
             Routing.RegisterRoute("viewbooking", typeof(RoomScout.Views.StudentSide.ViewBooking));
             Routing.RegisterRoute("addevent", typeof(RoomScout.Views.StudentSide.AddEvent));
         }
+
+        private void ShellContent_BindingContextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

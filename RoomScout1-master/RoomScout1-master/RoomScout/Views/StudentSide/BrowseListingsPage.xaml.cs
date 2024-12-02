@@ -10,4 +10,30 @@ public partial class BrowseListingsPage : ContentPage
 	{
 		await Navigation.PushAsync(new NearByPage());
 	}
+    private async void OnViewBookingTapped(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new ViewBooking());
+    }
+    private async void OnAddEventTapped(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new AddEvent());
+    }
+
+    private async void OnAllClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new AllPage());
+    }
+    private async void OnBachelorClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new BachelorPage());
+    }
+    private async void OnSharingClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new SharingPage());
+    }
+    private async void OnSingleClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new SinglePage());
+    }
+
 }
