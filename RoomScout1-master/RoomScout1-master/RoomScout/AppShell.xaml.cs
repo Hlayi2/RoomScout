@@ -12,7 +12,10 @@ namespace RoomScout
 
             Routing.RegisterRoute("register", typeof(RoomScout.Views.Auth.RegisterPage));
             Routing.RegisterRoute("landlordDashboard", typeof(RoomScout.Views.AdminSide.LandlordDashboardPage));
-            Routing.RegisterRoute("viewApartments", typeof(RoomScout.Views.StudentSide.BrowseListingsPage));
+            Routing.RegisterRoute("browseListings", typeof(RoomScout.Views.StudentSide.BrowseListingsPage));
+            Routing.RegisterRoute("nearby", typeof(RoomScout.Views.StudentSide.NearByPage));
+            Routing.RegisterRoute("viewbooking", typeof(RoomScout.Views.StudentSide.ViewBooking));
+            Routing.RegisterRoute("addevent", typeof(RoomScout.Views.StudentSide.AddEvent));
         }
     }
 }
