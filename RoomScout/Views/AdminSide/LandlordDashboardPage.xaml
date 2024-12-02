@@ -12,7 +12,7 @@
                    Padding="0"
                    HorizontalOptions="Center">
                 <VerticalStackLayout Spacing="5">
-                    <Image Source="profiles.png"
+                    <Image Source="{Binding Landlord.ProfilePicture}"
                            HeightRequest="60"
                            WidthRequest="60"
                            HorizontalOptions="Center"/>
@@ -34,16 +34,16 @@
                 </VerticalStackLayout>
             </Frame>
             <!-- Form Fields -->
-            <Label Text="Full Names:" TextColor="White"/>
+            <Label Text="{Binding Landlord.FullNames}" TextColor="White"/>
             <Entry BackgroundColor="White" Placeholder="Enter full names"/>
 
-            <Label Text="Email Address:" TextColor="White"/>
+            <Label Text="{Binding Landlord.Email}" TextColor="White"/>
             <Entry BackgroundColor="White" Placeholder="Enter email"/>
 
-            <Label Text="Contact Details:" TextColor="White"/>
+            <Label Text="{Binding Landlord.ContactDetails}" TextColor="White"/>
             <Entry BackgroundColor="White" Placeholder="Enter contact details"/>
 
-            <Label Text="ID/Passport No:" TextColor="White"/>
+            <Label Text="{Binding Landlord.IdPassport}" TextColor="White"/>
             <Entry BackgroundColor="White" Placeholder="Enter ID/Passport number"/>
 
             <!-- Upload Button -->
@@ -56,14 +56,14 @@
                     Padding="10"
                     ClassId="IdDocument"
                     Clicked="OnUploadFileClicked"/>
-            
-            <Label Text="Name of Accomodation:" TextColor="White"/>
+
+            <Label Text="{Binding Landlord.AccomodationName}" TextColor="White"/>
             <Entry BackgroundColor="White" Placeholder="Enter accommodation name"/>
 
-            <Label Text="Address:" TextColor="White"/>
+            <Label Text="{Binding Landlord.Address}" TextColor="White"/>
             <Entry BackgroundColor="White" Placeholder="Enter address"/>
 
-            <Label Text="Location:" TextColor="White"/>
+            <Label Text="{Binding Landlord.Location}" TextColor="White"/>
             <Entry BackgroundColor="White" Placeholder="Enter location"/>
 
             <Label Text="Upload proof of address:" TextColor="White"/>
