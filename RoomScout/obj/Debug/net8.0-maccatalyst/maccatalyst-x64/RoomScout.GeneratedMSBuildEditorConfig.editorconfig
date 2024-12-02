@@ -12,101 +12,101 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = RoomScout
-build_property.ProjectDir = C:\Users\User\source\repos\RoomScout\RoomScout\RoomScout\
+build_property.ProjectDir = C:\Users\User\Desktop\RoomScout\RoomScout\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 
-[C:/Users/User/source/repos/RoomScout/RoomScout/RoomScout/App.xaml]
+[C:/Users/User/Desktop/RoomScout/RoomScout/App.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = RoomScout.App.xaml
 build_metadata.AdditionalFiles.TargetPath = App.xaml
 build_metadata.AdditionalFiles.RelativePath = App.xaml
 
-[C:/Users/User/source/repos/RoomScout/RoomScout/RoomScout/AppShell.xaml]
+[C:/Users/User/Desktop/RoomScout/RoomScout/AppShell.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = RoomScout.AppShell.xaml
 build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
 build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
 
-[C:/Users/User/source/repos/RoomScout/RoomScout/RoomScout/MainPage.xaml]
+[C:/Users/User/Desktop/RoomScout/RoomScout/MainPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = RoomScout.MainPage.xaml
 build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
 build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
 
-[C:/Users/User/source/repos/RoomScout/RoomScout/RoomScout/Resources/Styles/Colors.xaml]
+[C:/Users/User/Desktop/RoomScout/RoomScout/Resources/Styles/Colors.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = RoomScout.Resources.Styles.Colors.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
 build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Colors.xaml
 
-[C:/Users/User/source/repos/RoomScout/RoomScout/RoomScout/Resources/Styles/Styles.xaml]
+[C:/Users/User/Desktop/RoomScout/RoomScout/Resources/Styles/Styles.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = RoomScout.Resources.Styles.Styles.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
 build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Styles.xaml
 
-[C:/Users/User/source/repos/RoomScout/RoomScout/RoomScout/Views/AdminSide/AddListingPage.xaml]
+[C:/Users/User/Desktop/RoomScout/RoomScout/Views/AdminSide/AddListingPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = RoomScout.Views.AdminSide.AddListingPage.xaml
 build_metadata.AdditionalFiles.TargetPath = Views\AdminSide\AddListingPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\AdminSide\AddListingPage.xaml
 
-[C:/Users/User/source/repos/RoomScout/RoomScout/RoomScout/Views/AdminSide/BookingRequestsPage.xaml]
+[C:/Users/User/Desktop/RoomScout/RoomScout/Views/AdminSide/BookingRequestsPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = RoomScout.Views.AdminSide.BookingRequestsPage.xaml
 build_metadata.AdditionalFiles.TargetPath = Views\AdminSide\BookingRequestsPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\AdminSide\BookingRequestsPage.xaml
 
-[C:/Users/User/source/repos/RoomScout/RoomScout/RoomScout/Views/AdminSide/LandlordDashboardPage.xaml]
+[C:/Users/User/Desktop/RoomScout/RoomScout/Views/AdminSide/LandlordDashboardPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = RoomScout.Views.AdminSide.LandlordDashboardPage.xaml
 build_metadata.AdditionalFiles.TargetPath = Views\AdminSide\LandlordDashboardPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\AdminSide\LandlordDashboardPage.xaml
 
-[C:/Users/User/source/repos/RoomScout/RoomScout/RoomScout/Views/AdminSide/ManageListingsPage.xaml]
+[C:/Users/User/Desktop/RoomScout/RoomScout/Views/AdminSide/ManageListingsPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = RoomScout.Views.AdminSide.ManageListingsPage.xaml
 build_metadata.AdditionalFiles.TargetPath = Views\AdminSide\ManageListingsPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\AdminSide\ManageListingsPage.xaml
 
-[C:/Users/User/source/repos/RoomScout/RoomScout/RoomScout/Views/Auth/LoginPage.xaml]
+[C:/Users/User/Desktop/RoomScout/RoomScout/Views/Auth/LoginPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = RoomScout.Views.Auth.LoginPage.xaml
 build_metadata.AdditionalFiles.TargetPath = Views\Auth\LoginPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\Auth\LoginPage.xaml
 
-[C:/Users/User/source/repos/RoomScout/RoomScout/RoomScout/Views/Auth/RegisterPage.xaml]
+[C:/Users/User/Desktop/RoomScout/RoomScout/Views/Auth/RegisterPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = RoomScout.Views.Auth.RegisterPage.xaml
 build_metadata.AdditionalFiles.TargetPath = Views\Auth\RegisterPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\Auth\RegisterPage.xaml
 
-[C:/Users/User/source/repos/RoomScout/RoomScout/RoomScout/Views/Auth/RoleSelectionPage.xaml]
+[C:/Users/User/Desktop/RoomScout/RoomScout/Views/Auth/RoleSelectionPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = RoomScout.Views.Auth.RoleSelectionPage.xaml
 build_metadata.AdditionalFiles.TargetPath = Views\Auth\RoleSelectionPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\Auth\RoleSelectionPage.xaml
 
-[C:/Users/User/source/repos/RoomScout/RoomScout/RoomScout/Views/StudentSide/BookingHistoryPage.xaml]
+[C:/Users/User/Desktop/RoomScout/RoomScout/Views/StudentSide/BookingHistoryPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = RoomScout.Views.StudentSide.BookingHistoryPage.xaml
 build_metadata.AdditionalFiles.TargetPath = Views\StudentSide\BookingHistoryPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\StudentSide\BookingHistoryPage.xaml
 
-[C:/Users/User/source/repos/RoomScout/RoomScout/RoomScout/Views/StudentSide/BookmarksPage.xaml]
+[C:/Users/User/Desktop/RoomScout/RoomScout/Views/StudentSide/BookmarksPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = RoomScout.Views.StudentSide.BookmarksPage.xaml
 build_metadata.AdditionalFiles.TargetPath = Views\StudentSide\BookmarksPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\StudentSide\BookmarksPage.xaml
 
-[C:/Users/User/source/repos/RoomScout/RoomScout/RoomScout/Views/StudentSide/BrowseListingsPage.xaml]
+[C:/Users/User/Desktop/RoomScout/RoomScout/Views/StudentSide/BrowseListingsPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = RoomScout.Views.StudentSide.BrowseListingsPage.xaml
 build_metadata.AdditionalFiles.TargetPath = Views\StudentSide\BrowseListingsPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\StudentSide\BrowseListingsPage.xaml
 
-[C:/Users/User/source/repos/RoomScout/RoomScout/RoomScout/Views/StudentSide/ListingDetailsPage.xaml]
+[C:/Users/User/Desktop/RoomScout/RoomScout/Views/StudentSide/ListingDetailsPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = RoomScout.Views.StudentSide.ListingDetailsPage.xaml
 build_metadata.AdditionalFiles.TargetPath = Views\StudentSide\ListingDetailsPage.xaml

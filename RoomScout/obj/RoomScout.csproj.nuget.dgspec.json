@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\source\\repos\\RoomScout\\RoomScout\\RoomScout\\RoomScout.csproj": {}
+    "C:\\Users\\User\\Desktop\\RoomScout\\RoomScout\\RoomScout.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\source\\repos\\RoomScout\\RoomScout\\RoomScout\\RoomScout.csproj": {
+    "C:\\Users\\User\\Desktop\\RoomScout\\RoomScout\\RoomScout.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\source\\repos\\RoomScout\\RoomScout\\RoomScout\\RoomScout.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Desktop\\RoomScout\\RoomScout\\RoomScout.csproj",
         "projectName": "RoomScout",
-        "projectPath": "C:\\Users\\User\\source\\repos\\RoomScout\\RoomScout\\RoomScout\\RoomScout.csproj",
+        "projectPath": "C:\\Users\\User\\Desktop\\RoomScout\\RoomScout\\RoomScout.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\source\\repos\\RoomScout\\RoomScout\\RoomScout\\obj\\",
+        "outputPath": "C:\\Users\\User\\Desktop\\RoomScout\\RoomScout\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "fallbackFolders": [

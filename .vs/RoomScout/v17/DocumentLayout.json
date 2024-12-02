@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\User\\source\\repos\\RoomScout\\RoomScout\\",
+  "WorkspaceRootPath": "C:\\Users\\User\\Desktop\\RoomScout\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{990AF582-65EE-4E1B-A893-B54D82D64D3C}|RoomScout\\RoomScout.csproj|c:\\users\\user\\source\\repos\\roomscout\\roomscout\\roomscout\\views\\studentside\\browselistingspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{990AF582-65EE-4E1B-A893-B54D82D64D3C}|RoomScout\\RoomScout.csproj|c:\\users\\user\\desktop\\roomscout\\roomscout\\views\\studentside\\browselistingspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{990AF582-65EE-4E1B-A893-B54D82D64D3C}|RoomScout\\RoomScout.csproj|solutionrelative:roomscout\\views\\studentside\\browselistingspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
@@ -28,11 +28,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "BrowseListingsPage.xaml",
-              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\RoomScout\\RoomScout\\RoomScout\\Views\\StudentSide\\BrowseListingsPage.xaml",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\RoomScout\\RoomScout\\Views\\StudentSide\\BrowseListingsPage.xaml",
               "RelativeDocumentMoniker": "RoomScout\\Views\\StudentSide\\BrowseListingsPage.xaml",
-              "ToolTip": "C:\\Users\\User\\source\\repos\\RoomScout\\RoomScout\\RoomScout\\Views\\StudentSide\\BrowseListingsPage.xaml",
+              "ToolTip": "C:\\Users\\User\\Desktop\\RoomScout\\RoomScout\\Views\\StudentSide\\BrowseListingsPage.xaml",
               "RelativeToolTip": "RoomScout\\Views\\StudentSide\\BrowseListingsPage.xaml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAlAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2024-11-26T13:15:43.217Z",
               "EditorCaption": ""
