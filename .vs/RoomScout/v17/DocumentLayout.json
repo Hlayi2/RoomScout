@@ -14,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 11,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -23,24 +23,11 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "BrowseListingsPage.xaml",
-              "DocumentMoniker": "C:\\Users\\User\\Desktop\\RoomScout\\RoomScout\\Views\\StudentSide\\BrowseListingsPage.xaml",
-              "RelativeDocumentMoniker": "RoomScout\\Views\\StudentSide\\BrowseListingsPage.xaml",
-              "ToolTip": "C:\\Users\\User\\Desktop\\RoomScout\\RoomScout\\Views\\StudentSide\\BrowseListingsPage.xaml",
-              "RelativeToolTip": "RoomScout\\Views\\StudentSide\\BrowseListingsPage.xaml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAlAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-11-26T13:15:43.217Z",
-              "EditorCaption": ""
             }
           ]
         },
         {
-          "DockedWidth": 389,
+          "DockedWidth": 328,
           "SelectedChildIndex": -1,
           "Children": [
             {
