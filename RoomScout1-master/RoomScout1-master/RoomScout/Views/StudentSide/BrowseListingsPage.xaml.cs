@@ -6,4 +6,8 @@ public partial class BrowseListingsPage : ContentPage
 	{
 		InitializeComponent();
 	}
+	private async void OnNearByTapped(object sender, EventArgs e)
+	{
+		await Navigation.PushAsync(new NearByPage());
+	}
 }
