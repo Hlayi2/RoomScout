@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RoomScout.Views.AdminSide.AddListingPage"
              Title="AddListingPage"
-             BackgroundColor="#222831">
+             BackgroundColor="#1A1F25">
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
