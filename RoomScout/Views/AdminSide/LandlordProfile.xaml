@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RoomScout.Views.AdminSide.LandlordProfile"
+             Title="LandlordProfile"
+              BackgroundColor="#222831">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20" Padding="20">
+            <!-- Profile Image -->
+            <Frame HasShadow="True" Padding="0" CornerRadius="100" WidthRequest="150" HeightRequest="150" HorizontalOptions="Center">
+                <Image Source="profile_placeholder.png" Aspect="AspectFill" />
+            </Frame>
+
+            <!-- Name and Surname -->
+            <Label Text="John Doe" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
+
+            <!-- Buttons -->
+            <Button Text="Update My Profile" Clicked="OnUpdateProfileClicked" BackgroundColor="#5F9EA0" />
+            <Button Text="Add New Listing" Clicked="OnAddListingClicked" BackgroundColor="#5F9EA0" />
+            <Button Text="View Listings" Clicked="OnViewListingsClicked" BackgroundColor="#5F9EA0" />
+            <Button Text="Report an Issue" Clicked="OnReportIssueClicked" />
+            <Button Text="Logout" BackgroundColor="Red" TextColor="White" Clicked="OnLogoutClicked" />
+            <Button Text="Delete Account" BackgroundColor="Red" TextColor="White" Clicked="OnDeleteAccountClicked" />
+           
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
