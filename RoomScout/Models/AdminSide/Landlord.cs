@@ -8,13 +8,13 @@ namespace RoomScout.Models.AdminSide
 {
     public class Landlord
     {
-        public string FullNames {  get; set; }
-        public string Email {  get; set; }
-        public string ContactDetails {  get; set; }
-        public string IdPassport { get; set; }
-        public string AccommodationName { get; set; }
-        public string Address { get; set; }
-        public string Location { get; set; }
-        public string ProfilePicture {  get; set; }
+        public string FullNames { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string ContactDetails { get; set; } = string.Empty;
+        public string IdOrPassportNo { get; set; } = string.Empty;
+        public string AccommodationName { get; set; } = string.Empty;
+        public string Address { get; set; } = string.Empty;
+        public string Location { get; set; } = string.Empty;
+        public string ProfilePicture { get; set; } = "profiles.png";
     }
 }
