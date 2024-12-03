@@ -115,10 +115,17 @@ public partial class AddListingPage : ContentPage
 
     private async void OnSubmitClicked(object sender, EventArgs e)
     {
-        // Add your submission logic here
-        await DisplayAlert("Success", "Listing uploaded successfully!", "OK");
+        // Display a success message
+        await DisplayAlert("Success", "Room Uploade. You will be redirected in 3 seconds.", "OK");
+
+        // Delay for 2 seconds
+        await Task.Delay(2000);
+
+        // Navigate to the LandlordProfilePage
+        await Navigation.PushAsync(new LandlordProfile());
     }
 }
+
 
 public class Rule : INotifyPropertyChanged
 {
