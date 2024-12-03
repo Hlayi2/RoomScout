@@ -1,22 +1,26 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\User\\source\\repos\\BerniceMlangeni\\RoomScout\\",
+  "WorkspaceRootPath": "C:\\Users\\User\\source\\repos\\Hlayi2\\RoomScout\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{990AF582-65EE-4E1B-A893-B54D82D64D3C}|RoomScout\\RoomScout.csproj|c:\\users\\user\\source\\repos\\bernicemlangeni\\roomscout\\roomscout\\appshell.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{990AF582-65EE-4E1B-A893-B54D82D64D3C}|RoomScout\\RoomScout.csproj|solutionrelative:roomscout\\appshell.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\User\\source\\repos\\Hlayi2\\RoomScout\\RoomScout\\Views\\AdminSide\\LandlordDashboardPage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:RoomScout\\Views\\AdminSide\\LandlordDashboardPage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{990AF582-65EE-4E1B-A893-B54D82D64D3C}|RoomScout\\RoomScout.csproj|c:\\users\\user\\source\\repos\\bernicemlangeni\\roomscout\\roomscout\\viewmodels\\adminside\\landlorddashboardviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{990AF582-65EE-4E1B-A893-B54D82D64D3C}|RoomScout\\RoomScout.csproj|solutionrelative:roomscout\\viewmodels\\adminside\\landlorddashboardviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\User\\source\\repos\\Hlayi2\\RoomScout\\RoomScout\\AppShell.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:RoomScout\\AppShell.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{990AF582-65EE-4E1B-A893-B54D82D64D3C}|RoomScout\\RoomScout.csproj|c:\\users\\user\\source\\repos\\bernicemlangeni\\roomscout\\roomscout\\views\\adminside\\addlistingpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{990AF582-65EE-4E1B-A893-B54D82D64D3C}|RoomScout\\RoomScout.csproj|solutionrelative:roomscout\\views\\adminside\\addlistingpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\User\\source\\repos\\Hlayi2\\RoomScout\\RoomScout\\ViewModels\\AdminSide\\LandlordDashboardViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:RoomScout\\ViewModels\\AdminSide\\LandlordDashboardViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{990AF582-65EE-4E1B-A893-B54D82D64D3C}|RoomScout\\RoomScout.csproj|c:\\users\\user\\source\\repos\\bernicemlangeni\\roomscout\\roomscout\\views\\adminside\\addlistingpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{990AF582-65EE-4E1B-A893-B54D82D64D3C}|RoomScout\\RoomScout.csproj|solutionrelative:roomscout\\views\\adminside\\addlistingpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\User\\source\\repos\\Hlayi2\\RoomScout\\RoomScout\\Views\\AdminSide\\AddListingPage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:RoomScout\\Views\\AdminSide\\AddListingPage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\User\\source\\repos\\Hlayi2\\RoomScout\\RoomScout\\Views\\AdminSide\\AddListingPage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:RoomScout\\Views\\AdminSide\\AddListingPage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,77 +30,76 @@
       "DocumentGroups": [
         {
           "DockedWidth": 11,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AppShell.xaml",
-              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\BerniceMlangeni\\RoomScout\\RoomScout\\AppShell.xaml",
-              "RelativeDocumentMoniker": "RoomScout\\AppShell.xaml",
-              "ToolTip": "C:\\Users\\User\\source\\repos\\BerniceMlangeni\\RoomScout\\RoomScout\\AppShell.xaml",
-              "RelativeToolTip": "RoomScout\\AppShell.xaml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-12-03T08:45:51.711Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "LandlordDashboardViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\BerniceMlangeni\\RoomScout\\RoomScout\\ViewModels\\AdminSide\\LandlordDashboardViewModel.cs",
-              "RelativeDocumentMoniker": "RoomScout\\ViewModels\\AdminSide\\LandlordDashboardViewModel.cs",
-              "ToolTip": "C:\\Users\\User\\source\\repos\\BerniceMlangeni\\RoomScout\\RoomScout\\ViewModels\\AdminSide\\LandlordDashboardViewModel.cs",
-              "RelativeToolTip": "RoomScout\\ViewModels\\AdminSide\\LandlordDashboardViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-03T08:36:11.133Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LandlordDashboardPage.xaml",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\Hlayi2\\RoomScout\\RoomScout\\Views\\AdminSide\\LandlordDashboardPage.xaml",
+              "RelativeDocumentMoniker": "RoomScout\\Views\\AdminSide\\LandlordDashboardPage.xaml",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\Hlayi2\\RoomScout\\RoomScout\\Views\\AdminSide\\LandlordDashboardPage.xaml",
+              "RelativeToolTip": "RoomScout\\Views\\AdminSide\\LandlordDashboardPage.xaml",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAADgAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-12-03T08:53:40.974Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AppShell.xaml",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\Hlayi2\\RoomScout\\RoomScout\\AppShell.xaml",
+              "RelativeDocumentMoniker": "RoomScout\\AppShell.xaml",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\Hlayi2\\RoomScout\\RoomScout\\AppShell.xaml",
+              "RelativeToolTip": "RoomScout\\AppShell.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-12-03T08:45:51.711Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "LandlordDashboardViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\Hlayi2\\RoomScout\\RoomScout\\ViewModels\\AdminSide\\LandlordDashboardViewModel.cs",
+              "RelativeDocumentMoniker": "RoomScout\\ViewModels\\AdminSide\\LandlordDashboardViewModel.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\Hlayi2\\RoomScout\\RoomScout\\ViewModels\\AdminSide\\LandlordDashboardViewModel.cs",
+              "RelativeToolTip": "RoomScout\\ViewModels\\AdminSide\\LandlordDashboardViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-03T08:36:11.133Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "AddListingPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\BerniceMlangeni\\RoomScout\\RoomScout\\Views\\AdminSide\\AddListingPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\Hlayi2\\RoomScout\\RoomScout\\Views\\AdminSide\\AddListingPage.xaml.cs",
               "RelativeDocumentMoniker": "RoomScout\\Views\\AdminSide\\AddListingPage.xaml.cs",
-              "ToolTip": "C:\\Users\\User\\source\\repos\\BerniceMlangeni\\RoomScout\\RoomScout\\Views\\AdminSide\\AddListingPage.xaml.cs*",
-              "RelativeToolTip": "RoomScout\\Views\\AdminSide\\AddListingPage.xaml.cs*",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\Hlayi2\\RoomScout\\RoomScout\\Views\\AdminSide\\AddListingPage.xaml.cs",
+              "RelativeToolTip": "RoomScout\\Views\\AdminSide\\AddListingPage.xaml.cs",
               "ViewState": "AgIAAI4AAAAAAAAAAAAcwHkAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-03T08:19:29.416Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-03T08:19:29.416Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "AddListingPage.xaml",
-              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\BerniceMlangeni\\RoomScout\\RoomScout\\Views\\AdminSide\\AddListingPage.xaml",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\Hlayi2\\RoomScout\\RoomScout\\Views\\AdminSide\\AddListingPage.xaml",
               "RelativeDocumentMoniker": "RoomScout\\Views\\AdminSide\\AddListingPage.xaml",
-              "ToolTip": "C:\\Users\\User\\source\\repos\\BerniceMlangeni\\RoomScout\\RoomScout\\Views\\AdminSide\\AddListingPage.xaml",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\Hlayi2\\RoomScout\\RoomScout\\Views\\AdminSide\\AddListingPage.xaml",
               "RelativeToolTip": "RoomScout\\Views\\AdminSide\\AddListingPage.xaml",
               "ViewState": "AgIAACABAAAAAAAAAAAAADsBAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-12-03T08:19:26.931Z",
-              "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedWidth": 328,
-          "SelectedChildIndex": -1,
-          "Children": [
+              "WhenOpened": "2024-12-03T08:19:26.931Z"
+            },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
             }
           ]
         }
