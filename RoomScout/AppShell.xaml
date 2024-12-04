@@ -16,6 +16,7 @@
         <ShellContent Title="Register" Route="register" ContentTemplate="{DataTemplate Auth:RegisterPage}" />
         <ShellContent Title="Landlord Dashboard" Route="landlordDashbord" ContentTemplate="{DataTemplate AdminSide:LandlordDashboardPage}" />
         <ShellContent Title="Browse Listings" Route="browseListings" ContentTemplate="{DataTemplate StudentSide:BrowseListingsPage}" />
+    <ShellContent Title="Landlord Profile" Route="LandlordProfile" ContentTemplate="{DataTemplate AdminSide:LandlordProfile}" />
 
-    
+
 </Shell>

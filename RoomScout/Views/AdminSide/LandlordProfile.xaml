@@ -6,23 +6,24 @@
               BackgroundColor="#222831">
 
     <ScrollView>
-        <VerticalStackLayout Spacing="20" Padding="20">
-            <!-- Profile Image -->
-            <Frame HasShadow="True" Padding="0" CornerRadius="100" WidthRequest="150" HeightRequest="150" HorizontalOptions="Center">
-                <Image Source="profile_placeholder.png" Aspect="AspectFill" />
+        <VerticalStackLayout Padding="20" Spacing="20">
+            <!-- Profile Section -->
+            <Frame CornerRadius="10" Padding="10" HasShadow="True" BackgroundColor="LightGray">
+                <VerticalStackLayout Spacing="10" HorizontalOptions="Center">
+                    <Image Source="{Binding ProfilePicture}" HeightRequest="100" WidthRequest="100" Aspect="AspectFill" />
+                    <Label Text="{Binding FullNames}" FontSize="18" FontAttributes="Bold" HorizontalOptions="Center" />
+                </VerticalStackLayout>
             </Frame>
 
-            <!-- Name and Surname -->
-            <Label Text="John Doe" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
-
-            <!-- Buttons -->
-            <Button Text="Update My Profile" Clicked="OnUpdateProfileClicked" BackgroundColor="#5F9EA0" />
-            <Button Text="Add New Listing" Clicked="OnAddListingClicked" BackgroundColor="#5F9EA0" />
-            <Button Text="View Listings" Clicked="OnViewListingsClicked" BackgroundColor="#5F9EA0" />
-            <Button Text="Report an Issue" Clicked="OnReportIssueClicked" />
-            <Button Text="Logout" BackgroundColor="Red" TextColor="White" Clicked="OnLogoutClicked" />
-            <Button Text="Delete Account" BackgroundColor="Red" TextColor="White" Clicked="OnDeleteAccountClicked" />
-           
+            <!-- Buttons Section -->
+            <VerticalStackLayout Spacing="10">
+                <Button Text="Update My Profile" BackgroundColor="#76ABAE" TextColor="White" FontAttributes="Bold" Clicked="OnUpdateProfileClicked" />
+                <Button Text="Add New Listing" BackgroundColor="#76ABAE" TextColor="White" FontAttributes="Bold" Clicked="OnNewListingClicked"/>
+                <Button Text="View Listings" BackgroundColor="#76ABAE" TextColor="White" FontAttributes="Bold" Clicked="OnViewListingsClicked" />
+                <Button Text="Report an Issue" BackgroundColor="#E85C0D" TextColor="White" FontAttributes="Bold"/>
+                <Button Text="Logout" BackgroundColor="#FF3B30" TextColor="White" FontAttributes="Bold" Clicked="OnLogoutButtonClicked"/>
+                <Button Text="Delete My Account" BackgroundColor="#C40C0C" TextColor="White" FontAttributes="Bold"  Clicked="OnDeleteAccountButtonClicked"/>
+            </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
 
