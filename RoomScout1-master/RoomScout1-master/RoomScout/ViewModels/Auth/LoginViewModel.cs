@@ -109,6 +109,16 @@ namespace RoomScout.ViewModels.Auth
         {
             await App.Current.MainPage.Navigation.PushAsync(new Views.Auth.RegisterPage());
         }
+
+        public void OnIsLandlordSelected(bool value)
+        {
+            if (value) 
+            {
+            
+                IsTenant = false;  //Uncheck Landlord when Tenant is selected
+            }
+        
+        }
     }
 }
     

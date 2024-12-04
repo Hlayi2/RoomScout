@@ -54,15 +54,20 @@
 
             <!-- Sign in options -->
             <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
+                <!--Landlord option-->
                 <HorizontalStackLayout Spacing="5">
-                    <CheckBox IsChecked="{Binding IsLandlord}"/>
+                    <CheckBox IsChecked="{Binding IsLandlord}"
+                              IsEnabled="{Binding IsTenant, Converter={StaticResource InverseBoolConverter}}"
+                              CheckedChanged="OnLandlordSelected"/>
                     <Label Text="Landlord" 
                            TextColor="White"
                            VerticalOptions="Center"/>
                 </HorizontalStackLayout>
 
                 <HorizontalStackLayout Spacing="5">
-                    <CheckBox IsChecked="{Binding IsTenant}"/>
+                    <CheckBox IsChecked="{Binding IsTenant}"
+                              IsEnabled="{Binding IsLandlord, Converter={StaticResource InverseBoolConverter}}"
+                              CheckedChanged="OnTenantSelected"/>
                     <Label Text="Tenant"
                            TextColor="White"
                            VerticalOptions="Center"/>
