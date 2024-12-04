@@ -73,9 +73,10 @@
             <Picker
                 x:Name="RolePicker"
                 SelectedItem="{Binding Role}"  
-                Title="Select Role"
+                Title="Select a Role"
+               
                 BackgroundColor="White"
-                TitleColor="Black"
+                TitleColor="Grey"
                 TextColor="Black">
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
