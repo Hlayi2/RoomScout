@@ -3,14 +3,35 @@
     x:Class="RoomScout.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:RoomScout"
-    xmlns:views="clr-namespace:RoomScout.Views.Auth"
+    xmlns:tabpages="clr-namespace:RoomScout.Views"
+    xmlns:studentViews="clr-namespace:RoomScout.Views.StudentSide" 
+    xmlns:authViews="clr-namespace:RoomScout.Views.Auth"
+    
     Shell.FlyoutBehavior="Disabled"
     Title="RoomScout">
-
+<!--Initial Landing page-->
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate views:LandingPage}"
-         />
+        Shell.TabBarIsVisible="False"
+        Route="LandingPage"
+        ContentTemplate="{DataTemplate authViews:LandingPage}"/>
 
+    <!--Tab Navigation-->
+    <TabBar>
+        <ShellContent
+            Title="Home"
+            Icon="home_24.png"
+            Route="HomePage"
+            ContentTemplate="{DataTemplate tabpages:HomePage}"/>
+        <ShellContent
+            Title="Catgory"
+            Icon="category_24.png"
+            Route="CategoryPage"
+            ContentTemplate="{DataTemplate tabpages:CategoryPage}"/>
+        <ShellContent
+            Title="Profile"
+            Icon="profile_24.png"
+            Route="ProfilePage"
+            ContentTemplate="{DataTemplate tabpages:ProfilePage}"/>
+
+    </TabBar>
 </Shell>
