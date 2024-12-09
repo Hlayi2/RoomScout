@@ -141,7 +141,8 @@
                 Text="All"
                 TextColor="Black"
                 FontSize="15"
-                FontAttributes="Bold"/>
+                FontAttributes="Bold"
+                Clicked="OnAllClicked"/>
                 <!-- bachelor button -->
                 <Button
                 BorderColor="#76ABAE"
@@ -152,7 +153,8 @@
                 Text="Bachelor"
                 TextColor="Black"
                 FontSize="15"
-                FontAttributes="Bold"/>
+                FontAttributes="Bold"
+                Clicked="OnBachelorClicked"/>
                 <!-- sharing button -->
                 <Button
                 BorderColor="#76ABAE"
@@ -163,7 +165,9 @@
                 Text="Sharing"
                 TextColor="Black"
                 FontSize="15"
-                FontAttributes="Bold"/>
+                FontAttributes="Bold"
+                Clicked="OnSharingClicked"/>
+                    
                 <!-- single button -->
                 <Button
                 BorderColor="#76ABAE"
@@ -174,7 +178,9 @@
                 Text="Single"
                 TextColor="Black"
                 FontSize="15"
-                FontAttributes="Bold"/>
+                FontAttributes="Bold" 
+                Clicked="OnSingleClicked"/>
+                    
             </HorizontalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
