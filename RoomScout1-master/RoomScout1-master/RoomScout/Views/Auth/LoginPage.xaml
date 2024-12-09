@@ -37,7 +37,7 @@
                     Padding="15,5">
                   
               <Entry Placeholder="Password"
-                    PlaceholderColor="#6B7280"
+                    PlaceholderColor="Gray"
                     Text="{Binding Password}"
                     IsPassword="{Binding IsPasswordHidden}"
                     TextColor="Black"/>

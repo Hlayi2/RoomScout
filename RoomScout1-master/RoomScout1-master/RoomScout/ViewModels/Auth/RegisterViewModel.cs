@@ -1,5 +1,7 @@
-﻿using RoomScout.Views.Auth;
+﻿using CommunityToolkit.Mvvm.Input;
+using RoomScout.Views.Auth;
 using System.Text.RegularExpressions;
+using System.Windows.Input;
 
 namespace RoomScout.ViewModels.Auth
 {
@@ -14,6 +16,67 @@ namespace RoomScout.ViewModels.Auth
         public string ConfirmPassword { get; set; }
         public string Role { get; set; }
 
+        private bool _isPasswordHidden = true;
+
+        private bool _isConfirmPasswordHidden = true;
+
+        private string _passwordEyeIcon = "eyeclosed.png";
+
+        private string _confirmPasswordEyeIcon = "eyeclosed.png";
+
+
+        public bool IsPasswordHidden
+        {
+            get => _isPasswordHidden;
+            set
+            {
+                _isPasswordHidden = value;
+                OnPropertyChanged(nameof(IsPasswordHidden));
+                EyeIcon = _isPasswordHidden ? "eyeclosed.png" : "eyeopen.png";
+            }
+        }
+
+        public string EyeIcon
+        {
+            get => _passwordEyeIcon;
+            set
+            {
+                _passwordEyeIcon = value;
+                OnPropertyChanged(nameof(EyeIcon));
+            }
+        }
+
+        public bool IsConfirmPasswordHidden
+        {
+            get => _isConfirmPasswordHidden;
+            set
+            {
+                _isConfirmPasswordHidden = value;
+                OnPropertyChanged(nameof(IsConfirmPasswordHidden));
+                ConfirmPasswordEyeIcon = _isConfirmPasswordHidden ? "eyeclosed.png" : "eyeopen.png";
+            }
+        }
+
+        public string ConfirmPasswordEyeIcon
+        {
+            get => _confirmPasswordEyeIcon;
+            set
+            {
+                _confirmPasswordEyeIcon = value;
+                OnPropertyChanged(nameof(ConfirmPasswordEyeIcon));
+            }
+        }
+
+        // Commands for toggling visibility
+        public ICommand TogglePasswordVisibilityCommand { get; }
+        public ICommand ToggleConfirmPasswordVisibilityCommand { get; }
+
+        // Constructor
+        public RegisterViewModel()
+        {
+            TogglePasswordVisibilityCommand = new RelayCommand(() => IsPasswordHidden = !IsPasswordHidden);
+            ToggleConfirmPasswordVisibilityCommand = new RelayCommand(() => IsConfirmPasswordHidden = !IsConfirmPasswordHidden);
+        }
         // Validate the form data
         public bool ValidateForm()
         {
@@ -72,7 +135,7 @@ namespace RoomScout.ViewModels.Auth
         {
             if (!ValidateForm()) return;  // Validate form first
 
-            // Simulate registration success (you'd replace this with actual registration logic)
+            // Simulate registration success 
             await Application.Current.MainPage.DisplayAlert("Success", "Registration Successful", "OK");
 
             // Navigate to the login page after registration

@@ -4,6 +4,8 @@ namespace RoomScout.Views.Auth;
 
 public partial class RegisterPage : ContentPage
 {
+  
+
     // Constructor for the RegisterPage
     public RegisterPage()
     {
@@ -31,7 +33,7 @@ public partial class RegisterPage : ContentPage
             // Navigate to the Landlord Dashboard
             await Shell.Current.GoToAsync("landlordDashboard");
         }
-        else if (selectedRole == "Register as a Student")
+        else if (selectedRole == "Register as a Tenant")
         {
             // Navigate to the Apartment Viewing Page
             await Shell.Current.GoToAsync("browseListings");
@@ -51,9 +53,16 @@ public partial class RegisterPage : ContentPage
     // Event handler for password visibility toggle
     private void OnPasswordVisibilityToggle(object sender, EventArgs e)
     {
-        PasswordEntry.IsPassword = !PasswordEntry.IsPassword;
-        ConfirmPasswordEntry.IsPassword = !ConfirmPasswordEntry.IsPassword;
+        if (sender is ImageButton button)
+        {
+            var targetEntry = button.CommandParameter as Entry;
+            if (targetEntry != null)
+            {
+                targetEntry.IsPassword = !targetEntry.IsPassword;
+                button.Source = targetEntry.IsPassword ? "eyeclosed.png" : "eyeopen.png";
+            }
 
+        }
     }
 }
 
