@@ -63,7 +63,7 @@ namespace RoomScout.ViewModels.Auth
                 //Navigate to the respective dashboard
                 if (isLandlord)
                 {
-                    await App.Current.MainPage.Navigation.PushAsync(new Views.AdminSide.LandlordDashboardPage());
+                    await App.Current.MainPage.Navigation.PushAsync(new Views.AdminSide.DashboardProfile());
                 }
                 else if (isTenant)
                 {
