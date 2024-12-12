@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local ="clr-namespace:RoomScout.ViewModels.AdminSide"
              x:Class="RoomScout.Views.AdminSide.ManageListingsPage"
+              Shell.NavBarIsVisible="False"
              Title="ManageListingsPage"
              BackgroundColor="#1A1F25">
 

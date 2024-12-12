@@ -121,19 +121,6 @@ public partial class LandlordDashboardPage : ContentPage
         // Add your save logic here
     }
 
-    private async void OnAddRoomClicked(object sender, EventArgs e)
-    {
-        try
-        {
-            await Navigation.PushAsync(new AddListingPage());
-        }
-        catch (Exception ex)
-        {
-            await DisplayAlert("Error", "Unable to navigate to Add Listing page.", "OK");
-        }
-
-    }
-
     private async void OnSaveButtonClicked(object sender, EventArgs e)
     {
         Preferences.Set("FullNames", _landlord.FullNames);

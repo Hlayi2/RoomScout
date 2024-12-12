@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RoomScout.Views.AdminSide.DashboardProfile"
+              Shell.NavBarIsVisible="False"
              Title="DashboardProfile"
              BackgroundColor="#1A1F25">
 
@@ -24,7 +25,8 @@
                 <Button Text="Update My Profile" BackgroundColor="#76ABAE" TextColor="White" FontAttributes="Bold" Clicked="OnUpdateProfileClicked" />
                 <Button Text="Add New Listing" BackgroundColor="#76ABAE" TextColor="White" FontAttributes="Bold" Clicked="OnNewListingClicked"/>
                 <Button Text="View Listings" BackgroundColor="#76ABAE" TextColor="White" FontAttributes="Bold" Clicked="OnViewListingsClicked" />
-                <Button Text="Report an Issue" BackgroundColor="#E85C0D" TextColor="White" FontAttributes="Bold"/>
+                <Button Text="View Bookings" BackgroundColor="#76ABAE" TextColor="White" FontAttributes="Bold" Clicked="OnViewBookingsClicked"/>
+                <Button Text="Report Technical Issue" BackgroundColor="#E85C0D" TextColor="White" FontAttributes="Bold"/>
                 <Button Text="Logout" BackgroundColor="#FF3B30" TextColor="White" FontAttributes="Bold" Clicked="OnLogoutButtonClicked"/>
                 <Button Text="Delete My Account" BackgroundColor="#C40C0C" TextColor="White" FontAttributes="Bold"  Clicked="OnDeleteAccountButtonClicked"/>
             </VerticalStackLayout>
