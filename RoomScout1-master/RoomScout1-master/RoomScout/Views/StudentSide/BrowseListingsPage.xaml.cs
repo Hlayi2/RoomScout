@@ -6,10 +6,7 @@ public partial class BrowseListingsPage : ContentPage
 	{
 		InitializeComponent();
 	}
-	private async void OnViewBookingTapped(object sender, EventArgs e)
-	{
-		await Navigation.PushAsync(new ViewBooking());
-	}
+	
 	private async void OnNearByTapped(object sender, EventArgs e)
 
 	{
@@ -18,15 +15,12 @@ public partial class BrowseListingsPage : ContentPage
 	private async void OnAddEventTapped(object sender, EventArgs e)
 
 	{
-		await Navigation.PushAsync(new NearByPage());
+		await Navigation.PushAsync(new profile());
 	}
    
   
 
-    private async void OnAllClicked(object sender, EventArgs e)
-    {
-        await Navigation.PushAsync(new AllPage());
-    }
+   
     private async void OnBachelorClicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new BachelorPage());

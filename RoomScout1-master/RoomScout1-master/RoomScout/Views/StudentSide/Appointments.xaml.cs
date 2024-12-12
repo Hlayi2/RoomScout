@@ -1,8 +1,8 @@
 namespace RoomScout.Views.StudentSide;
 
-public partial class AllPage : ContentPage
+public partial class Appointments : ContentPage
 {
-	public AllPage()
+	public Appointments()
 	{
 		InitializeComponent();
 	}
