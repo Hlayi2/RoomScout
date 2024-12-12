@@ -16,22 +16,5 @@
         ContentTemplate="{DataTemplate authViews:LandingPage}"/>
 
     <!--Tab Navigation-->
-    <TabBar>
-        <ShellContent
-            Title="Home"
-            Icon="home_24.png"
-            Route="HomePage"
-            ContentTemplate="{DataTemplate tabpages:HomePage}"/>
-        <ShellContent
-            Title="Catgory"
-            Icon="category_24.png"
-            Route="CategoryPage"
-            ContentTemplate="{DataTemplate tabpages:CategoryPage}"/>
-        <ShellContent
-            Title="Profile"
-            Icon="profile_24.png"
-            Route="ProfilePage"
-            ContentTemplate="{DataTemplate tabpages:ProfilePage}"/>
 
-    </TabBar>
 </Shell>

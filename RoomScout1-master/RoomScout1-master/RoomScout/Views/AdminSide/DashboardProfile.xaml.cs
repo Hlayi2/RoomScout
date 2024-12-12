@@ -37,6 +37,11 @@ public partial class DashboardProfile : ContentPage
         await Navigation.PushAsync(new ManageListingsPage());
     }
 
+    private async void OnViewBookingsClicked(object sender, EventArgs eventArgs)
+    {
+        await Navigation.PushAsync(new BookingRequestsPage());
+    }
+
     private async void OnLogoutButtonClicked(object sender, EventArgs e)
     {
         // Display the confirmation popup
