@@ -46,5 +46,11 @@ namespace RoomScout.Views.StudentSide
         {
             await Navigation.PushAsync(new profile());
         }
+
+        private async void OnBookClicked(object sender, EventArgs e)
+        {
+            await DisplayAlert("Success", "Booking request submitted!", "OK");
+        }
+
     }
 }

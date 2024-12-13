@@ -46,7 +46,7 @@
                                Aspect="AspectFill"
                                Clip="Ellipse" />
 
-                        <Label Text="Jane Smith"
+                        <Label Text="Eribuweni Gardens"
                                FontSize="18"
                                FontAttributes="Bold"
                                VerticalOptions="Center" />

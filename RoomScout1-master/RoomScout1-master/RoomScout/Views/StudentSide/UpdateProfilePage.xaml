@@ -26,7 +26,7 @@
                         
                     </Image>
                     <Grid ColumnDefinitions="Auto,Auto" ColumnSpacing="5">
-                        <Label Text="Natasha" 
+                        <Label Text="Moloko" 
                               TextColor="Black"
                               FontSize="22"
                               Margin="110,0,0,-20"
@@ -37,7 +37,7 @@
                               WidthRequest="20"
                               VerticalOptions="Center"/>
                     </Grid>
-                    <Label Text="(Landlord)"
+                    <Label Text="(Tenant)"
                           TextColor="Black"
                           FontSize="12"
                           HorizontalOptions="Center"/>
