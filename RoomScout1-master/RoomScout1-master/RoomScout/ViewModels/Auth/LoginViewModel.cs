@@ -27,6 +27,15 @@ namespace RoomScout.ViewModels.Auth
         [ObservableProperty]
         private bool isTenant;
 
+        private readonly Dictionary<string, (string password, string role)> userCredentials = new Dictionary<string, (string password, string role)>
+        {
+            { "Chantelle", ("123456", "Landlord") },
+            { "Katlego", ("kat@123", "Tenant") },
+            { "Marvin", ("Moagi", "Landlord") },
+            { "Moloko", ("1234", "Tenant") },
+
+        };
+
 
         // Toggle password visibility
         [RelayCommand]
@@ -46,41 +55,34 @@ namespace RoomScout.ViewModels.Auth
                 return;
 
             }
-            if (isLandlord && isTenant)
+            if (!userCredentials.ContainsKey(username))
             {
-                await App.Current.MainPage.DisplayAlert("Error", "Please select a role(Landlord or Tenant).", "OK");
+                await App.Current.MainPage.DisplayAlert("Error", "Invalid username.", "OK");
                 return;
 
             }
-
-            bool isAuthenticated = username == "test" && password == "password";
-
-            if (isAuthenticated)
+            // Validate password
+            var user = userCredentials[username];
+            if (user.password != password)
             {
-                string role = isLandlord ? "Landlord" : "Tenant";
-                await App.Current.MainPage.DisplayAlert("success", $"Logged in as{role}.", "OK");
-
-                //Navigate to the respective dashboard
-                if (isLandlord)
-                {
-                    await App.Current.MainPage.Navigation.PushAsync(new Views.AdminSide.DashboardProfile());
-                }
-                else if (isTenant)
-                {
-                    await App.Current.MainPage.Navigation.PushAsync(new Views.StudentSide.BrowseListingsPage());
-
-                }
-
+                await App.Current.MainPage.DisplayAlert("Error", "Invalid password.", "OK");
+                return;
             }
-            else
 
+            // Show success message
+            await App.Current.MainPage.DisplayAlert("Success", $"Logged in as {user.role}.", "OK");
+
+            // Navigate to the respective page based on role
+            if (user.role == "Landlord")
             {
-                await App.Current.MainPage.DisplayAlert("Error", "Invalid username or password.", "OK");
-
+                await App.Current.MainPage.Navigation.PushAsync(new Views.AdminSide.DashboardProfile());
+            }
+            else if (user.role == "Tenant")
+            {
+                await App.Current.MainPage.Navigation.PushAsync(new Views.StudentSide.BrowseListingsPage());
             }
 
         }
-
         // Forgot Password Command
         [RelayCommand]
         private async Task ForgotPasswordAsync()
@@ -93,14 +95,14 @@ namespace RoomScout.ViewModels.Auth
         [RelayCommand]
         private async Task GoogleLoginAsync()
         {
-            await App.Current.MainPage.DisplayAlert("Google Login", "Google login functionality not implemented yet.", "OK");
+            await App.Current.MainPage.DisplayAlert("Google Login", "You will be redirected in 2 seconds.", "OK");
         }
 
         // Facebook Login Command
         [RelayCommand]
         private async Task FacebookLoginAsync()
         {
-            await App.Current.MainPage.DisplayAlert("Facebook Login", "Facebook login functionality not implemented yet.", "OK");
+            await App.Current.MainPage.DisplayAlert("Facebook Login", "You will be redirected in 2 seconds.", "OK");
         }
 
         // Navigate to Sign-Up Command
@@ -109,17 +111,9 @@ namespace RoomScout.ViewModels.Auth
         {
             await App.Current.MainPage.Navigation.PushAsync(new Views.Auth.RegisterPage());
         }
-
-        public void OnIsLandlordSelected(bool value)
-        {
-            if (value) 
-            {
-            
-                IsTenant = false;  //Uncheck Landlord when Tenant is selected
-            }
-        
-        }
     }
 }
-    
+
+
+
 
