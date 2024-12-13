@@ -44,7 +44,7 @@ namespace RoomScout.Views.StudentSide
 
         private async void OnAddEventTapped(object sender, EventArgs e)
         {
-            // Your existing navigation code
+            await Navigation.PushAsync(new profile());
         }
     }
 }

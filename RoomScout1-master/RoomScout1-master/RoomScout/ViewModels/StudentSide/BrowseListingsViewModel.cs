@@ -43,16 +43,115 @@ namespace RoomScout.ViewModels.StudentSide
             {
                 new RoomLocation
                 {
-                    Id = "1",
+                    Id = "Gate 1",
                     Title = "Cozy Single Room",
-                    Type = Models.Location.RoomType.Single,  // Use the exact RoomType without casting
+                    Type = Models.Location.RoomType.Single,  
+                    Address = "123 Main St",
+                    ImageUrl = "room_image.png",
+                    Price = "1000.00",
+                    Description = "Comfortable single room near campus",
+                    Amenities = new List<string> { "WiFi", "Furnished" }
+                },
+
+                // Add more mock rooms as needed
+                new RoomLocation
+                {
+                    Id = "Gate 2",
+                    Title = "Cozy Single Room",
+                    Type = Models.Location.RoomType.Single,  
+                    Address = "123 Main St",
+                    ImageUrl = "room_image.png",
+                    Price = "1200.00",
+                    Description = "Comfortable single room near campus",
+                    Amenities = new List<string> { "WiFi", "Furnished" }
+
+                },
+                new RoomLocation
+                {
+                    Id = "Gate 3",
+                    Title = "Cozy Single Room",
+                    Type = Models.Location.RoomType.Single,  
+                    Address = "123 Main St",
+                    ImageUrl = "room_image.png",
+                    Price = "1600.00",
+                    Description = "Comfortable single room near campus",
+                    Amenities = new List<string> { "WiFi", "Furnished" }
+
+                },
+
+                // Bachelor Rooms
+                new RoomLocation
+                {
+                    Id = "Gate 1",
+                    Title = "Cozy Single Room",
+                    Type = Models.Location.RoomType.Bachelor,
+                    Address = "123 Main St",
+                    ImageUrl = "room_image.png",
+                    Price = "1600.00",
+                    Description = "Comfortable single room near campus",
+                    Amenities = new List<string> { "WiFi", "Furnished" }
+
+                },
+                new RoomLocation
+                {
+                    Id = "Gate 2",
+                    Title = "Cozy Single Room",
+                    Type = Models.Location.RoomType.Bachelor,
+                    Price = "1200.00",
                     Address = "123 Main St",
                     ImageUrl = "room_image.png",
                     Description = "Comfortable single room near campus",
                     Amenities = new List<string> { "WiFi", "Furnished" }
-                }
-                // Add more mock rooms as needed
+
+                },
+                new RoomLocation
+                {
+                    Id = "Gate 3",
+                    Title = "Cozy Single Room",
+                    Type = Models.Location.RoomType.Bachelor,
+                    Price = "1900.00",
+                    Address = "123 Main St",
+                    ImageUrl = "room_image.png",                    
+                    Description = "Comfortable single room near campus",
+                    Amenities = new List<string> { "WiFi", "Furnished" }
+
+                 },
+                // Sharing Rooms 
+                new RoomLocation
+                {
+                    Id = "Gate 1",
+                    Title = "Cozy Single Room",
+                    Type = Models.Location.RoomType.Sharing,
+                    Address = "123 Main St",
+                    ImageUrl = "room_image.png",
+                    Price = "2000.00",
+                    Description = "Comfortable single room near campus",
+                    Amenities = new List<string> { "WiFi", "Furnished" }
+                },
+                new RoomLocation
+                {
+                    Id = "Gate 2",
+                    Title = "Cozy Single Room",
+                    Type = Models.Location.RoomType.Sharing,
+                    Address = "123 Main St",
+                    ImageUrl = "room_image.png",
+                    Price = "37000.00",
+                    Description = "Comfortable single room near campus",
+                    Amenities = new List<string> { "WiFi", "Furnished" }
+                },
+                new RoomLocation
+                {
+                    Id = "Gate 3",
+                    Title = "Cozy Single Room",
+                    Type = Models.Location.RoomType.Sharing,
+                    Address = "123 Main St",
+                    ImageUrl = "room_image.png",
+                    Price = "2500.00",
+                    Description = "Comfortable single room near campus",
+                    Amenities = new List<string> { "WiFi", "Furnished" }
+                },
             };
+
         }
     }
 }
