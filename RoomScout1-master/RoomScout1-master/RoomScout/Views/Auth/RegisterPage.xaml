@@ -140,11 +140,7 @@
             <!-- Already have an account -->
             <HorizontalStackLayout HorizontalOptions="Center">
                 <Label Text="Already have an account?" TextColor="White" />
-                <Button 
-                    Text="Sign In"
-                    TextColor="White"
-                    BackgroundColor="Transparent"
-                    Clicked="OnSignInClicked" />
+               
             </HorizontalStackLayout>
         </VerticalStackLayout>
     </ScrollView>

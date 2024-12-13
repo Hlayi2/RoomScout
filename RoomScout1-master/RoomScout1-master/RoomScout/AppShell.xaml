@@ -6,14 +6,26 @@
     xmlns:tabpages="clr-namespace:RoomScout.Views"
     xmlns:studentViews="clr-namespace:RoomScout.Views.StudentSide" 
     xmlns:authViews="clr-namespace:RoomScout.Views.Auth"
-    
-    Shell.FlyoutBehavior="Disabled"
     Title="RoomScout">
-<!--Initial Landing page-->
+
+
+
+    
+
+    <!--Initial Landing page-->
     <ShellContent
-        Shell.TabBarIsVisible="False"
+        
         Route="LandingPage"
-        ContentTemplate="{DataTemplate authViews:LandingPage}"/>
+        ContentTemplate="{DataTemplate authViews:LoginPage}"/>
+
+    <ShellContent 
+    Route="register" 
+    ContentTemplate="{DataTemplate authViews:RegisterPage}">
+        <Shell.BackButtonBehavior>
+            <BackButtonBehavior IsEnabled="False" />
+        </Shell.BackButtonBehavior>
+    </ShellContent>
+
 
     <!--Tab Navigation-->
 
