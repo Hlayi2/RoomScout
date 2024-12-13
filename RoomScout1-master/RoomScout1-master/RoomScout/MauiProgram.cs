@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
+using RoomScout.ViewModels.StudentSide;
+using RoomScout.Views.StudentSide;
 
 namespace RoomScout
 {
@@ -16,8 +18,11 @@ namespace RoomScout
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+
+            builder.Services.AddSingleton<BrowseListingsViewModel>();
+            builder.Services.AddSingleton<BrowseListingsPage>();
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();

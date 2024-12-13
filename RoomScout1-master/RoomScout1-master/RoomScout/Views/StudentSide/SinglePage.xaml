@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RoomScout.Views.StudentSide.SinglePage"
-              Shell.NavBarIsVisible="False"
-             Title="SinglePage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             x:Class="RoomScout.Views.StudentSide.SinglePage">
+    <ScrollView>
+        <VerticalStackLayout Spacing="15" Padding="15">
+            <Image x:Name="RoomImage"
+                   HeightRequest="200"
+                   Aspect="AspectFill"/>
+            <Label x:Name="TitleLabel"
+                   FontSize="24"
+                   FontAttributes="Bold"/>
+            <Label x:Name="TypeLabel"
+                   FontSize="18"/>
+            <Label x:Name="PriceLabel"
+                   FontSize="20"
+                   TextColor="Green"/>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

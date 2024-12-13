@@ -3,20 +3,34 @@ namespace RoomScout.Models.Location
 {
     public class RoomLocation
     {
+        internal string Location;
         public string Title { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
         public string Price { get; set; }
+        public string FormattedPrice => $"R {Price:N2} / Month";
         public string Address { get; set; }
         public RoomType Type { get; set; }
         public string LandlordName { get; set; }
         public string LandlordPhone { get; set; }
+        public string Id { get; internal set; }
+        
+        public string ImageUrl { get; internal set; }
+        public string Description { get; set; }
+        public List<string> Amenities { get; set; }
+     
+
+
+
+
+
     }
 
-    public enum RoomType
-    {
-        Bachelor,
-        Single,
-        Sharing
+        public enum RoomType
+        {
+            Single,
+            Bachelor,
+            Sharing
+        }
     }
-}
+
