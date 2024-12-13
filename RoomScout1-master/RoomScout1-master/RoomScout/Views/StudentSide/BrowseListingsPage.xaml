@@ -205,6 +205,9 @@
                                         Text="{Binding Address}"
                                         TextColor="Gray"
                                         FontSize="14"/>
+                                    <Label Text="Available"
+                                           TextColor="Green"
+                                           FontSize="16"/>
 
                                     <!-- Amenities -->
                                     <FlexLayout 
@@ -227,6 +230,11 @@
                                             </DataTemplate>
                                         </BindableLayout.ItemTemplate>
                                     </FlexLayout>
+                                    <Button Text="Book for Viewing"
+                                            BackgroundColor="#76ABAE"
+                                            TextColor="White"
+                                            Clicked="OnBookClicked"
+                                               />
                                 </VerticalStackLayout>
                             </Grid>
                         </Frame>

@@ -30,6 +30,7 @@ public partial class RegisterPage : ContentPage
 
         if (selectedRole == "Register as a Landlord")
         {
+
             // Navigate to the Landlord Dashboard
             await Shell.Current.GoToAsync("landlordDashboard");
         }
