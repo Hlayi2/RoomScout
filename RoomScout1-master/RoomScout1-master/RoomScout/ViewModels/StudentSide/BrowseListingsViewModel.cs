@@ -47,8 +47,15 @@ namespace RoomScout.ViewModels.StudentSide
                     Title = "Cozy Single Room",
                     Type = Models.Location.RoomType.Single,  
                     Address = "123 Main St",
-                    ImageUrl = "room_image.png",
+                   
                     Price = "1000.00",
+                    Images = new List<string>
+                    {
+                     "single10.png",
+                     "single11.png",
+                     "single12.png",
+                     "single13.png"
+                    },
                     Description = "Comfortable single room near campus",
                     Amenities = new List<string> { "WiFi", "Furnished" }
                 },
@@ -60,8 +67,15 @@ namespace RoomScout.ViewModels.StudentSide
                     Title = "Cozy Single Room",
                     Type = Models.Location.RoomType.Single,  
                     Address = "123 Main St",
-                    ImageUrl = "room_image.png",
+                    
                     Price = "1200.00",
+                     Images = new List<string>
+                    {
+                     "single10.png",
+                     "single11.png",
+                     "single12.png",
+                     "single13.png"
+                    },
                     Description = "Comfortable single room near campus",
                     Amenities = new List<string> { "WiFi", "Furnished" }
 
@@ -72,8 +86,15 @@ namespace RoomScout.ViewModels.StudentSide
                     Title = "Cozy Single Room",
                     Type = Models.Location.RoomType.Single,  
                     Address = "123 Main St",
-                    ImageUrl = "room_image.png",
+                    
                     Price = "1600.00",
+                     Images = new List<string>
+                    {
+                     "single10.png",
+                     "single11.png",
+                     "single12.png",
+                     "single13.png"
+                    },
                     Description = "Comfortable single room near campus",
                     Amenities = new List<string> { "WiFi", "Furnished" }
 
@@ -86,8 +107,14 @@ namespace RoomScout.ViewModels.StudentSide
                     Title = "Cozy Single Room",
                     Type = Models.Location.RoomType.Bachelor,
                     Address = "123 Main St",
-                    ImageUrl = "room_image.png",
                     Price = "1600.00",
+                     Images = new List<string>
+                    {
+                     "img10.png",
+                     "img11.png",
+                     "img12.png",
+                     "img13.png"
+                    },
                     Description = "Comfortable single room near campus",
                     Amenities = new List<string> { "WiFi", "Furnished" }
 
@@ -99,7 +126,13 @@ namespace RoomScout.ViewModels.StudentSide
                     Type = Models.Location.RoomType.Bachelor,
                     Price = "1200.00",
                     Address = "123 Main St",
-                    ImageUrl = "room_image.png",
+                     Images = new List<string>
+                    {
+                     "img10.png",
+                     "img11.png",
+                     "img12.png",
+                     "img13.png"
+                    },
                     Description = "Comfortable single room near campus",
                     Amenities = new List<string> { "WiFi", "Furnished" }
 
@@ -111,7 +144,13 @@ namespace RoomScout.ViewModels.StudentSide
                     Type = Models.Location.RoomType.Bachelor,
                     Price = "1900.00",
                     Address = "123 Main St",
-                    ImageUrl = "room_image.png",                    
+                     Images = new List<string>
+                    {
+                     "img10.png",
+                     "img11.png",
+                     "img12.png",
+                     "img13.png"
+                    },
                     Description = "Comfortable single room near campus",
                     Amenities = new List<string> { "WiFi", "Furnished" }
 
@@ -123,7 +162,13 @@ namespace RoomScout.ViewModels.StudentSide
                     Title = "Cozy Single Room",
                     Type = Models.Location.RoomType.Sharing,
                     Address = "123 Main St",
-                    ImageUrl = "room_image.png",
+                     Images = new List<string>
+                    {
+                     "sharing10.png",
+                     "sharing11.png",
+                     "sharing12.png",
+                     "sharing13.png"
+                    },
                     Price = "2000.00",
                     Description = "Comfortable single room near campus",
                     Amenities = new List<string> { "WiFi", "Furnished" }
@@ -134,7 +179,13 @@ namespace RoomScout.ViewModels.StudentSide
                     Title = "Cozy Single Room",
                     Type = Models.Location.RoomType.Sharing,
                     Address = "123 Main St",
-                    ImageUrl = "room_image.png",
+                    Images = new List<string>
+                    {
+                    "sharing10.png",
+                     "sharing11.png",
+                     "sharing12.png",
+                     "sharing13.png"
+                    },
                     Price = "37000.00",
                     Description = "Comfortable single room near campus",
                     Amenities = new List<string> { "WiFi", "Furnished" }
@@ -145,7 +196,13 @@ namespace RoomScout.ViewModels.StudentSide
                     Title = "Cozy Single Room",
                     Type = Models.Location.RoomType.Sharing,
                     Address = "123 Main St",
-                    ImageUrl = "room_image.png",
+                     Images = new List<string>
+                    {
+                     "sharing10.png",
+                     "sharing11.png",
+                     "sharing12.png",
+                     "sharing13.png"
+                    },
                     Price = "2500.00",
                     Description = "Comfortable single room near campus",
                     Amenities = new List<string> { "WiFi", "Furnished" }

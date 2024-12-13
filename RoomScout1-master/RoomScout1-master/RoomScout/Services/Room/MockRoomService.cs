@@ -16,6 +16,7 @@ public class MockRoomService : IRoomService
             Amenities = new List<string> { "Free WiFi", "Free Consultation" },
             LandlordName = "John Doe",  // Add this
             LandlordPhone = "123-456-7890"  // Add this
+
         },
         new RoomLocation
         {

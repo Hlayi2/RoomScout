@@ -163,12 +163,24 @@
                             Padding="0"
                             CornerRadius="15">
                             <Grid RowDefinitions="Auto,Auto">
-                                <!-- Room Image -->
-                                <Image 
-                                    Grid.Row="0"
-                                    Source="{Binding ImageUrl}"
-                                    HeightRequest="200"
-                                    Aspect="AspectFill"/>
+                                
+                                
+                                <!-- IMAGE CarouselView -->
+                                
+                                <CarouselView Grid.Row="0"
+                                 HeightRequest="200"
+                                 Loop="True"
+                                 ItemsSource="{Binding Images}">
+                                    <CarouselView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Image Source="{Binding .}"
+                                                  Aspect="AspectFill"
+                                                  HeightRequest="200"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </CarouselView.ItemTemplate>
+                                </CarouselView>
 
                                 <!-- Room Details -->
                                 <VerticalStackLayout 

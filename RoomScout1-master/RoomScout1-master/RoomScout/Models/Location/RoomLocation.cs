@@ -18,7 +18,8 @@ namespace RoomScout.Models.Location
         public string ImageUrl { get; internal set; }
         public string Description { get; set; }
         public List<string> Amenities { get; set; }
-     
+        public List<string> Images { get; set; } = new List<string>();
+
 
 
 
