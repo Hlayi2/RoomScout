@@ -30,12 +30,14 @@ public partial class RegisterPage : ContentPage
 
         if (selectedRole == "Register as a Landlord")
         {
+            await DisplayAlert("Success", "You have successfully registered as a Landlord", "OK");
 
             // Navigate to the Landlord Dashboard
             await Shell.Current.GoToAsync("landlordDashboard");
         }
         else if (selectedRole == "Register as a Tenant")
         {
+            await DisplayAlert("Success", "You have successfully registered as a Tenant", "OK");
             // Navigate to the Apartment Viewing Page
             await Shell.Current.GoToAsync("browseListings");
         }
