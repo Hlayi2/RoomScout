@@ -10,6 +10,7 @@ namespace RoomScout
         {
             InitializeComponent();
 
+          
             Routing.RegisterRoute("register", typeof(RoomScout.Views.Auth.RegisterPage));
             Routing.RegisterRoute("landlordDashboard", typeof(RoomScout.Views.AdminSide.LandlordDashboardPage));
             Routing.RegisterRoute("browseListings", typeof(RoomScout.Views.StudentSide.BrowseListingsPage));

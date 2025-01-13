@@ -15,8 +15,8 @@
     <!--Initial Landing page-->
     <ShellContent
         
-        Route="LandingPage"
-        ContentTemplate="{DataTemplate authViews:LoginPage}"/>
+        Route="login"
+        ContentTemplate="{DataTemplate  authViews:LoginPage}"/>
 
     <ShellContent 
     Route="register" 

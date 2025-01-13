@@ -1,4 +1,5 @@
 ﻿using RoomScout.Views.AdminSide;
+using RoomScout.Views.Auth;
 
 namespace RoomScout
 {
@@ -8,7 +9,7 @@ namespace RoomScout
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            MainPage = new LandingPage();
            // MainPage = new NavigationPage(new LandlordDashboardPage());
            // MainPage = new NavigationPage(new BrowseListingsPage());
           

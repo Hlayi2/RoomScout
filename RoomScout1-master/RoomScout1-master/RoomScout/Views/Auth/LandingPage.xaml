@@ -48,7 +48,6 @@
             <Button Text="Get Started"
                     Clicked="OnGetStartedClicked"
                     Grid.Row="2"
-                    Command="{Binding NavigateToLoginCommand}"
                     BackgroundColor="#7FB5B5"
                     TextColor="White"
                     FontSize="18"
