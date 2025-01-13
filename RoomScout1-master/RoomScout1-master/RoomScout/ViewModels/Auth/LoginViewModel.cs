@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using RoomScout.Views;
+using RoomScout.Views.StudentSide;
 
 
 namespace RoomScout.ViewModels.Auth

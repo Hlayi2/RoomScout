@@ -16,6 +16,8 @@ namespace RoomScout.ViewModels.StudentSide
         [ObservableProperty]
         private Models.Location.RoomType? selectedType;  // Specify the exact RoomType
 
+       
+
         public BrowseListingsViewModel(IServiceProvider services)
         {
             _services = services;

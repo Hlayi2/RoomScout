@@ -1,4 +1,5 @@
 using RoomScout.Models.Location;
+using RoomScout.ViewModels.Auth;
 using RoomScout.ViewModels.StudentSide;
 using RoomType = RoomScout.Models.Location.RoomType;
 
@@ -6,33 +7,33 @@ namespace RoomScout.Views.StudentSide
 {
     public partial class BrowseListingsPage : ContentPage
     {
-        private readonly BrowseListingsViewModel _viewModel;
-
-        public BrowseListingsPage(BrowseListingsViewModel viewModel)
-        {
-            InitializeComponent();
-            _viewModel = viewModel;
-            BindingContext = viewModel;
-        }
+       
 
         public BrowseListingsPage()
         {
+            InitializeComponent();
         }
+
+        private async void OnViewBookingTapped(Object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ViewBooking());
+        }
+
 
         // Update your existing click handlers to use the ViewModel
         private void OnBachelorClicked(object sender, EventArgs e)
         {
-            _viewModel.FilterRoomsCommand.Execute(RoomType.Bachelor);
+          
         }
 
         private void OnSharingClicked(object sender, EventArgs e)
         {
-            _viewModel.FilterRoomsCommand.Execute(RoomType.Sharing);
+           
         }
 
         private void OnSingleClicked(object sender, EventArgs e)
         {
-            _viewModel.FilterRoomsCommand.Execute(RoomType.Single);
+           
         }
 
         // Keep your existing navigation handlers
