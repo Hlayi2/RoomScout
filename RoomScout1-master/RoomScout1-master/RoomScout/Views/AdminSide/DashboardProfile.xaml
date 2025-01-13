@@ -29,6 +29,8 @@
                 <Button Text="Report Technical Issue" BackgroundColor="#E85C0D" TextColor="White" FontAttributes="Bold"/>
                 <Button Text="Logout" BackgroundColor="#FF3B30" TextColor="White" FontAttributes="Bold" Clicked="OnLogoutButtonClicked"/>
                 <Button Text="Delete My Account" BackgroundColor="#C40C0C" TextColor="White" FontAttributes="Bold"  Clicked="OnDeleteAccountButtonClicked"/>
+                <Button Text="Upgrade to Premium" BackgroundColor="#059212" TextColor="White" FontAttributes="Bold" />
+
             </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
