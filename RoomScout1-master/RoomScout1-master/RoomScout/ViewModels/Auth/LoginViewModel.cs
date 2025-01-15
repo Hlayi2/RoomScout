@@ -10,10 +10,10 @@ namespace RoomScout.ViewModels.Auth
 
 
         [ObservableProperty]
-        private string username;
+        private string username = string.Empty;
 
         [ObservableProperty]
-        private string password;
+        private string password = string.Empty;
 
         [ObservableProperty]
         private bool isPasswordHidden = true;

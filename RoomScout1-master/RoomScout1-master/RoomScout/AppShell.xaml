@@ -13,6 +13,8 @@
     
 
     <!--Initial Landing page-->
+    <ShellContent Route="landing"
+                  ContentTemplate="{DataTemplate authViews:LandingPage}" />
     <ShellContent
         
         Route="login"

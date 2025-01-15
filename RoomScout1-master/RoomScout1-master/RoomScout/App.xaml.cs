@@ -1,5 +1,4 @@
-﻿using RoomScout.Views.AdminSide;
-using RoomScout.Views.Auth;
+﻿using RoomScout.Views.Auth;
 
 namespace RoomScout
 {
@@ -9,11 +8,24 @@ namespace RoomScout
         {
             InitializeComponent();
 
-            MainPage = new LandingPage();
-           // MainPage = new NavigationPage(new LandlordDashboardPage());
-           // MainPage = new NavigationPage(new BrowseListingsPage());
-          
-          
+            //MainPage = new LandingPage();
+            //MainPage = new NavigationPage(new LandlordDashboardPage());
+            // MainPage = new NavigationPage(new BrowseListingsPage());
+
+
+
+            MainPage = new AppShell(LandingPage());
+           // MainPage = new NavigationPage(new LandingPage());
+
+            // MainPage = new NavigationPage(new LandlordDashboardPage());
+            // MainPage = new NavigationPage(new BrowseListingsPage());
+
+
+        }
+
+        private LandingPage LandingPage()
+        {
+            return new LandingPage();
         }
     }
 }

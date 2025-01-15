@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
+using RoomScout.ViewModels.Auth;
 using RoomScout.ViewModels.StudentSide;
+using RoomScout.Views.Auth;
 using RoomScout.Views.StudentSide;
 
 namespace RoomScout
@@ -21,6 +23,7 @@ namespace RoomScout
 
             builder.Services.AddSingleton<BrowseListingsViewModel>();
             builder.Services.AddSingleton<BrowseListingsPage>();
+           
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
