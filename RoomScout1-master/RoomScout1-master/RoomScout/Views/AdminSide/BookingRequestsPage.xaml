@@ -1,11 +1,10 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-        
-             x:Class="RoomScout.Views.AdminSide.BookingRequestsPage"
              xmlns:local="clr-namespace:RoomScout.ViewModels.AdminSide"
-             Shell.NavBarIsVisible="False"
-             BackgroundColor="#1A1F25"
-             Title="Booking Requests">
+             x:Class="RoomScout.Views.AdminSide.BookingRequestsPage"
+             Shell.NavBarIsVisible="True"
+             Title="Booking Requests"
+             BackgroundColor="#1A1F25">
 
     <ContentPage.BindingContext>
         <local:BookingRequestsViewModel />

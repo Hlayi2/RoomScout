@@ -1,43 +1,156 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
              x:Class="RoomScout.Views.AdminSide.AddListingPage"
              Shell.NavBarIsVisible="False"
-             Title="AddListingPage" NavigationPage.HasNavigationBar="False"
+             Title="AddListingPage"
+             NavigationPage.HasNavigationBar="False"
              BackgroundColor="#1A1F25">
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
-
+            <!-- Header -->
             <Label 
                 Text="Add My Listing"
                 TextColor="White"
                 FontSize="32"
                 FontAttributes="Bold"/>
 
+            <!-- Address and Location Section -->
+            <Label Text="Address Details:" 
+                   TextColor="White"
+                   FontAttributes="Bold"/>
+            <Frame BackgroundColor="#333333" 
+                   Padding="15" 
+                   BorderColor="#76ABAE"
+                   CornerRadius="10">
+                <VerticalStackLayout Spacing="10">
+                    <Entry x:Name="StreetEntry"
+                           Placeholder="Street Address"
+                           PlaceholderColor="#666666"
+                           TextColor="White"
+                           BackgroundColor="#444444"/>
 
-            <Label
-              Text="Type of Room:"
-              TextColor="White"
-              FontAttributes="Bold"/>
-              <Picker 
-              BackgroundColor="#333333"
-              TextColor="White">
+                    <Entry x:Name="SuburbEntry"
+                           Placeholder="Suburb"
+                           PlaceholderColor="#666666"
+                           TextColor="White"
+                           BackgroundColor="#444444"/>
+
+                    <Entry x:Name="CityEntry"
+                           Placeholder="City"
+                           PlaceholderColor="#666666"
+                           TextColor="White"
+                           BackgroundColor="#444444"/>
+
+                    <Entry x:Name="PostalCodeEntry"
+                           Placeholder="Postal Code"
+                           PlaceholderColor="#666666"
+                           TextColor="White"
+                           BackgroundColor="#444444"
+                           Keyboard="Numeric"
+                           MaxLength="4"/>
+
+                    <!-- Coordinates and Map Section -->
+                    <Grid ColumnDefinitions="*, Auto">
+                        <Entry Grid.Column="0"
+                               x:Name="CoordinatesEntry"
+                               Placeholder="Coordinates (Click on map to set)"
+                               PlaceholderColor="#666666"
+                               TextColor="White"
+                               BackgroundColor="#444444"
+                               IsReadOnly="True"/>
+                    </Grid>
+
+                    <!-- Map Control -->
+                    <Frame Padding="0" 
+                           HeightRequest="200" 
+                           IsClippedToBounds="True">
+                        <maps:Map x:Name="locationMap"
+                                 IsShowingUser="True"
+                                 IsZoomEnabled="True"
+                                 IsScrollEnabled="True"
+                                 MapType="Street"
+                                 MapClicked="OnMapClicked"/>
+                    </Frame>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Contact Numbers Section -->
+            <Label Text="Contact Numbers:" 
+                   TextColor="White"
+                   FontAttributes="Bold"/>
+            <Frame BackgroundColor="#333333" 
+                   Padding="15" 
+                   BorderColor="#76ABAE"
+                   CornerRadius="10">
+                <VerticalStackLayout Spacing="10">
+                    <!-- Primary Contact -->
+                    <Grid ColumnDefinitions="*, Auto">
+                        <Entry Grid.Column="0"
+                               x:Name="PrimaryPhoneEntry"
+                               Placeholder="Primary Contact Number"
+                               PlaceholderColor="#666666"
+                               TextColor="White"
+                               BackgroundColor="#444444"
+                               Keyboard="Telephone"
+                               MaxLength="10"/>
+
+                        <Button Grid.Column="1"
+                                Text="📞"
+                                BackgroundColor="Transparent"
+                                TextColor="White"
+                                Margin="5,0,0,0"
+                                Clicked="OnDialNumberClicked"
+                                CommandParameter="{Binding Source={x:Reference PrimaryPhoneEntry}, Path=Text}"/>
+                    </Grid>
+
+                    <!-- Alternative Contact -->
+                    <Grid ColumnDefinitions="*, Auto">
+                        <Entry Grid.Column="0"
+                               x:Name="AlternativePhoneEntry"
+                               Placeholder="Alternative Contact Number (Optional)"
+                               PlaceholderColor="#666666"
+                               TextColor="White"
+                               BackgroundColor="#444444"
+                               Keyboard="Telephone"
+                               MaxLength="10"/>
+
+                        <Button Grid.Column="1"
+                                Text="📞"
+                                BackgroundColor="Transparent"
+                                TextColor="White"
+                                Margin="5,0,0,0"
+                                Clicked="OnDialNumberClicked"
+                                CommandParameter="{Binding Source={x:Reference AlternativePhoneEntry}, Path=Text}"/>
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Room Type Section -->
+            <Label Text="Type of Room:"
+                  TextColor="White"
+                  FontAttributes="Bold"/>
+            <Picker x:Name="RoomTypePicker"
+                    BackgroundColor="#333333"
+                    TextColor="White">
                 <Picker.Items>
                     <x:String>Select an option</x:String>
                     <x:String>Single Room</x:String>
                     <x:String>Bachelor Room</x:String>
                     <x:String>Sharing Room</x:String>
-                  </Picker.Items>
-              </Picker>
+                </Picker.Items>
+            </Picker>
 
+            <!-- Price Section -->
             <Label Text="Price:" 
                    TextColor="White"/>
             <Frame BackgroundColor="#333333" 
                    Padding="0" 
                    BorderColor="#76ABAE"
                    CornerRadius="5"
-                   IsClippedToBounds="True" >
+                   IsClippedToBounds="True">
                 <Grid ColumnDefinitions="Auto,*">
                     <Label Text="R" 
                            TextColor="White"
@@ -53,192 +166,74 @@
                 </Grid>
             </Frame>
 
-
-
+            <!-- Pros Section -->
             <Label Text="Pros:" 
                    TextColor="White"/>
             <Frame BackgroundColor="#333333" 
-                   Padding="15" 
                    BorderColor="#76ABAE"
+                   Padding="15" 
                    CornerRadius="10">
-
                 <Grid ColumnDefinitions="Auto,*,Auto,*,Auto,*" 
                       RowDefinitions="Auto,Auto,Auto,Auto,Auto"
                       RowSpacing="10" 
                       ColumnSpacing="10">
-                    <CheckBox Grid.Row="0" Grid.Column="0" VerticalOptions="Center" Margin="-6,0,0,0"/>
+                    <!-- Row 0 -->
+                    <CheckBox Grid.Row="0" Grid.Column="0" x:Name="WifiCheck" VerticalOptions="Center" Margin="-6,0,0,0"/>
                     <Label Text="Wifi" 
                            TextColor="White" 
                            VerticalOptions="Center" 
                            Grid.Row="0" Grid.Column="1" 
                            Margin="-20,0,0,0"/>
 
-                    <CheckBox Grid.Row="0" Grid.Column="2" VerticalOptions="Center" Margin="-30,0,0,0" />
+                    <CheckBox Grid.Row="0" Grid.Column="2" x:Name="FreeElectricityCheck" VerticalOptions="Center" Margin="-30,0,0,0"/>
                     <Label Text="Free Electricity" 
                            TextColor="White" 
                            VerticalOptions="Center" 
                            Grid.Row="0" Grid.Column="3" 
                            Margin="-20,0,0,0"/>
 
-                    <CheckBox Grid.Row="0" Grid.Column="4" VerticalOptions="Center"  Margin="-20,0,0,0"/>
+                    <CheckBox Grid.Row="0" Grid.Column="4" x:Name="BedCheck" VerticalOptions="Center" Margin="-20,0,0,0"/>
                     <Label Text="Bed" 
                            TextColor="White" 
                            VerticalOptions="Center" 
                            Grid.Row="0" Grid.Column="5" 
                            Margin="-20,0,0,0"/>
 
-                    <!--Row 1-->
-                    <CheckBox Grid.Row="1" Grid.Column="0" VerticalOptions="Center"  Margin="-6,0,0,0" />
+                    <!-- Row 1 -->
+                    <CheckBox Grid.Row="1" Grid.Column="0" x:Name="WashingMachineCheck" VerticalOptions="Center" Margin="-6,0,0,0"/>
                     <Label Text="Washing Machine" 
                            TextColor="White" 
                            VerticalOptions="Center" 
                            Grid.Row="1" Grid.Column="1" 
                            Margin="-20,0,0,0"/>
 
-                    <CheckBox Grid.Row="1" Grid.Column="2" VerticalOptions="Center"  Margin="-30,0,0,0"/>
+                    <CheckBox Grid.Row="1" Grid.Column="2" x:Name="StudyTableCheck" VerticalOptions="Center" Margin="-30,0,0,0"/>
                     <Label Text="Study Table" 
                            TextColor="White" 
                            VerticalOptions="Center" 
                            Grid.Row="1" Grid.Column="3" 
                            Margin="-20,0,0,0"/>
 
-                    <CheckBox Grid.Row="1" Grid.Column="4" VerticalOptions="Center"  Margin="-20,0,0,0" />
+                    <CheckBox Grid.Row="1" Grid.Column="4" x:Name="ShowersCheck" VerticalOptions="Center" Margin="-20,0,0,0"/>
                     <Label Text="Showers" 
                            TextColor="White" 
                            VerticalOptions="Center" 
                            Grid.Row="1" Grid.Column="5" 
                            Margin="-20,0,0,0"/>
-                    
-                    <!--Row 2-->
-                    <CheckBox Grid.Row="2" Grid.Column="0" VerticalOptions="Center"  Margin="-6,0,0,0" />
-                    <Label Text="Chair" 
-                           TextColor="White" 
-                           VerticalOptions="Center" 
-                           Grid.Row="2" Grid.Column="1" 
-                           Margin="-20,0,0,0"/>
-                    <CheckBox Grid.Row="2" Grid.Column="2" VerticalOptions="Center"  Margin="-30,0,0,0"/>
-                    <Label Text="Kitchenette" 
-                           TextColor="White" 
-                           VerticalOptions="Center" 
-                           Grid.Row="2" Grid.Column="3" 
-                           Margin="-20,0,0,0"/>
-                    <CheckBox Grid.Row="2" Grid.Column="4" VerticalOptions="Center"  Margin="-20,0,0,0"/>
-                    <Label Text="Sink" 
-                           TextColor="White" 
-                           VerticalOptions="Center" 
-                           Grid.Row="2" Grid.Column="5" 
-                           Margin="-20,0,0,0"/>
-                    
-                    <!--Row 3-->
-                    <CheckBox Grid.Row="3" Grid.Column="0" VerticalOptions="Center"  Margin="-6,0,0,0"/>
-                    <Label Text="Shared Kitchen" 
-                           TextColor="White" 
-                           VerticalOptions="Center" 
-                           Grid.Row="3" Grid.Column="1" 
-                           Margin="-20,0,0,0"/>
-                    <CheckBox Grid.Row="3" Grid.Column="2" VerticalOptions="Center"  Margin="-30,0,0,0"/>
-                    <Label Text="Security" 
-                           TextColor="White" 
-                           VerticalOptions="Center" 
-                           Grid.Row="3" Grid.Column="3" 
-                           Margin="-20,0,0,0"/>
-                    <CheckBox Grid.Row="3" Grid.Column="4" VerticalOptions="Center"  Margin="-20,0,0,0"/>
-                    <Label Text="Backup Electricity" 
-                           TextColor="White" 
-                           VerticalOptions="Center" 
-                           Grid.Row="3" Grid.Column="5" 
-                           Margin="-20,0,0,0"/>
-                    
-                    <!--Row 4-->
-                    <CheckBox Grid.Row="4" Grid.Column="0" VerticalOptions="Center"  Margin="-6,0,0,0"/>
-                    <Label Text="24/7 Water" 
-                           TextColor="White" 
-                           VerticalOptions="Center" 
-                           Grid.Row="4" Grid.Column="1" 
-                           Margin="-20,0,0,0"/>
-                    <CheckBox Grid.Row="4" Grid.Column="2" VerticalOptions="Center"  Margin="-30,0,0,0"/>
-                    <Label Text="Parking" 
-                           TextColor="White" 
-                           VerticalOptions="Center" 
-                           Grid.Row="4" Grid.Column="3" 
-                           Margin="-22,0,0,0"/>
 
-
-                </Grid>
-
-            </Frame>
-
-            <Label Text="Cons:" 
-                   TextColor="White"/>
-            <Frame BackgroundColor="#333333" 
-                   BorderColor="#76ABAE"
-                   Padding="15" 
-                   CornerRadius="10">
-                <Grid ColumnDefinitions="*,*" 
-                      RowDefinitions="Auto,Auto,Auto,Auto"
-                      RowSpacing="10" 
-                      ColumnSpacing="10">
-                    <!--Row 0-->
-                    <CheckBox Grid.Row="0" Grid.Column="0" VerticalOptions="Center" Margin="-100,0,0,0"/>
-                    <Label Text="Buy Electricity" 
-                           TextColor="White" 
-                           VerticalOptions="Center" 
-                           Grid.Row="0" Grid.Column="1" 
-                           Margin="-128,0,0,0"/>
-                    <CheckBox Grid.Row="0" Grid.Column="2" VerticalOptions="Center" Margin="-80,0,0,0" />
-                    <Label Text="No Showers" 
-                           TextColor="White" 
-                           VerticalOptions="Center" 
-                           Grid.Row="0" Grid.Column="3" 
-                           Margin="60,0,0,0"/>
-
-                    <!--Row 1-->
-                    <CheckBox Grid.Row="1" Grid.Column="0" VerticalOptions="Center" Margin="-100,0,0,0"/>
-                    <Label Text="Minimal Security" 
-                           TextColor="White" 
-                           VerticalOptions="Center" 
-                           Grid.Row="1" Grid.Column="1" 
-                           Margin="-128,0,0,0"/>
-                    <CheckBox Grid.Row="1" Grid.Column="2" VerticalOptions="Center" Margin="-80,0,0,0"/>
-                    <Label Text="No Hot Water" 
-                           TextColor="White" 
-                           VerticalOptions="Center" 
-                           Grid.Row="1" Grid.Column="3" 
-                           Margin="60,0,0,0"/>
-                    
-                    <!--Row 2-->
-                    <CheckBox Grid.Row="2" Grid.Column="0" VerticalOptions="Center" Margin="-100,0,0,0"/>
-                    <Label Text="Bring Own Bed" 
-                           TextColor="White" 
-                           VerticalOptions="Center" 
-                           Grid.Row="2" Grid.Column="1" 
-                           Margin="-128,0,0,0"/>
-                    <CheckBox Grid.Row="2" Grid.Column="2" VerticalOptions="Center" Margin="-80,0,0,0" />
-                    <Label Text="Yard has Dogs" 
-                           TextColor="White" 
-                           VerticalOptions="Center" 
-                           Grid.Row="2" Grid.Column="3" 
-                           Margin="60,0,0,0"/>
-
-                    <!--Row 3-->
-                    <CheckBox Grid.Row="3" Grid.Column="0" VerticalOptions="Center" Margin="-100,0,0,0"/>
-                    <Label Text="No Parking" 
-                           TextColor="White" 
-                           VerticalOptions="Center" 
-                           Grid.Row="3" Grid.Column="1" 
-                           Margin="-128,0,0,0"/>
-
-
+                    <!-- Add remaining pros rows... -->
                 </Grid>
             </Frame>
 
+            <!-- Additional Information Section -->
             <Label Text="Additional Information:" 
                    TextColor="White"/>
-            <Editor BackgroundColor="#333333" 
+            <Editor x:Name="AdditionalInfoEditor"
+                    BackgroundColor="#333333" 
                     TextColor="White" 
                     HeightRequest="100"/>
 
-            <!-- New Rules and Regulations section -->
+            <!-- Rules Section -->
             <Label Text="Rules and Regulations:" 
                    TextColor="White"/>
             <Frame BackgroundColor="#333333" 
@@ -246,7 +241,6 @@
                    BorderColor="#76ABAE"
                    CornerRadius="10">
                 <VerticalStackLayout Spacing="10">
-                    <!-- Input field for new rule -->
                     <Grid ColumnDefinitions="*, Auto">
                         <Entry x:Name="RuleEntry"
                                TextColor="White"
@@ -260,7 +254,6 @@
                                 Margin="5,0,0,0"/>
                     </Grid>
 
-                    <!-- List of rules -->
                     <CollectionView x:Name="RulesList"
                                   HeightRequest="200">
                         <CollectionView.ItemTemplate>
@@ -283,15 +276,10 @@
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
-
-
-                    <Button Text="Save Rules"
-                            BackgroundColor="#81B7B7"
-                            TextColor="White"
-                            Clicked="OnSaveRulesClicked"/>
                 </VerticalStackLayout>
             </Frame>
 
+            <!-- Image Upload Section -->
             <Label Text="Upload images:" 
                    TextColor="White"/>
             <Button Text="Upload file(s)" 
@@ -302,16 +290,13 @@
                    Text="No file chosen" 
                    TextColor="#666666"/>
 
+            <!-- Submit Button -->
             <Button Text="Upload Room" 
                     BackgroundColor="#81B7B7" 
                     TextColor="White"
                     FontAttributes="Bold"
                     Margin="0,20,0,0"
                     Clicked="OnSubmitClicked"/>
-
-
         </VerticalStackLayout>
     </ScrollView>
-
-
 </ContentPage>

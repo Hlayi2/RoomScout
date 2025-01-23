@@ -1,164 +1,298 @@
+using Microsoft.Maui.Controls.Maps;
+using Microsoft.Maui.Maps;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Data;
 
-namespace RoomScout.Views.AdminSide;
-
-public partial class AddListingPage : ContentPage
+namespace RoomScout.Views.AdminSide
 {
-    public ObservableCollection<Rule> Rules { get; set; }
-
-    public AddListingPage()
-	{
-		InitializeComponent();
-        Rules = new ObservableCollection<Rule>();
-        RulesList.ItemsSource = Rules;
-    }
-
-    private void OnPriceTextChanged(object sender, TextChangedEventArgs e)
+    public partial class AddListingPage : ContentPage
     {
-        if (string.IsNullOrEmpty(e.NewTextValue))
-            return;
+        public ObservableCollection<Rule> Rules { get; set; }
+        private Pin currentPin;
 
-        // Only allow numbers and decimal point
-        string newText = new string(e.NewTextValue.Where(c => char.IsDigit(c) || c == '.').ToArray());
-
-        // Ensure only one decimal point
-        if (newText.Count(c => c == '.') > 1)
+        public AddListingPage()
         {
-            newText = newText.Replace(".", "");
-            if (newText.Length > 0)
-                newText = newText.Insert(newText.Length - 2, ".");
-        }
+            InitializeComponent();
+            Rules = new ObservableCollection<Rule>();
+            RulesList.ItemsSource = Rules;
 
-        // Format to 2 decimal places if there's a decimal point
-        if (newText.Contains('.'))
-        {
-            string[] parts = newText.Split('.');
-            if (parts[1].Length > 2)
-                newText = parts[0] + "." + parts[1].Substring(0, 2);
-        }
-
-        // Update the entry only if the text has changed
-        if (newText != e.NewTextValue)
-        {
-            ((Entry)sender).Text = newText;
-        }
-    }
-
-
-    private void OnAddRuleClicked(object sender, EventArgs e)
-    {
-        if (string.IsNullOrWhiteSpace(RuleEntry.Text))
-            return;
-
-        Rules.Add(new Rule
-        {
-            Number = $"{Rules.Count + 1}.",
-            Text = RuleEntry.Text
-        });
-
-        RuleEntry.Text = string.Empty;
-    }
-
-    private void OnDeleteRuleClicked(object sender, EventArgs e)
-    {
-        if (sender is Button button && button.CommandParameter is Rule ruleToDelete)
-        {
-            Rules.Remove(ruleToDelete);
-            UpdateRuleNumbers();
-        }
-    }
-
-    private void UpdateRuleNumbers()
-    {
-        for (int i = 0; i < Rules.Count; i++)
-        {
-            Rules[i].Number = $"{i + 1}.";
-        }
-    }
-
-    private async void OnSaveRulesClicked(object sender, EventArgs e)
-    {
-        if (Rules.Count > 0)
-        {
-            // Here you would typically save the rules to your database or storage
-            await DisplayAlert("Success", "Rules have been saved!", "OK");
-        }
-        else
-        {
-            await DisplayAlert("Info", "No rules to save", "OK");
-        }
-    }
-
-    private async void OnUploadClicked(object sender, EventArgs e)
-    {
-        try
-        {
-            var result = await FilePicker.PickMultipleAsync(new PickOptions
+            // Initialize map to South Africa's coordinates
+            MainThread.BeginInvokeOnMainThread(() =>
             {
-                FileTypes = FilePickerFileType.Images
+                var southAfricaLocation = new Location(-30.5595, 22.9375);
+                var initialMapSpan = MapSpan.FromCenterAndRadius(
+                    southAfricaLocation,
+                    Distance.FromKilometers(1000));
+                locationMap.MoveToRegion(initialMapSpan);
+            });
+        }
+
+        private async void OnMapClicked(object sender, MapClickedEventArgs e)
+        {
+            try
+            {
+                // Remove existing pin if any
+                if (currentPin != null)
+                    locationMap.Pins.Remove(currentPin);
+
+                // Create new pin at clicked location
+                currentPin = new Pin
+                {
+                    Label = "Property Location",
+                    Location = e.Location,
+                    Type = PinType.Generic
+                };
+
+                locationMap.Pins.Add(currentPin);
+
+                // Update coordinates entry
+                CoordinatesEntry.Text = $"{e.Location.Latitude:F6}, {e.Location.Longitude:F6}";
+
+                // Try to get address for the location
+                try
+                {
+                    var placemarks = await Geocoding.Default.GetPlacemarksAsync(e.Location.Latitude, e.Location.Longitude);
+                    var placemark = placemarks?.FirstOrDefault();
+                    if (placemark != null)
+                    {
+                        StreetEntry.Text = placemark.Thoroughfare;
+                        SuburbEntry.Text = placemark.SubLocality;
+                        CityEntry.Text = placemark.Locality;
+                        PostalCodeEntry.Text = placemark.PostalCode;
+                    }
+                }
+                catch
+                {
+                    await DisplayAlert("Note", "Location selected but unable to get address details", "OK");
+                }
+
+                // Move map to clicked location with appropriate zoom
+                var mapSpan = MapSpan.FromCenterAndRadius(
+                    e.Location,
+                    Distance.FromKilometers(1));
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    locationMap.MoveToRegion(mapSpan);
+                });
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", $"Unable to set location: {ex.Message}", "OK");
+            }
+        }
+
+        private void OnDialNumberClicked(object sender, EventArgs e)
+        {
+            if (sender is Button button && button.CommandParameter is string number)
+            {
+                if (!string.IsNullOrWhiteSpace(number))
+                {
+                    try
+                    {
+                        PhoneDialer.Open(number);
+                    }
+                    catch
+                    {
+                        DisplayAlert("Error", "Unable to open phone dialer", "OK");
+                    }
+                }
+                else
+                {
+                    DisplayAlert("Error", "Please enter a valid phone number", "OK");
+                }
+            }
+        }
+
+        private void OnPriceTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(e.NewTextValue))
+                return;
+
+            // Only allow numbers and decimal point
+            string newText = new string(e.NewTextValue.Where(c => char.IsDigit(c) || c == '.').ToArray());
+
+            // Ensure only one decimal point
+            if (newText.Count(c => c == '.') > 1)
+            {
+                newText = newText.Replace(".", "");
+                if (newText.Length > 0)
+                    newText = newText.Insert(newText.Length - 2, ".");
+            }
+
+            // Format to 2 decimal places if there's a decimal point
+            if (newText.Contains('.'))
+            {
+                string[] parts = newText.Split('.');
+                if (parts[1].Length > 2)
+                    newText = parts[0] + "." + parts[1].Substring(0, 2);
+            }
+
+            // Update the entry only if the text has changed
+            if (newText != e.NewTextValue)
+            {
+                ((Entry)sender).Text = newText;
+            }
+        }
+
+        private void OnAddRuleClicked(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(RuleEntry.Text))
+            {
+                DisplayAlert("Error", "Please enter a rule", "OK");
+                return;
+            }
+
+            Rules.Add(new Rule
+            {
+                Number = $"{Rules.Count + 1}.",
+                Text = RuleEntry.Text
             });
 
-            if (result != null)
+            RuleEntry.Text = string.Empty;
+        }
+
+        private void OnDeleteRuleClicked(object sender, EventArgs e)
+        {
+            if (sender is Button button && button.CommandParameter is Rule ruleToDelete)
             {
-                FileNameLabel.Text = result.Count() == 1
-                    ? Path.GetFileName(result.First().FullPath)
-                    : $"{result.Count()} files selected";
+                Rules.Remove(ruleToDelete);
+                UpdateRuleNumbers();
             }
         }
-        catch (Exception ex)
+
+        private void UpdateRuleNumbers()
         {
-            await DisplayAlert("Error", "Unable to pick file: " + ex.Message, "OK");
-        }
-    }
-
-    private async void OnSubmitClicked(object sender, EventArgs e)
-    {
-        // Add your submission logic here
-        await DisplayAlert("Success", " Room Listing uploaded successfully! You will be redirected in 2 seconds", "OK");
-        await Task.Delay(2000);
-
-        // Navigate to the DashboardProfile page
-        await Navigation.PushAsync(new DashboardProfile());
-    }
-}
-
-public class Rule : INotifyPropertyChanged
-{
-    private string number;
-    private string text;
-
-    public string Number
-    {
-        get => number;
-        set
-        {
-            if (number != value)
+            int number = 1;
+            foreach (var rule in Rules)
             {
-                number = value;
-                OnPropertyChanged(nameof(Number));
+                rule.Number = $"{number}.";
+                number++;
             }
         }
-    }
 
-    public string Text
-    {
-        get => text;
-        set
+        private async void OnUploadClicked(object sender, EventArgs e)
         {
-            if (text != value)
+            try
             {
-                text = value;
-                OnPropertyChanged(nameof(Text));
+                var result = await FilePicker.PickMultipleAsync(new PickOptions
+                {
+                    FileTypes = FilePickerFileType.Images
+                });
+
+                if (result != null)
+                {
+                    FileNameLabel.Text = result.Count() == 1
+                        ? Path.GetFileName(result.First().FullPath)
+                        : $"{result.Count()} files selected";
+                }
             }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", "Unable to pick file: " + ex.Message, "OK");
+            }
+        }
+
+        private async void OnSubmitClicked(object sender, EventArgs e)
+        {
+            // Validate required fields
+            if (string.IsNullOrWhiteSpace(CoordinatesEntry.Text))
+            {
+                await DisplayAlert("Error", "Please select a location on the map", "OK");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(PrimaryPhoneEntry.Text))
+            {
+                await DisplayAlert("Error", "Primary contact number is required", "OK");
+                return;
+            }
+
+            if (RoomTypePicker.SelectedIndex <= 0)
+            {
+                await DisplayAlert("Error", "Please select a room type", "OK");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(PriceEntry.Text))
+            {
+                await DisplayAlert("Error", "Please enter a price", "OK");
+                return;
+            }
+
+            // Create listing object with all the data
+            var listingData = new
+            {
+                Location = new
+                {
+                    Coordinates = CoordinatesEntry.Text,
+                    Street = StreetEntry.Text,
+                    Suburb = SuburbEntry.Text,
+                    City = CityEntry.Text,
+                    PostalCode = PostalCodeEntry.Text
+                },
+                Contact = new
+                {
+                    PrimaryPhone = PrimaryPhoneEntry.Text,
+                    AlternativePhone = AlternativePhoneEntry.Text
+                },
+                RoomType = RoomTypePicker.SelectedItem?.ToString(),
+                Price = decimal.Parse(PriceEntry.Text),
+                Amenities = new
+                {
+                    Wifi = WifiCheck.IsChecked,
+                    FreeElectricity = FreeElectricityCheck.IsChecked,
+                    Bed = BedCheck.IsChecked,
+                    WashingMachine = WashingMachineCheck.IsChecked,
+                    StudyTable = StudyTableCheck.IsChecked,
+                    Showers = ShowersCheck.IsChecked
+                },
+                Rules = Rules.ToList()
+            };
+
+            // Here you would typically save the listing to your database
+
+            await DisplayAlert("Success", "Room Listing uploaded successfully! You will be redirected in 2 seconds", "OK");
+            await Task.Delay(2000);
+            await Navigation.PushAsync(new DashboardProfile());
         }
     }
 
-    public event PropertyChangedEventHandler PropertyChanged;
-
-    protected virtual void OnPropertyChanged(string propertyName)
+    public class Rule : INotifyPropertyChanged
     {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        private string number;
+        private string text;
+
+        public string Number
+        {
+            get => number;
+            set
+            {
+                if (number != value)
+                {
+                    number = value;
+                    OnPropertyChanged(nameof(Number));
+                }
+            }
+        }
+
+        public string Text
+        {
+            get => text;
+            set
+            {
+                if (text != value)
+                {
+                    text = value;
+                    OnPropertyChanged(nameof(Text));
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

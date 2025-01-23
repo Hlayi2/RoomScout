@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local ="clr-namespace:RoomScout.ViewModels.AdminSide"
+             xmlns:local="clr-namespace:RoomScout.ViewModels.AdminSide"
              x:Class="RoomScout.Views.AdminSide.ManageListingsPage"
-              Shell.NavBarIsVisible="False"
-             Title="ManageListingsPage"
+             Shell.NavBarIsVisible="True"
+             Title="Manage Listings"
              BackgroundColor="#1A1F25">
 
     <ContentPage.BindingContext>

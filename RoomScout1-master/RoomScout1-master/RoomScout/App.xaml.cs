@@ -14,7 +14,7 @@ namespace RoomScout
 
 
 
-            MainPage = new AppShell(LandingPage());
+            MainPage = new AppShell();
            // MainPage = new NavigationPage(new LandingPage());
 
             // MainPage = new NavigationPage(new LandlordDashboardPage());
