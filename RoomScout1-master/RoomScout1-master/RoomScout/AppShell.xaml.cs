@@ -11,7 +11,6 @@ namespace RoomScout
             InitializeComponent();
 
             Routing.RegisterRoute(nameof(LandingPage), typeof(LandingPage));
-          
             Routing.RegisterRoute("register", typeof(RoomScout.Views.Auth.RegisterPage));
             Routing.RegisterRoute("login", typeof(RoomScout.Views.Auth.LoginPage));
             Routing.RegisterRoute("landlordDashboard", typeof(RoomScout.Views.AdminSide.LandlordDashboardPage));
@@ -21,6 +20,11 @@ namespace RoomScout
             Routing.RegisterRoute("appointments", typeof(RoomScout.Views.StudentSide.Appointments));
             Routing.RegisterRoute("profile", typeof(RoomScout.Views.StudentSide.profile));
             Routing.RegisterRoute("addevent", typeof(RoomScout.Views.StudentSide.AddEvent));
+
+            Routing.RegisterRoute("listings", typeof(ManageListingsPage));
+            Routing.RegisterRoute("bookings", typeof(BookingRequestsPage));
+            Routing.RegisterRoute("settings", typeof(DashboardProfile));
+            Routing.RegisterRoute("AddListingPage", typeof(AddListingPage));
 
             CurrentItem = new ShellContent
             {

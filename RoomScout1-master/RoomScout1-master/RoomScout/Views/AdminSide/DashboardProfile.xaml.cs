@@ -1,5 +1,6 @@
 namespace RoomScout.Views.AdminSide;
 using RoomScout.Models.AdminSide;
+using RoomScout.ViewModels.AdminSide;
 using RoomScout.Views.Auth;
 
 public partial class DashboardProfile : ContentPage
@@ -19,27 +20,67 @@ public partial class DashboardProfile : ContentPage
         BindingContext = _landlord;
     }
 
+
     private async void OnUpdateProfileClicked(object sender, EventArgs e)
     {
         
         await Navigation.PushAsync(new LandlordDashboardPage());
     }
 
-    private async void OnNewListingClicked(object sender, EventArgs e)
+    private async void OnImageButtonClicked(object sender, EventArgs e)
     {
-        
-        await Navigation.PushAsync(new AddListingPage());
+
+        await Navigation.PushAsync(new ChatbotPage());
     }
 
     private async void OnViewListingsClicked(object sender, EventArgs e)
     {
         // Navigate to LandlordDashboardPage
-        await Navigation.PushAsync(new ManageListingsPage());
+       await Navigation.PushAsync(new ManageListingsPage());
+
+    }
+
+    private async void OnReportTechnicalIssueClicked(object sender, EventArgs e)
+    {
+        // Show a pop-up to input the complaint
+        string complaint = await DisplayPromptAsync(
+            "Report Technical Issue",
+            "Please describe the issue:",
+            "Submit",
+            "Cancel",
+            "Enter your complaint here",
+            maxLength: 500,
+            keyboard: Keyboard.Text);
+
+        // Check if the user submitted the complaint
+        if (!string.IsNullOrWhiteSpace(complaint))
+        {
+            // Send the complaint (you can replace this with your logic to send the complaint)
+            bool isSent = await SendComplaintAsync(complaint);
+
+            // Notify the user
+            if (isSent)
+            {
+                await DisplayAlert("Success", "Your complaint has been submitted.", "OK");
+            }
+            else
+            {
+                await DisplayAlert("Error", "Failed to submit your complaint. Please try again.", "OK");
+            }
+        }
+    }
+    private async Task<bool> SendComplaintAsync(string complaint)
+    {
+        // Simulate sending the complaint (replace this with your actual logic)
+        await Task.Delay(1000); // Simulate network delay
+        return true; // Return true if the complaint was sent successfully
     }
 
     private async void OnViewBookingsClicked(object sender, EventArgs eventArgs)
     {
         await Navigation.PushAsync(new BookingRequestsPage());
+
+      
     }
 
     private async void OnLogoutButtonClicked(object sender, EventArgs e)
@@ -82,11 +123,9 @@ public partial class DashboardProfile : ContentPage
             // Clear the Landlord data
             _landlord.FullNames = string.Empty;
             _landlord.Email = string.Empty;
-            _landlord.ContactDetails = string.Empty;
             _landlord.IdOrPassportNo = string.Empty;
             _landlord.AccommodationName = string.Empty;
             _landlord.Address = string.Empty;
-            _landlord.Location = string.Empty;
             _landlord.ProfilePicture = string.Empty;
 
             // Clear the BindingContext to update the UI (optional)
@@ -105,7 +144,6 @@ public partial class DashboardProfile : ContentPage
         SecureStorage.Remove("user_token");  // Example: remove stored token
         Preferences.Remove("user_full_name");  // Example: remove the full name
         Preferences.Remove("user_email");  // Example: remove the email
-        Preferences.Remove("user_contact");  // Example: remove the contact details
 
         // Clear any other stored data, such as listings, etc.
         Preferences.Remove("user_listings");  // Example: remove user's listings data
