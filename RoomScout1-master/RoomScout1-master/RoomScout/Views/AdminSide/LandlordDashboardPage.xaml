@@ -65,17 +65,6 @@
                     Padding="5,5">
                 <Entry Text="{Binding Email}" BackgroundColor="White" Placeholder="Enter email"/>
             </Border>
-           
-            <Label Text="Contact Information:" TextColor="White"/>
-            <Border  StrokeThickness="4"
-                    Stroke="#7FB5B5"
-                    BackgroundColor="White"
-                    StrokeShape="RoundRectangle 15"
-                    Margin="4"
-                    Padding="5,5">
-                <Entry Text="{Binding ContactDetails}" BackgroundColor="White" Placeholder="Enter contact details"/>
-            </Border>
-           
 
             <Label Text="ID or Passport No:" TextColor="White"/>
             <Border  StrokeThickness="4"
@@ -120,35 +109,6 @@
             </Border>
            
 
-            <Label Text="Location of Accomodation" TextColor="White"/>
-            <Frame BackgroundColor="#5F9EA0"
-                   CornerRadius="12"
-                   Padding="3"
-                   Margin="4">
-                <Frame BackgroundColor="#5F9EA0"
-                       CornerRadius="10"
-                       Padding="0"
-                       HeightRequest="50"
-                       HasShadow="False"
-                       >
-                    <Grid>
-                        <Entry Text="{Binding Location}"
-                               BackgroundColor="White"
-                               Placeholder="Enter accomodation's location"/>
-                        <Image Source="map.png"
-                               HeightRequest="24"
-                               WidthRequest="24"
-                               VerticalOptions="Center"
-                               HorizontalOptions="End"
-                               Margin="0,0,10,0">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding OpenMapCommand}" />
-                            </Image.GestureRecognizers>
-                        </Image>
-                    </Grid>
-                </Frame>
-            </Frame>
-
             <Label Text="Upload proof of address:" TextColor="White"/>
 
             <Button x:Name="UploadAddressButton"
@@ -187,7 +147,7 @@
                     <Label Text="PLEASE NOTE!"
                            TextColor="#FF0000"
                            FontAttributes="Bold"/>
-                    <Label Text="All uploaded files must be certified if not your listing will be rejected!"
+                    <Label Text="All uploaded files must be certified if not your listing will be rejected! Allow up to 2 working days for your documents to be verified."
                            TextColor="Black"
                            FontSize="14"/>
                 </VerticalStackLayout>

@@ -17,5 +17,8 @@ public partial class LandingPage : ContentPage
          // Navigate to the registration page
         // await AppShell.Current.GoToAsync("login");
         await Navigation.PushAsync(new LoginPage());
+
     }
+
+   
 }

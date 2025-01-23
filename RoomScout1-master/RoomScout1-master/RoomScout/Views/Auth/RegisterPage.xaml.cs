@@ -68,6 +68,8 @@ public partial class RegisterPage : ContentPage
         }
 
     }
+   
+
 }
 
 
