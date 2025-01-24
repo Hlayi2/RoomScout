@@ -10,108 +10,172 @@
     <ContentPage.BindingContext>
         <local:ManageListingsViewModel />
     </ContentPage.BindingContext>
-    <Grid>
-        <StackLayout Spacing="10" Padding="20" VerticalOptions="Start">
-            <Frame BackgroundColor="#F3F8FF"
-                   CornerRadius="25"
-                   HeightRequest="90"
-                   WidthRequest="380"
-                   VerticalOptions="Start"
-                   HorizontalOptions="Start">
-                <Grid  ColumnDefinitions="*, Auto" VerticalOptions="Center">
-                    <Image Source="bachelor.png"
-                           HeightRequest="40"
-                           WidthRequest="40"
-                           Margin="50,0,350,0"  />
-                    <Label Text="Bachelor Room"
-                           FontSize="20"
-                           FontAttributes="Bold"
-                           TextColor="Black"
-                           VerticalOptions="Center"
-                           HorizontalOptions="Start"
-                           Margin="55,0,0,0" />
-                    <Image Source="arrow.png"
-                           HeightRequest="40"
-                           WidthRequest="40"
-                           Margin="300,0,0,0"
-                           VerticalOptions="Center"
-                           HorizontalOptions="Center">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding ToggleBachelorFrameCommand}" />
-                        </Image.GestureRecognizers>
-                    </Image>
-                </Grid>
-            </Frame>
 
-            <Frame BackgroundColor="#F3F8FF"
-                   CornerRadius="25"
-                   Margin="0,10,0,0"
-                   HeightRequest="90"
-                   WidthRequest="380"
-                   VerticalOptions="Start"
-                   HorizontalOptions="Start">
-                <Grid  ColumnDefinitions="*, Auto" VerticalOptions="Center">
-                    <Image Source="single.png"
-                     HeightRequest="30"
-                     WidthRequest="35"
-                     Margin="50,0,350,0"/>
-                    <Label Text="Single Room"
-                     FontSize="20"
-                     FontAttributes="Bold"
-                     TextColor="Black"
-                     VerticalOptions="Center"
-                     HorizontalOptions="Start"
-                     Margin="55,0,0,0" />
-                    <Image Source="arrow.png"
-                     HeightRequest="40"
-                     WidthRequest="40"
-                     Margin="300,0,0,0"
-                     VerticalOptions="Center"
-                     HorizontalOptions="Center">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding ToggleSingleFrameCommand}" />
-                        </Image.GestureRecognizers>
-                    </Image>
-                </Grid>
-            </Frame>
+    <Grid RowDefinitions="Auto, *">
+        <!-- Header with Image and Title -->
+        <Frame Grid.Row="0"
+               BackgroundColor="Transparent"
+               BorderColor="Transparent"
+               Margin="15,50,0,0"
+               Padding="10"
+               CornerRadius="0"
+               HasShadow="False">
+            <Grid ColumnDefinitions="Auto, *" VerticalOptions="Start">
+                <!-- Small Image on the Left -->
+                <Image Source="house.png"
+                       Aspect="AspectFill"
+                       HeightRequest="70"
+                       WidthRequest="70"
+                       VerticalOptions="Start"
+                       HorizontalOptions="Start" />
+                <!-- Heading Next to the Image (Slightly Lower) -->
+                <Label Grid.Column="1"
+                       Text="Manage Listings"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Start"
+                       Margin="10,10,0,0" />
+            </Grid>
+        </Frame>
 
-            <Frame BackgroundColor="#F3F8FF"
-                   CornerRadius="25"
-                   HeightRequest="90"
-                   Margin="0,10,0,0"
-                   WidthRequest="380"
-                   VerticalOptions="Start"
-                   HorizontalOptions="Start">
-                <Grid  ColumnDefinitions="*, Auto" VerticalOptions="Center">
-                    <Image Source="sharing.png"
-                     HeightRequest="50"
-                     WidthRequest="50"
-                     Margin="50,0,350,0"/>
-                    <Label Text="Sharing Room"
-                     FontSize="20"
-                     FontAttributes="Bold"
-                     TextColor="Black"
-                     VerticalOptions="Center"
-                     HorizontalOptions="Start"
-                     Margin="55,0,0,0" />
-                    <Image Source="arrow.png"
-                     HeightRequest="40"
-                     WidthRequest="40"
-                     Margin="300,0,0,0"
-                     VerticalOptions="Center"
+        <!-- Main Content -->
+        <ScrollView Grid.Row="1">
+            <StackLayout Spacing="10" Padding="20" VerticalOptions="Start">
+                <!-- Bachelor Room Frame -->
+                <Frame BackgroundColor="#F3F8FF"
+                       CornerRadius="25"
+                       HeightRequest="90"
+                       WidthRequest="350"
+                       Margin="20,50,0,0"
+                       VerticalOptions="Start"
+                       HorizontalOptions="Start">
+                    <Grid ColumnDefinitions="*, Auto" VerticalOptions="Center">
+                        <Image Source="bachelor.png"
+                               HeightRequest="40"
+                               WidthRequest="40"
+                               Margin="-260,0,0,0" />
+                        <Label Text="Bachelor Room"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               TextColor="Black"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Start"
+                               Margin="60,0,0,0" />
+                        <Image Source="arrow.png"
+                               HeightRequest="40"
+                               WidthRequest="40"
+                               Margin="0,0,10,0"
+                               VerticalOptions="Center"
+                               HorizontalOptions="End">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ToggleBachelorFrameCommand}" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
+                </Frame>
+
+                <!-- Single Room Frame -->
+                <Frame BackgroundColor="#F3F8FF"
+                       CornerRadius="25"
+                       Margin="20,10,0,0"
+                       HeightRequest="90"
+                       WidthRequest="353"
+                       VerticalOptions="Start"
+                       HorizontalOptions="Start">
+                    <Grid ColumnDefinitions="*, Auto" VerticalOptions="Center">
+                        <Image Source="single.png"
+                               HeightRequest="30"
+                               WidthRequest="35"
+                               Margin="-260,0,0,0" />
+                        <Label Text="Single Room"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               TextColor="Black"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Start"
+                               Margin="60,0,0,0" />
+                        <Image Source="arrow.png"
+                               HeightRequest="40"
+                               WidthRequest="40"
+                               Margin="0,0,10,0"
+                               VerticalOptions="Center"
+                               HorizontalOptions="End">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ToggleSingleFrameCommand}" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
+                </Frame>
+
+                <!-- Sharing Room Frame -->
+                <Frame BackgroundColor="#F3F8FF"
+                       CornerRadius="25"
+                       Margin="20,10,0,0"
+                       HeightRequest="90"
+                       WidthRequest="353"
+                       VerticalOptions="Start"
+                       HorizontalOptions="Start">
+                    <Grid ColumnDefinitions="*, Auto" VerticalOptions="Center">
+                        <Image Source="sharing.png"
+                               HeightRequest="50"
+                               WidthRequest="50"
+                               Margin="-260,0,0,0" />
+                        <Label Text="Sharing Room"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               TextColor="Black"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Start"
+                               Margin="60,0,0,0" />
+                        <Image Source="arrow.png"
+                               HeightRequest="40"
+                               WidthRequest="40"
+                               Margin="0,0,10,0"
+                               VerticalOptions="Center"
+                               HorizontalOptions="End">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ToggleSharingFrameCommand}" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
+                </Frame>
+
+                <!-- Add New Listing Button -->
+                <Frame BackgroundColor="#C5D3E8"
+                       CornerRadius="20"
+                       HeightRequest="62"
+                       WidthRequest="172"
+                       VerticalOptions="Start"
+                       Margin="100,50,0,0"
+                       HorizontalOptions="Start">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NavigateToAddNewListingPageCommand}" />
+                    </Frame.GestureRecognizers>
+                    <Grid ColumnDefinitions="*, Auto" VerticalOptions="Center">
+                        <Image Source="add.png"
+                               HeightRequest="30"
+                               WidthRequest="30"
+                               Margin="-90,0,0,0" />
+                        <Label Text="New Listing"
+                               FontSize="15"
+                               FontAttributes="Bold"
+                               TextColor="Black"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Start"
+                               Margin="40,0,0,0" />
+                    </Grid>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+
+        <!-- Bachelor Large Frame -->
+        <ScrollView Grid.Row="1"
+                    IsVisible="{Binding IsBachelorFrameVisible}"
+                    VerticalOptions="Start"
                     HorizontalOptions="Center">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding ToggleSharingFrameCommand}" />
-                        </Image.GestureRecognizers>
-                    </Image>
-                </Grid>
-            </Frame>
-
-        </StackLayout>
-
-        <!--bachelor large frame-->
-        <ScrollView IsVisible="{Binding IsBachelorFrameVisible}">
-            <Frame  BackgroundColor="#F5F5F5"
+            <Frame BackgroundColor="#F5F5F5"
                    CornerRadius="15"
                    BorderColor="#7FB5B5"
                    Padding="20"
@@ -121,19 +185,18 @@
                 <StackLayout>
                     <Grid ColumnDefinitions="*,*" RowDefinitions="*,*" Margin="0,10">
                         <Frame BorderColor="Gray"
-                                   Padding="0"
-                                   HeightRequest="180"
-                                   Margin="0,0,10,0">
+                               Padding="0"
+                               HeightRequest="180"
+                               Margin="0,0,10,0">
                             <Image Source="img11.png"
                                    Aspect="AspectFill"
                                    HorizontalOptions="FillAndExpand"
-                                   VerticalOptions="FillAndExpand">
-                            </Image>
+                                   VerticalOptions="FillAndExpand" />
                         </Frame>
                         <Frame BorderColor="Gray"
                                CornerRadius="10"
                                Grid.Column="1"
-                              HeightRequest="180"
+                               HeightRequest="180"
                                Margin="0,0,10,0"
                                Padding="0">
                             <Image Source="img13.png"
@@ -146,15 +209,14 @@
                             </Image>
                         </Frame>
                         <Frame BorderColor="Gray"
-                                Grid.Row="1"
+                               Grid.Row="1"
                                Grid.Column="0"
-                              HeightRequest="180"
-                                   WidthRequest="180"
+                               HeightRequest="180"
+                               WidthRequest="180"
                                CornerRadius="10"
                                Padding="0">
                             <Image Source="img10.png"
-                                   Aspect="AspectFill"
->
+                                   Aspect="AspectFill">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding ImageTappedCommand}" CommandParameter="image3.jpg" />
                                 </Image.GestureRecognizers>
@@ -177,7 +239,6 @@
                         </Frame>
                     </Grid>
                     <Grid ColumnDefinitions="*,Auto">
-                        <!-- Bachelor Label -->
                         <Label Text="Bachelor"
                                FontSize="22"
                                FontAttributes="Bold"
@@ -186,13 +247,11 @@
                                VerticalOptions="Center"
                                Margin="10,5,0,0"
                                Grid.Column="0" />
-
-                        <!-- Price Label -->
                         <Label Text="R2500 /Month"
                                FontSize="18"
                                FontAttributes="Bold"
                                TextColor="#629584"
-                               HorizontalOptions="End" 
+                               HorizontalOptions="End"
                                VerticalOptions="Center"
                                Margin="0,5,10,0"
                                Grid.Column="1" />
@@ -200,9 +259,12 @@
                 </StackLayout>
             </Frame>
         </ScrollView>
-        
-          <!--single large frame-->
-        <ScrollView IsVisible="{Binding IsSingleFrameVisible}">
+
+        <!-- Single Large Frame -->
+        <ScrollView Grid.Row="1"
+                    IsVisible="{Binding IsSingleFrameVisible}"
+                    VerticalOptions="Start"
+                    HorizontalOptions="Center">
             <Frame BackgroundColor="White"
                    CornerRadius="15"
                    Padding="20"
@@ -211,8 +273,7 @@
                    HeightRequest="300"
                    WidthRequest="300">
                 <StackLayout>
-                    <Grid ColumnDefinitions="*,*"
-                          RowDefinitions="Auto,Auto">
+                    <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto">
                         <Image Grid.Row="0" Grid.Column="0"
                                Source="single10.png"
                                Aspect="AspectFill"
@@ -246,10 +307,7 @@
                                HorizontalOptions="Center"
                                VerticalOptions="Center" />
                     </Grid>
-
-                    <!-- Row for Text -->
                     <Grid ColumnDefinitions="*,Auto">
-                        <!-- Single Label -->
                         <Label Text="Single"
                                FontSize="18"
                                FontAttributes="Bold"
@@ -258,8 +316,6 @@
                                VerticalOptions="Center"
                                Margin="10,5,0,0"
                                Grid.Column="0" />
-
-                        <!-- Price Label -->
                         <Label Text="R1400"
                                FontSize="18"
                                FontAttributes="Bold"
@@ -274,9 +330,12 @@
                 </StackLayout>
             </Frame>
         </ScrollView>
-       
-        <!--Sharing large frame-->
-        <ScrollView IsVisible="{Binding IsSharingFrameVisible}">
+
+        <!-- Sharing Large Frame -->
+        <ScrollView Grid.Row="1"
+                    IsVisible="{Binding IsSharingFrameVisible}"
+                    VerticalOptions="Start"
+                    HorizontalOptions="Center">
             <Frame BackgroundColor="White"
                    CornerRadius="15"
                    Padding="20"
@@ -285,8 +344,7 @@
                    HeightRequest="300"
                    WidthRequest="300">
                 <StackLayout>
-                    <Grid ColumnDefinitions="*,*"
-                          RowDefinitions="Auto,Auto">
+                    <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto">
                         <Image Grid.Row="0" Grid.Column="0"
                                Source="sharing10.png"
                                Aspect="AspectFill"
@@ -320,10 +378,7 @@
                                HorizontalOptions="Center"
                                VerticalOptions="Center" />
                     </Grid>
-
-                    <!-- Row for Text -->
                     <Grid ColumnDefinitions="*,Auto">
-                        <!-- Sharing Label -->
                         <Label Text="Sharing"
                                FontSize="18"
                                FontAttributes="Bold"
@@ -332,8 +387,6 @@
                                VerticalOptions="Center"
                                Margin="10,5,0,0"
                                Grid.Column="0" />
-
-                        <!-- Price Label -->
                         <Label Text="R1500 per person"
                                FontSize="18"
                                FontAttributes="Bold"
@@ -346,6 +399,5 @@
                 </StackLayout>
             </Frame>
         </ScrollView>
-        
     </Grid>
 </ContentPage>

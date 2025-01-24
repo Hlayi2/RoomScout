@@ -21,17 +21,146 @@
             </Frame>
 
             <!-- Buttons Section -->
-            <VerticalStackLayout Spacing="10">
-                <Button Text="Update My Profile" BackgroundColor="#76ABAE" TextColor="White" FontAttributes="Bold" Clicked="OnUpdateProfileClicked" />
-                <Button Text="Add New Listing" BackgroundColor="#76ABAE" TextColor="White" FontAttributes="Bold" Clicked="OnNewListingClicked"/>
-                <Button Text="View Listings" BackgroundColor="#76ABAE" TextColor="White" FontAttributes="Bold" Clicked="OnViewListingsClicked" />
-                <Button Text="View Bookings" BackgroundColor="#76ABAE" TextColor="White" FontAttributes="Bold" Clicked="OnViewBookingsClicked"/>
-                <Button Text="Report Technical Issue" BackgroundColor="#E85C0D" TextColor="White" FontAttributes="Bold"/>
-                <Button Text="Logout" BackgroundColor="#FF3B30" TextColor="White" FontAttributes="Bold" Clicked="OnLogoutButtonClicked"/>
-                <Button Text="Delete My Account" BackgroundColor="#C40C0C" TextColor="White" FontAttributes="Bold"  Clicked="OnDeleteAccountButtonClicked"/>
-                <Button Text="Upgrade to Premium" BackgroundColor="#059212" TextColor="White" FontAttributes="Bold" />
+            <Grid>
+                <!-- Buttons in a VerticalStackLayout -->
+                <VerticalStackLayout Spacing="10">
+                    <Grid>
+                        <Button BackgroundColor="#76ABAE" 
+                TextColor="White" 
+                FontAttributes="Bold" 
+                Clicked="OnUpdateProfileClicked" 
+                HorizontalOptions="FillAndExpand" />
+                        <HorizontalStackLayout Spacing="10" Padding="10" VerticalOptions="Center">
+                            <Image Source="updateprofile.png" 
+                   HeightRequest="20" 
+                   WidthRequest="20" 
+                   VerticalOptions="Center" />
+                            <Label Text="Update My Profile" 
+                   VerticalOptions="Center" 
+                   TextColor="White" 
+                   FontAttributes="Bold" />
+                        </HorizontalStackLayout>
+                    </Grid>
+                    
+                    <Grid>
+                            <Button BackgroundColor="#76ABAE" 
+                                    TextColor="White" 
+                                    FontAttributes="Bold" 
+                                    Clicked="OnViewListingsClicked" 
+                                    HorizontalOptions="FillAndExpand" />
+                            <HorizontalStackLayout Spacing="10" Padding="10" VerticalOptions="Center">
+                                <Image Source="viewlistings.png" 
+                                       HeightRequest="20" 
+                                       WidthRequest="20" 
+                                       VerticalOptions="Center" />
+                                <Label Text="View Listings" 
+                                       VerticalOptions="Center" 
+                                       TextColor="White" 
+                                       FontAttributes="Bold" />
+                            </HorizontalStackLayout>
+                        </Grid>
+                    
+                    <Grid>
+                        <Button BackgroundColor="#76ABAE" 
+                                TextColor="White" 
+                                FontAttributes="Bold" 
+                                Clicked="OnViewBookingsClicked" 
+                                HorizontalOptions="FillAndExpand" />
+                        <HorizontalStackLayout Spacing="10" Padding="10" VerticalOptions="Center">
+                            <Image Source="viewbookings.png" 
+                                   HeightRequest="20" 
+                                   WidthRequest="20" 
+                                   VerticalOptions="Center" />
+                            <Label Text="View Bookings" 
+                                   VerticalOptions="Center" 
+                                   TextColor="White" 
+                                   FontAttributes="Bold" />
+                        </HorizontalStackLayout>
+                    </Grid>
 
-            </VerticalStackLayout>
+                    <Grid>
+                        <Button BackgroundColor="#E85C0D" 
+                                TextColor="White" 
+                                FontAttributes="Bold" 
+                                Clicked="OnReportTechnicalIssueClicked" 
+                                HorizontalOptions="FillAndExpand" />
+                        <HorizontalStackLayout Spacing="10" Padding="10" VerticalOptions="Center">
+                            <Image Source="reportissue.png" 
+                                   HeightRequest="20" 
+                                   WidthRequest="20" 
+                                   VerticalOptions="Center" />
+                            <Label Text="Report Technical Issue" 
+                                   VerticalOptions="Center" 
+                                   TextColor="White" 
+                                   FontAttributes="Bold" />
+                        </HorizontalStackLayout>
+                    </Grid>
+
+                    <Grid>
+                        <Button BackgroundColor="#FF3B30" 
+                                TextColor="White" 
+                                FontAttributes="Bold" 
+                                Clicked="OnLogoutButtonClicked" 
+                                HorizontalOptions="FillAndExpand" />
+                        <HorizontalStackLayout Spacing="10" Padding="10" VerticalOptions="Center">
+                            <Image Source="logout.png" 
+                                   HeightRequest="20" 
+                                   WidthRequest="20" 
+                                   VerticalOptions="Center" />
+                            <Label Text="Logout" 
+                                   VerticalOptions="Center" 
+                                   TextColor="White" 
+                                   FontAttributes="Bold" />
+                        </HorizontalStackLayout>
+                    </Grid>
+
+                    <Grid>
+                        <Button BackgroundColor="#C40C0C" 
+                                TextColor="White" 
+                                FontAttributes="Bold" 
+                                Clicked="OnDeleteAccountButtonClicked" 
+                                HorizontalOptions="FillAndExpand" />
+                        <HorizontalStackLayout Spacing="10" Padding="10" VerticalOptions="Center">
+                            <Image Source="deleteaccount.png" 
+                                   HeightRequest="20" 
+                                   WidthRequest="20" 
+                                   VerticalOptions="Center" />
+                            <Label Text="Delete My Account" 
+                                   VerticalOptions="Center" 
+                                   TextColor="White" 
+                                   FontAttributes="Bold" />
+                        </HorizontalStackLayout>
+                    </Grid>
+
+                    <Grid>
+                        <Button BackgroundColor="#059212" 
+                                TextColor="White" 
+                                FontAttributes="Bold" 
+                                HorizontalOptions="FillAndExpand" />
+                        <HorizontalStackLayout Spacing="10" Padding="10" VerticalOptions="Center">
+                            <Image Source="premium.png" 
+                                   HeightRequest="20" 
+                                   WidthRequest="20" 
+                                   VerticalOptions="Center" />
+                            <Label Text="Upgrade to Premium" 
+                                   VerticalOptions="Center" 
+                                   TextColor="White" 
+                                   FontAttributes="Bold" />
+                        </HorizontalStackLayout>
+                    </Grid>
+                  
+                </VerticalStackLayout>
+
+                <!-- ImageButton placed on top of the buttons -->
+                <ImageButton Source="bot.png"
+                             WidthRequest="140"
+                             HeightRequest="140"
+                             BackgroundColor="Transparent"
+                             HorizontalOptions="End"
+                             VerticalOptions="End"
+                             Margin="0,0,-45,20"
+                             Clicked="OnImageButtonClicked"/>
+            </Grid>
         </VerticalStackLayout>
     </ScrollView>
 
