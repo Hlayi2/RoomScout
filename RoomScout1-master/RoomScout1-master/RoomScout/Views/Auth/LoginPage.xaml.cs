@@ -12,5 +12,11 @@ public partial class LoginPage : ContentPage
         BindingContext = new LoginViewModel();
     }
 
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        Shell.Current.FlyoutBehavior = FlyoutBehavior.Disabled;
+    }
+
 }
 

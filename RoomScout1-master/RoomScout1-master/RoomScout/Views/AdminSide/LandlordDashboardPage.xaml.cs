@@ -21,11 +21,9 @@ public partial class LandlordDashboardPage : ContentPage
         {
             FullNames = Preferences.Get("FullNames", string.Empty),
             Email = Preferences.Get("Email", string.Empty),
-            ContactDetails = Preferences.Get("ContactDetails", string.Empty),
             IdOrPassportNo = Preferences.Get("IdOrPassportNo", string.Empty),
             AccommodationName = Preferences.Get("AccommodationName", string.Empty),
             Address = Preferences.Get("Address", string.Empty),
-            Location = Preferences.Get("Location", string.Empty),
             ProfilePicture = Preferences.Get("ProfilePicture", "profiles.png")
         };
 
@@ -125,11 +123,9 @@ public partial class LandlordDashboardPage : ContentPage
     {
         Preferences.Set("FullNames", _landlord.FullNames);
         Preferences.Set("Email", _landlord.Email);
-        Preferences.Set("ContactDetails", _landlord.ContactDetails);
         Preferences.Set("IdOrPassportNo", _landlord.IdOrPassportNo);
         Preferences.Set("AccommodationName", _landlord.AccommodationName);
         Preferences.Set("Address", _landlord.Address);
-        Preferences.Set("Location", _landlord.Location);
         Preferences.Set("ProfilePicture", _landlord.ProfilePicture);
 
         // Add your submission logic here
@@ -138,6 +134,7 @@ public partial class LandlordDashboardPage : ContentPage
 
         // Navigate to the DashboardProfile page
         await Navigation.PushAsync(new DashboardProfile());
+
     }
 
     private async void OnProfileImageTapped(object sender, EventArgs e)

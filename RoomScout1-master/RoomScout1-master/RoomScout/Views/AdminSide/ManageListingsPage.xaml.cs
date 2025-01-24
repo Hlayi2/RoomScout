@@ -8,4 +8,10 @@ public partial class ManageListingsPage : ContentPage
         InitializeComponent();
         BindingContext = new ManageListingsViewModel();
     }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        Shell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
+    }
 }
