@@ -24,7 +24,7 @@ public partial class LandlordDashboardPage : ContentPage
             IdOrPassportNo = Preferences.Get("IdOrPassportNo", string.Empty),
             AccommodationName = Preferences.Get("AccommodationName", string.Empty),
             Address = Preferences.Get("Address", string.Empty),
-            ProfilePicture = Preferences.Get("ProfilePicture", "profiles.png")
+            ProfilePicture = Preferences.Get("ProfilePicture", "prof.png")
         };
 
         BindingContext = _landlord;
@@ -154,7 +154,7 @@ public partial class LandlordDashboardPage : ContentPage
         else if (action == "Remove")
         {
             // Handle removing the profile picture
-            ProfileImage.Source = "profiles.png"; // Set to default image
+            ProfileImage.Source = "prof.png"; // Set to default image
         }
     }
 

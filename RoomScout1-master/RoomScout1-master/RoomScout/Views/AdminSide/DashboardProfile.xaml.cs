@@ -14,7 +14,7 @@ public partial class DashboardProfile : ContentPage
         _landlord = new Landlord
         {
             FullNames = Preferences.Get("FullNames", "John Doe"),
-            ProfilePicture = Preferences.Get("ProfilePicture", "profiles.png")
+            ProfilePicture = Preferences.Get("ProfilePicture", "prof.png")
         };
 
         BindingContext = _landlord;
@@ -81,6 +81,11 @@ public partial class DashboardProfile : ContentPage
         await Navigation.PushAsync(new BookingRequestsPage());
 
       
+    }
+
+    private async void OnProClicked(object sender, EventArgs eventArgs)
+    {
+        await Navigation.PushAsync(new PremiumPage());
     }
 
     private async void OnLogoutButtonClicked(object sender, EventArgs e)

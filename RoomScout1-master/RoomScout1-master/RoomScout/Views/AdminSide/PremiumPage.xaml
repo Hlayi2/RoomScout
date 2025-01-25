@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RoomScout.Views.AdminSide.PremiumPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#1A1F25"
+             Title="PremiumPage">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20" Padding="20">
+            <!-- Header with Crown Icon -->
+            <HorizontalStackLayout>
+                <Image Source="crown.png"
+                       WidthRequest="60"
+                       HeightRequest="60"
+                       Margin="10,0,0,20"
+                       VerticalOptions="Center"/>
+                <Label Text="RoomScout Pro"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       VerticalOptions="Center"
+                       TextColor="White" />
+            </HorizontalStackLayout>
+
+            <!-- Header -->
+            <Label Text="Upgrade to RoomScout Pro for Landlords"
+                   FontSize="18"
+                   Margin="-50,0,0,0"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="White" />
+
+            <!-- Subheader -->
+            <Label Text="Get More Tenants, Faster!"
+                   FontSize="16"
+                   Margin="-140,0,0,-20"
+                   HorizontalOptions="Center"
+                   TextColor="#6B7AA1" />
+            <Label Text="Start your Free Trial now!"
+                   FontSize="16"
+                   Margin="-100,0,0,0"
+                   HorizontalOptions="Center"
+                   TextColor="#6B7AA1" />
+
+            <!-- Plans Grid -->
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="20">
+                <!-- Freemium Plan Frame -->
+                <Grid>
+                    <Frame BackgroundColor="#27AE60" 
+                           CornerRadius="15"
+                           Padding="10,5"
+                           HorizontalOptions="Start"
+                           VerticalOptions="Start"
+                           Margin="5,-30,0,0">
+                        <Label Text="Your Current Plan"
+                               FontSize="12"
+                               FontAttributes="Bold"
+                               TextColor="White"
+                               Padding="5"
+                               HorizontalOptions="Start"
+                               VerticalOptions="Start" />
+                    </Frame>
+                    <!-- Current Plan Label (Outside the Frame) -->
+
+
+                    <!-- Freemium Plan Frame -->
+                    <Frame BackgroundColor="#1A1F25" 
+                            CornerRadius="10"
+                           BorderColor="#FABC3F"
+                            Padding="0"
+                           HasShadow="False">
+                        <VerticalStackLayout>
+                            <!-- Freemium Plan Header -->
+                            <Label Text="Freemium Plan"
+                                   FontSize="16"
+                                   FontAttributes="Bold"
+                                   TextColor="White"
+                                   BackgroundColor="#FABC3F"
+                                   Padding="10"
+                                   HorizontalOptions="Fill"
+                                   HorizontalTextAlignment="Center" />
+
+                            <!-- Features -->
+                            <Label Text="• Upload Listings."
+                                   TextColor="White" />
+                            <Label Text="• Communicate with up to 5 tenants per month."
+                                   TextColor="White" />
+                            <Label Text="• Basic Analytics: Track views and contacts on your listings."
+                                   TextColor="White" />
+                            <Label Text="• Post up to 3 rooms at a time."
+                                   TextColor="White" />
+
+                            <!-- Images for Freemium Plan -->
+                            <HorizontalStackLayout Spacing="10" HorizontalOptions="Center" Margin="0,150,0,0">
+                                <Image Source="freemium.png" WidthRequest="50" HeightRequest="50" />
+                                <Image Source="scamfree.png" WidthRequest="100" HeightRequest="100" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <!-- Checkmark Icon (Far Right Corner) -->
+                    <Image Source="checkmark.png" 
+                            WidthRequest="20"
+                           HeightRequest="20"
+                           HorizontalOptions="End"
+                           VerticalOptions="Start"
+                           Margin="0,10,10,0" />
+                </Grid>
+
+                <!-- Premium Plan Frame -->
+                <Frame BackgroundColor="Transparent"
+                       BorderColor="#FABC3F"
+                       CornerRadius="10"
+                       Padding="0"
+                       HasShadow="False"
+                       Grid.Column="1">
+                    <VerticalStackLayout Spacing="10">
+                        <!-- Premium Plan Header -->
+                        <Label Text="Premium Plan"
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               TextColor="White"
+                               BackgroundColor="#FABC3F" 
+                               Padding="10"
+                               HorizontalOptions="Fill"
+                               HorizontalTextAlignment="Center" />
+
+                        <!-- Features -->
+                        <Label Text="• Verified Badge"
+                               TextColor="White" />
+                        <Label Text="• Highlight your rooms with a 'Featured' badge."
+                               TextColor="White" />
+                        <Label Text="• 5x More Views"
+                               TextColor="White" />
+                        <Label Text="• In-app Communication with potential tenants."
+                               TextColor="White" />
+                        <Label Text="• Control listing availability."
+                               TextColor="White" />
+                        <Label Text="• Get listing Ratings"
+                               TextColor="White" />
+                        <Label Text="• Scam Protection Badge"
+                               TextColor="White" />
+                        <Label Text="• Get a 7 days free trial."
+                               TextColor="White" />
+
+                        <!-- Images for Premium Plan -->
+                        <HorizontalStackLayout Spacing="10" HorizontalOptions="Center" Margin="0,10,0,0">
+                            <Image Source="verified.png" WidthRequest="50" HeightRequest="50" />
+                            <Image Source="pro.png" WidthRequest="50" HeightRequest="50" />
+                            <Image Source="scamfree.png" WidthRequest="75" HeightRequest="75" />
+                            <Image Source="featured.png" WidthRequest="50" HeightRequest="50" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </Frame>
+            </Grid>
+
+            <!-- Pricing Plans Heading with Dashed Lines -->
+            <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
+                <!-- Left Dashed Line -->
+                <Image Source="horizontal.png"
+                       HeightRequest="50"
+                       WidthRequest="50"
+                       Margin="0,0,10,0" />
+
+                <!-- Heading -->
+                <Label Text="Pricing Plans"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       TextColor="White" />
+
+                <!-- Right Dashed Line -->
+                <Image Source="horizontal.png"
+                       HeightRequest="50"
+                       WidthRequest="50"
+                       Margin="10,0,0,0" />
+            </HorizontalStackLayout>
+
+            <!-- Pricing Plans Grid -->
+            <ScrollView Orientation="Horizontal">
+                <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10" Margin="10,20,10,0">
+                    <!-- Premium Plan 1 -->
+                    <Frame BackgroundColor="#2C3E50"
+               BorderColor="#FABC3F"
+               CornerRadius="10"
+               Padding="15"
+               HasShadow="True">
+                        <VerticalStackLayout Spacing="10">
+                            <Label Text="Premium Basic"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       HorizontalOptions="Center" />
+                            <Label Text="Ideal for landlords with a single property."
+                       FontSize="14"
+                       TextColor="#BDC3C7"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center" />
+                            <Label Text="R99.99 /Month"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       HorizontalOptions="Center" />
+                            <Button Text="Start 7-day free trial"
+                        BackgroundColor="#27AE60"
+                        TextColor="White"
+                        FontSize="16"
+                        CornerRadius="10"
+                        HeightRequest="40"
+                        HorizontalOptions="Fill" />
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <!-- Premium Plan 2 -->
+                    <Frame BackgroundColor="#2C3E50"
+               BorderColor="#FABC3F"
+               CornerRadius="10"
+               Padding="15"
+               HasShadow="True"
+               Grid.Column="1">
+                        <VerticalStackLayout Spacing="10">
+                            <Label Text="Premium Plus"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       HorizontalOptions="Center" />
+                            <Label Text="Perfect for landlords managing multiple properties."
+                       FontSize="14"
+                       TextColor="#BDC3C7"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center" />
+                            <Label Text="R549.99 for 6 Months"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       HorizontalOptions="Center" />
+                            <Button Text="Start 7-day free trial"
+                        BackgroundColor="#27AE60"
+                        TextColor="White"
+                        FontSize="16"
+                        CornerRadius="10"
+                        HeightRequest="40"
+                        HorizontalOptions="Fill" />
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <!-- Premium Plan 3 -->
+                    <Frame BackgroundColor="#2C3E50"
+               BorderColor="#FABC3F"
+               CornerRadius="10"
+               Padding="15"
+               HasShadow="True"
+               Grid.Column="2">
+                        <VerticalStackLayout Spacing="10">
+                            <Label Text="Premium Pro"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       HorizontalOptions="Center" />
+                            <Label Text="For professional landlords with advanced needs."
+                       FontSize="14"
+                       TextColor="#BDC3C7"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center" />
+                            <Label Text="R1019.99 /Year"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       HorizontalOptions="Center" />
+                            <Button Text="Start 7-day free trial"
+                        BackgroundColor="#27AE60"
+                        TextColor="White"
+                        FontSize="16"
+                        CornerRadius="10"
+                        HeightRequest="40"
+                        HorizontalOptions="Fill" />
+                        </VerticalStackLayout>
+                    </Frame>
+                </Grid>
+            </ScrollView>
+            <!-- Testimonials -->
+            <Frame BackgroundColor="#FFFFFF"
+                   CornerRadius="20"
+                   Padding="15"
+                   HasShadow="True">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="What Landlords Are Saying:"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="#1A1F25" 
+                           Margin="200,0,0,0"/>
+
+                    <Image Source="stars.png"
+                           WidthRequest="150"
+                           HeightRequest="70"
+                           Margin="-500,-20,0,-35"/>
+
+                    <Label Text="'Since upgrading to premium, my listings get more views, and I’ve found tenants faster than ever before.' – [Eribuweni Gardens]"
+                           TextColor="#1A1F25"
+                           FontAttributes="Italic" />
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

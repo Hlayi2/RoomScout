@@ -1,81 +1,139 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:RoomScout.ViewModels.AdminSide"
              x:Class="RoomScout.Views.AdminSide.BookingRequestsPage"
              Shell.NavBarIsVisible="True"
              Title="Booking Requests"
              BackgroundColor="#1A1F25">
 
-    <ContentPage.BindingContext>
-        <local:BookingRequestsViewModel />
-    </ContentPage.BindingContext>
+    <!-- Add a HorizontalStackLayout for the icon and heading -->
+    <VerticalStackLayout Spacing="0">
+        <!-- Icon and Heading -->
+        <HorizontalStackLayout Padding="20" Spacing="10" VerticalOptions="Start" Margin="20,50,0,0">
+            <!-- Icon -->
+            <Image Source="viewbookings.png" 
+                WidthRequest="50"
+                   HeightRequest="50"
+                   VerticalOptions="Center" />
 
-    <CollectionView ItemsSource="{Binding BookingRequests}" SelectionMode="None">
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <VerticalStackLayout Spacing="10" Padding="10">
-                    <!-- Main Booking Request Frame -->
-                    <Frame BackgroundColor="White" CornerRadius="10" HasShadow="True">
-                        <VerticalStackLayout Spacing="10">
-                            <!-- Profile Picture and Name -->
-                            <HorizontalStackLayout Spacing="10">
-                                <Image Source="{Binding ProfilePicture}"
-                                       WidthRequest="50"
-                                       HeightRequest="50"
-                                       Aspect="AspectFill"
-                                       Clip="Ellipse" />
+                <!-- Heading -->
+                <Label Text="Your Booking Requests"
+                   FontSize="16"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   VerticalOptions="Center"
+                       Margin="0,20,0,0"/> 
+            
+        </HorizontalStackLayout>
 
-                                <Label Text="{Binding Name}"
-                                       FontSize="18"
-                                       FontAttributes="Bold"
-                                       VerticalOptions="Center" />
-                            </HorizontalStackLayout>
+        <!-- CollectionView for Booking Requests -->
+        <CollectionView ItemsSource="{Binding BookingRequests}" SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <VerticalStackLayout Spacing="10" Padding="10">
+                        <!-- Main Booking Request Frame -->
+                        <Frame BackgroundColor="#6B7AA1"
+                               CornerRadius="24"
+                               HasShadow="True"
+                               HorizontalOptions="Start"
+                               Padding="10"
+                               WidthRequest="350"
+                               Margin="20,0,0,0">
+                            <Grid>
+                                <VerticalStackLayout Spacing="10">
+                                    <!-- Profile Picture and Name -->
+                                    <HorizontalStackLayout Spacing="10">
+                                        <Image Source="{Binding ProfilePicture}"
+                                               WidthRequest="50"
+                                               HeightRequest="50"
+                                               Aspect="AspectFill"
+                                               Clip="Ellipse" />
 
-                            <Label Text="{Binding ConfirmationMessage}"
-                                   FontSize="16"
-                                   FontAttributes="Italic"
-                                   TextColor="Green"
-                                   IsVisible="{Binding ConfirmationMessage, Converter={StaticResource StringNotEmptyConverter}}" />
+                                        <Label Text="{Binding Name}"
+                                               FontSize="18"
+                                               FontAttributes="Bold"
+                                               VerticalOptions="Center"
+                                               TextColor="White" />
+                                    </HorizontalStackLayout>
 
+                                    <Label Text="{Binding ConfirmationMessage}"
+                                           FontSize="16"
+                                           FontAttributes="Italic"
+                                           TextColor="#11324D"
+                                           IsVisible="{Binding ConfirmationMessage, Converter={StaticResource StringNotEmptyConverter}}" />
 
-                            <!-- Buttons -->
-                            <HorizontalStackLayout Spacing="10">
-                                <Button Text="Accept"
-                                        BackgroundColor="Green"
+                                    <!-- Buttons -->
+                                    <HorizontalStackLayout Spacing="10">
+                                        <Button Text="Accept"
+                                                FontSize="14"
+                                                CornerRadius="15"
+                                                WidthRequest="75"
+                                                HeightRequest="45"
+                                                Margin="90,0,0,0"
+                                                BackgroundColor="#27AE60"
+                                                TextColor="White"
+                                                Clicked="OnAcceptButtonClicked"
+                                                CommandParameter="{Binding}"
+                                                 IsVisible="{Binding AreButtonsVisible}"/>
+
+                                        <Button Text="Remove"
+                                                BackgroundColor="#E74C3C"
+                                                TextColor="White"
+                                                CornerRadius="15"
+                                                WidthRequest="80"
+                                                HeightRequest="45"
+                                                FontSize="14"
+                                                Clicked="OnRemoveButtonClicked"
+                                                CommandParameter="{Binding}"
+                                                 IsVisible="{Binding AreButtonsVisible}"/>
+                                    </HorizontalStackLayout>
+                                </VerticalStackLayout>
+                                <Image x:Name="TopRightImage"
+                                       Source="exclamation.png"
+                                       WidthRequest="40"
+                                       HeightRequest="40"
+                                       HorizontalOptions="End"
+                                       VerticalOptions="Start"
+                                       Margin="0,10,10,0"
+                                       IsVisible="{Binding IsImageVisible}" />
+                            </Grid>
+                           
+                        </Frame>
+
+                        <!-- Date, Time, and Additional Information Frame -->
+                        <Frame BackgroundColor="#A6AEBF"
+                               CornerRadius="10"
+                               HasShadow="True"
+                               Padding="10"
+                               IsVisible="{Binding IsDateTimeVisible}">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Text="Date:"
+                                       TextColor="White" />
+                                <DatePicker Date="{Binding Date, Mode=TwoWay}"
+                                            TextColor="Black" />
+
+                                <Label Text="Time:"
+                                       TextColor="White" />
+                                <TimePicker Time="{Binding Time, Mode=TwoWay}"
+                                            TextColor="Black" />
+
+                                <!-- Additional Information Entry -->
+                                <Label Text="Additional Information:"
+                                       TextColor="White" />
+                                <Entry Text="{Binding AdditionalInformation, Mode=TwoWay}"
+                                       Placeholder="Enter additional information"
+                                       BackgroundColor="White"
+                                       TextColor="Black" />
+
+                                <Button Text="Save"
+                                        BackgroundColor="#2980B9"
                                         TextColor="White"
-                                        Clicked="OnAcceptButtonClicked"
+                                        Clicked="OnSaveButtonClicked"
                                         CommandParameter="{Binding}" />
-
-                                <Button Text="Remove"
-                                        BackgroundColor="Red"
-                                        TextColor="White"
-                                        Clicked="OnRemoveButtonClicked"
-                                        CommandParameter="{Binding}" />
-                            </HorizontalStackLayout>
-                        </VerticalStackLayout>
-                    </Frame>
-
-                    <!-- Date and Time Frame -->
-                    <Frame BackgroundColor="LightGray"
-                           CornerRadius="10"
-                           HasShadow="True"
-                           Padding="10"
-                           IsVisible="{Binding IsDateTimeVisible}">
-                        <VerticalStackLayout Spacing="10">
-                            <Label Text="Date:" />
-                            <Entry Text="{Binding Date}" />
-                            <Label Text="Time"/>
-                            <Entry Text="{Binding Time}" />
-                            <Button Text="Save"
-                                    BackgroundColor="Blue"
-                                    TextColor="White"
-                                    Clicked="OnSaveButtonClicked"
-                                    CommandParameter="{Binding}" />
-                        </VerticalStackLayout>
-                    </Frame>
-                </VerticalStackLayout>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
-
+                            </VerticalStackLayout>
+                        </Frame>
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
 </ContentPage>
