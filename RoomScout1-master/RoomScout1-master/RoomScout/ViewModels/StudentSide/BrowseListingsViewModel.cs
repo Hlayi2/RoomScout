@@ -1,216 +1,80 @@
 ﻿using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Maui.Controls.Compatibility;
 using RoomScout.Models.Location;
 
 namespace RoomScout.ViewModels.StudentSide
 {
     public partial class BrowseListingsViewModel : ObservableObject
     {
-        private readonly IServiceProvider _services;
-        private IList<RoomLocation> _allRooms;
+        private readonly IRoomService _roomService;
+        private List<RoomLocation> _allRooms;
+        private ObservableCollection<RoomLocation> Forms;
+        [ObservableProperty]
+        private ObservableCollection<RoomLocation> _rooms;
 
         [ObservableProperty]
-        private IList<RoomLocation> rooms;
+        private RoomType? _selectedType;
 
-        [ObservableProperty]
-        private Models.Location.RoomType? selectedType;  // Specify the exact RoomType
-
-       
-
-        public BrowseListingsViewModel(IServiceProvider services)
+        public BrowseListingsViewModel(IRoomService roomService)
         {
-            _services = services;
-            _allRooms = MockRoomService();
-            Rooms = _allRooms;
+            _roomService = roomService;
+            InitializeData();
+        }
+
+        private async void InitializeData()
+        {
+            _allRooms = await _roomService.GetRoomsAsync();
+            Forms = new ObservableCollection<RoomLocation>(_allRooms);
         }
 
         [RelayCommand]
-        private void FilterRooms(Models.Location.RoomType? type)  // Specify the exact RoomType
+        private void FilterRooms(RoomType? type)
         {
             SelectedType = type;
-
-            if (type == null)
-            {
-                Rooms = _allRooms;
-                return;
-            }
-
-            Rooms = _allRooms.Where(r => r.Type == type.Value).ToList();  // Use type.Value
+            Rooms = type == null
+                ? new ObservableCollection<RoomLocation>(_allRooms)
+                : new ObservableCollection<RoomLocation>(_allRooms.Where(r => r.Type == type.Value));
         }
+    }
 
-        private List<RoomLocation> MockRoomService()
+    public interface IRoomService
+    {
+        Task<List<RoomLocation>> GetRoomsAsync();
+    }
+
+    public class MockRoomService : IRoomService
+    {
+        public Task<List<RoomLocation>> GetRoomsAsync()
         {
-            return new List<RoomLocation>
+            return Task.FromResult(new List<RoomLocation>
             {
+                // Your mock data here
                 new RoomLocation
                 {
                     Id = "Gate 1",
                     Title = "Cozy Single Room",
-                    Type = Models.Location.RoomType.Single,  
+                    Type = RoomType.Single,
                     Address = "123 Main St",
-                   
                     Price = "1000.00",
-                    Images = new List<string>
-                    {
-                     "single10.png",
-                     "single11.png",
-                     "single12.png",
-                     "single13.png"
-                    },
+                    Images = new List<string> { "single10.png", "single11.png" },
                     Description = "Comfortable single room near campus",
                     Amenities = new List<string> { "WiFi", "Furnished" }
                 },
-
-                // Add more mock rooms as needed
-                new RoomLocation
-                {
-                    Id = "Gate 2",
-                    Title = "Cozy Single Room",
-                    Type = Models.Location.RoomType.Single,  
-                    Address = "123 Main St",
-                    
-                    Price = "1200.00",
-                     Images = new List<string>
-                    {
-                     "single10.png",
-                     "single11.png",
-                     "single12.png",
-                     "single13.png"
-                    },
-                    Description = "Comfortable single room near campus",
-                    Amenities = new List<string> { "WiFi", "Furnished" }
-
-                },
-                new RoomLocation
-                {
-                    Id = "Gate 3",
-                    Title = "Cozy Single Room",
-                    Type = Models.Location.RoomType.Single,  
-                    Address = "123 Main St",
-                    
-                    Price = "1600.00",
-                     Images = new List<string>
-                    {
-                     "single10.png",
-                     "single11.png",
-                     "single12.png",
-                     "single13.png"
-                    },
-                    Description = "Comfortable single room near campus",
-                    Amenities = new List<string> { "WiFi", "Furnished" }
-
-                },
-
-                // Bachelor Rooms
+                // Add other rooms following the same pattern
                 new RoomLocation
                 {
                     Id = "Gate 1",
-                    Title = "Cozy Single Room",
-                    Type = Models.Location.RoomType.Bachelor,
-                    Address = "123 Main St",
+                    Title = "Bachelor Suite",
+                    Type = RoomType.Bachelor,
+                    Address = "456 Oak St",
                     Price = "1600.00",
-                     Images = new List<string>
-                    {
-                     "img10.png",
-                     "img11.png",
-                     "img12.png",
-                     "img13.png"
-                    },
-                    Description = "Comfortable single room near campus",
-                    Amenities = new List<string> { "WiFi", "Furnished" }
-
-                },
-                new RoomLocation
-                {
-                    Id = "Gate 2",
-                    Title = "Cozy Single Room",
-                    Type = Models.Location.RoomType.Bachelor,
-                    Price = "1200.00",
-                    Address = "123 Main St",
-                     Images = new List<string>
-                    {
-                     "img10.png",
-                     "img11.png",
-                     "img12.png",
-                     "img13.png"
-                    },
-                    Description = "Comfortable single room near campus",
-                    Amenities = new List<string> { "WiFi", "Furnished" }
-
-                },
-                new RoomLocation
-                {
-                    Id = "Gate 3",
-                    Title = "Cozy Single Room",
-                    Type = Models.Location.RoomType.Bachelor,
-                    Price = "1900.00",
-                    Address = "123 Main St",
-                     Images = new List<string>
-                    {
-                     "img10.png",
-                     "img11.png",
-                     "img12.png",
-                     "img13.png"
-                    },
-                    Description = "Comfortable single room near campus",
-                    Amenities = new List<string> { "WiFi", "Furnished" }
-
-                 },
-                // Sharing Rooms 
-                new RoomLocation
-                {
-                    Id = "Gate 1",
-                    Title = "Cozy Single Room",
-                    Type = Models.Location.RoomType.Sharing,
-                    Address = "123 Main St",
-                     Images = new List<string>
-                    {
-                     "sharing10.png",
-                     "sharing11.png",
-                     "sharing12.png",
-                     "sharing13.png"
-                    },
-                    Price = "2000.00",
-                    Description = "Comfortable single room near campus",
-                    Amenities = new List<string> { "WiFi", "Furnished" }
-                },
-                new RoomLocation
-                {
-                    Id = "Gate 2",
-                    Title = "Cozy Single Room",
-                    Type = Models.Location.RoomType.Sharing,
-                    Address = "123 Main St",
-                    Images = new List<string>
-                    {
-                    "sharing10.png",
-                     "sharing11.png",
-                     "sharing12.png",
-                     "sharing13.png"
-                    },
-                    Price = "37000.00",
-                    Description = "Comfortable single room near campus",
-                    Amenities = new List<string> { "WiFi", "Furnished" }
-                },
-                new RoomLocation
-                {
-                    Id = "Gate 3",
-                    Title = "Cozy Single Room",
-                    Type = Models.Location.RoomType.Sharing,
-                    Address = "123 Main St",
-                     Images = new List<string>
-                    {
-                     "sharing10.png",
-                     "sharing11.png",
-                     "sharing12.png",
-                     "sharing13.png"
-                    },
-                    Price = "2500.00",
-                    Description = "Comfortable single room near campus",
-                    Amenities = new List<string> { "WiFi", "Furnished" }
-                },
-            };
-
+                    Images = new List<string> { "img10.png", "img11.png" },
+                    Description = "Spacious bachelor apartment",
+                    Amenities = new List<string> { "Kitchen", "Parking" }
+                }
+            });
         }
     }
 }

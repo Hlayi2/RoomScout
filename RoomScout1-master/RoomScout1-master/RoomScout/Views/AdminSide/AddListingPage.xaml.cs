@@ -1,126 +1,295 @@
+using Firebase.Database;
+using Firebase.Database.Query;
+using Microsoft.Maui.Controls.Maps;
+using Microsoft.Maui.Maps;
+using RoomScout.Models.AdminSide;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Data;
 
-namespace RoomScout.Views.AdminSide;
 
-public partial class AddListingPage : ContentPage
+namespace RoomScout.Views.AdminSide
 {
-    public ObservableCollection<Rule> Rules { get; set; }
-
-    public AddListingPage()
-	{
-		InitializeComponent();
-        Rules = new ObservableCollection<Rule>();
-        RulesList.ItemsSource = Rules;
-    }
-
-    private void OnPriceTextChanged(object sender, TextChangedEventArgs e)
+    public partial class AddListingPage : ContentPage
     {
-        if (string.IsNullOrEmpty(e.NewTextValue))
-            return;
+        private static readonly FirebaseClient firebase = new FirebaseClient("https://roomscout-a194c-default-rtdb.firebaseio.com/");
+        public ObservableCollection<Rule> Rules { get; set; }
+        private Pin currentPin;
+        public ObservableCollection<string> ImageBase64List { get; set; } = new();
+        private const int MaxImages = 5;
 
-        // Only allow numbers and decimal point
-        string newText = new string(e.NewTextValue.Where(c => char.IsDigit(c) || c == '.').ToArray());
-
-        // Ensure only one decimal point
-        if (newText.Count(c => c == '.') > 1)
+        public AddListingPage()
         {
-            newText = newText.Replace(".", "");
-            if (newText.Length > 0)
-                newText = newText.Insert(newText.Length - 2, ".");
-        }
+            InitializeComponent();
+            Rules = new ObservableCollection<Rule>();
+            RulesList.ItemsSource = Rules;
 
-        // Format to 2 decimal places if there's a decimal point
-        if (newText.Contains('.'))
-        {
-            string[] parts = newText.Split('.');
-            if (parts[1].Length > 2)
-                newText = parts[0] + "." + parts[1].Substring(0, 2);
-        }
-
-        // Update the entry only if the text has changed
-        if (newText != e.NewTextValue)
-        {
-            ((Entry)sender).Text = newText;
-        }
-    }
-
-
-    private void OnAddRuleClicked(object sender, EventArgs e)
-    {
-        if (string.IsNullOrWhiteSpace(RuleEntry.Text))
-            return;
-
-        Rules.Add(new Rule
-        {
-            Number = $"{Rules.Count + 1}.",
-            Text = RuleEntry.Text
-        });
-
-        RuleEntry.Text = string.Empty;
-    }
-
-    private void OnDeleteRuleClicked(object sender, EventArgs e)
-    {
-        if (sender is Button button && button.CommandParameter is Rule ruleToDelete)
-        {
-            Rules.Remove(ruleToDelete);
-            UpdateRuleNumbers();
-        }
-    }
-
-    private void UpdateRuleNumbers()
-    {
-        for (int i = 0; i < Rules.Count; i++)
-        {
-            Rules[i].Number = $"{i + 1}.";
-        }
-    }
-
-    private async void OnSaveRulesClicked(object sender, EventArgs e)
-    {
-        if (Rules.Count > 0)
-        {
-            // Here you would typically save the rules to your database or storage
-            await DisplayAlert("Success", "Rules have been saved!", "OK");
-        }
-        else
-        {
-            await DisplayAlert("Info", "No rules to save", "OK");
-        }
-    }
-
-    private async void OnUploadClicked(object sender, EventArgs e)
-    {
-        try
-        {
-            var result = await FilePicker.PickMultipleAsync(new PickOptions
+            // Initialize map to South Africa's coordinates
+            MainThread.BeginInvokeOnMainThread(() =>
             {
-                FileTypes = FilePickerFileType.Images
+                var southAfricaLocation = new Location(-30.5595, 22.9375);
+                var initialMapSpan = MapSpan.FromCenterAndRadius(
+                    southAfricaLocation,
+                    Distance.FromKilometers(1000));
+                locationMap.MoveToRegion(initialMapSpan);
             });
+        }
 
-            if (result != null)
+        private async void OnMapClicked(object sender, MapClickedEventArgs e)
+        {
+            try
             {
-                FileNameLabel.Text = result.Count() == 1
-                    ? Path.GetFileName(result.First().FullPath)
-                    : $"{result.Count()} files selected";
+                // Remove existing pin if any
+                if (currentPin != null)
+                    locationMap.Pins.Remove(currentPin);
+
+                // Create new pin at clicked location
+                currentPin = new Pin
+                {
+                    Label = "Property Location",
+                    Location = e.Location,
+                    Type = PinType.Generic
+                };
+
+                locationMap.Pins.Add(currentPin);
+
+                // Update coordinates entry
+                CoordinatesEntry.Text = $"{e.Location.Latitude:F6}, {e.Location.Longitude:F6}";
+
+                // Try to get address for the location
+                try
+                {
+                    var placemarks = await Geocoding.Default.GetPlacemarksAsync(e.Location.Latitude, e.Location.Longitude);
+                    var placemark = placemarks?.FirstOrDefault();
+                    if (placemark != null)
+                    {
+                        StreetEntry.Text = placemark.Thoroughfare;
+                        SuburbEntry.Text = placemark.SubLocality;
+                        CityEntry.Text = placemark.Locality;
+                        PostalCodeEntry.Text = placemark.PostalCode;
+                    }
+                }
+                catch
+                {
+                    await DisplayAlert("Note", "Location selected but unable to get address details", "OK");
+                }
+
+                // Move map to clicked location with appropriate zoom
+                var mapSpan = MapSpan.FromCenterAndRadius(
+                    e.Location,
+                    Distance.FromKilometers(1));
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    locationMap.MoveToRegion(mapSpan);
+                });
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", $"Unable to set location: {ex.Message}", "OK");
             }
         }
-        catch (Exception ex)
+
+        private void OnDialNumberClicked(object sender, EventArgs e)
         {
-            await DisplayAlert("Error", "Unable to pick file: " + ex.Message, "OK");
+            if (sender is Button button && button.CommandParameter is string number)
+            {
+                if (!string.IsNullOrWhiteSpace(number))
+                {
+                    try
+                    {
+                        PhoneDialer.Open(number);
+                    }
+                    catch
+                    {
+                        DisplayAlert("Error", "Unable to open phone dialer", "OK");
+                    }
+                }
+                else
+                {
+                    DisplayAlert("Error", "Please enter a valid phone number", "OK");
+                }
+            }
         }
-    }
 
-    private async void OnSubmitClicked(object sender, EventArgs e)
-    {
-        // Add your submission logic here
-        await DisplayAlert("Success", " Room Listing uploaded successfully! You will be redirected in 2 seconds", "OK");
-        await Task.Delay(2000);
+        private void OnPriceTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(e.NewTextValue))
+                return;
 
-        // Navigate to the DashboardProfile page
-        await Navigation.PushAsync(new DashboardProfile());
+            // Only allow numbers and decimal point
+            string newText = new string(e.NewTextValue.Where(c => char.IsDigit(c) || c == '.').ToArray());
+
+            // Ensure only one decimal point
+            if (newText.Count(c => c == '.') > 1)
+            {
+                newText = newText.Replace(".", "");
+                if (newText.Length > 0)
+                    newText = newText.Insert(newText.Length - 2, ".");
+            }
+
+            // Format to 2 decimal places if there's a decimal point
+            if (newText.Contains('.'))
+            {
+                string[] parts = newText.Split('.');
+                if (parts[1].Length > 2)
+                    newText = parts[0] + "." + parts[1].Substring(0, 2);
+            }
+
+            // Update the entry only if the text has changed
+            if (newText != e.NewTextValue)
+            {
+                ((Entry)sender).Text = newText;
+            }
+        }
+
+        private void OnAddRuleClicked(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(RuleEntry.Text))
+            {
+                DisplayAlert("Error", "Please enter a rule", "OK");
+                return;
+            }
+
+            Rules.Add(new Rule
+            {
+                Number = $"{Rules.Count + 1}.",
+                Text = RuleEntry.Text
+            });
+
+            RuleEntry.Text = string.Empty;
+        }
+
+        private void OnDeleteRuleClicked(object sender, EventArgs e)
+        {
+            if (sender is Button button && button.CommandParameter is Rule ruleToDelete)
+            {
+                Rules.Remove(ruleToDelete);
+                UpdateRuleNumbers();
+            }
+        }
+
+        private void UpdateRuleNumbers()
+        {
+            int number = 1;
+            foreach (var rule in Rules)
+            {
+                rule.Number = $"{number}.";
+                number++;
+            }
+        }
+
+        private async void OnUploadClicked(object sender, EventArgs e)
+        {
+            try
+            {
+                var result = await FilePicker.PickMultipleAsync(new PickOptions
+                {
+                    FileTypes = FilePickerFileType.Images,
+                    PickerTitle = "Select up to 5 images"
+                });
+
+                if (result?.Any() ?? false)
+                {
+                    if (result.Count() > MaxImages)
+                    {
+                        await DisplayAlert("Error", $"Maximum {MaxImages} images allowed", "OK");
+                        return;
+                    }
+
+                    ImageBase64List.Clear();
+                    foreach (var file in result)
+                    {
+                        using var stream = await file.OpenReadAsync();
+                        byte[] bytes = new byte[stream.Length];
+                        await stream.ReadAsync(bytes);
+                        ImageBase64List.Add(Convert.ToBase64String(bytes));
+                    }
+
+                    FileNameLabel.Text = result.Count() == 1
+                        ? Path.GetFileName(result.First().FullPath)
+                        : $"{result.Count()} files selected";
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.Message, "OK");
+            }
+        }
+
+        private async void OnSubmitClicked(object sender, EventArgs e)
+        {
+            // Validate required fields
+            if (string.IsNullOrWhiteSpace(CoordinatesEntry.Text))
+            {
+                await DisplayAlert("Error", "Please select a location on the map", "OK");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(PrimaryPhoneEntry.Text))
+            {
+                await DisplayAlert("Error", "Primary contact number is required", "OK");
+                return;
+            }
+
+            if (RoomTypePicker.SelectedIndex <= 0)
+            {
+                await DisplayAlert("Error", "Please select a room type", "OK");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(PriceEntry.Text))
+            {
+                await DisplayAlert("Error", "Please enter a price", "OK");
+                return;
+            }
+
+
+
+
+            var listingData = new Listing // Use your Listing model
+            {
+                Location = new LocationData // Create LocationData class if missing
+                {
+                    Coordinates = CoordinatesEntry.Text,
+                    Street = StreetEntry.Text,
+                    Suburb = SuburbEntry.Text,
+                    City = CityEntry.Text,
+                    PostalCode = PostalCodeEntry.Text
+                },
+                Contact = new ContactData // Create ContactData class if missing
+                {
+                    PrimaryPhone = PrimaryPhoneEntry.Text,
+                    AlternativePhone = AlternativePhoneEntry.Text
+                },
+                RoomType = RoomTypePicker.SelectedItem?.ToString(),
+                Price = decimal.Parse(PriceEntry.Text),
+                Amenities = new AmenitiesData // Create AmenitiesData class if missing
+                {
+                    Wifi = WifiCheck.IsChecked,
+                    FreeElectricity = FreeElectricityCheck.IsChecked,
+                    Bed = BedCheck.IsChecked,
+                    WashingMachine = WashingMachineCheck.IsChecked,
+                    StudyTable = StudyTableCheck.IsChecked,
+                    Showers = ShowersCheck.IsChecked
+                },
+                Rules = Rules.ToList(),
+                Images = ImageBase64List.ToList(),
+                DateAdded = DateTime.UtcNow
+            };
+            try
+            {
+                // Push to Firebase
+                var response = await firebase
+                    .Child("listings")
+                    .PostAsync(listingData);
+
+                await DisplayAlert("Success", "Listing saved!", "OK");
+                await Navigation.PushAsync(new DashboardProfile());
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.Message, "OK");
+            }
+        }
     }
 }
 

@@ -19,7 +19,6 @@ public partial class RegisterPage : ContentPage
     // Event handler for Register button
     private async void OnRegisterButtonClicked(object sender, EventArgs e)
     {
-        // Check if a role is selected
         if (RolePicker.SelectedItem == null)
         {
             await DisplayAlert("Error", "Please select a role to register.", "OK");
@@ -27,18 +26,14 @@ public partial class RegisterPage : ContentPage
         }
 
         string selectedRole = RolePicker.SelectedItem.ToString();
-
         if (selectedRole == "Register as a Landlord")
         {
             await DisplayAlert("Success", "You have successfully registered as a Landlord", "OK");
-
-            // Navigate to the Landlord Dashboard
-            await Shell.Current.GoToAsync("landlordDashboard");
+            await Shell.Current.GoToAsync("///landlord"); // Navigate to TabBar
         }
         else if (selectedRole == "Register as a Tenant")
         {
             await DisplayAlert("Success", "You have successfully registered as a Tenant", "OK");
-            // Navigate to the Apartment Viewing Page
             await Shell.Current.GoToAsync("browseListings");
         }
         else

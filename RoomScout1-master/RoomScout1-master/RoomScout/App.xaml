@@ -7,6 +7,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <!-- Register Converter -->
+            <converters:Base64ToImageConverter x:Key="Base64Converter" />
             <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
 
             <ResourceDictionary.MergedDictionaries>

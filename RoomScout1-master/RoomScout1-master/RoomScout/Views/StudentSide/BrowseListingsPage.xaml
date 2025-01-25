@@ -3,238 +3,135 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model="clr-namespace:RoomScout.Models.Location"
              xmlns:viewmodel="clr-namespace:RoomScout.ViewModels.StudentSide"
+             xmlns:converters="clr-namespace:RoomScout.Converters"
              x:Class="RoomScout.Views.StudentSide.BrowseListingsPage"
              x:DataType="viewmodel:BrowseListingsViewModel"
              BackgroundColor="#1A1F25"
              Shell.NavBarIsVisible="False"
-             Title="BrowseListingsPage">
+             Title="Browse Listings">
+    
+    
+    
+
 
     <ScrollView>
-        <VerticalStackLayout
-            Spacing="15"
-            Padding="10">
+        <VerticalStackLayout Spacing="15" Padding="10">
 
             <!-- Top Navigation Section -->
-            <HorizontalStackLayout
-                VerticalOptions="Center"
-                Spacing="20"
-                Padding="15">
-
+            <HorizontalStackLayout VerticalOptions="Center" Spacing="20" Padding="15">
                 <!-- View All Frame -->
-                <Frame
-                    CornerRadius="15"
-                    Padding="0"
-                    Background="White"
-                    HeightRequest="100"
-                    WidthRequest="110"
-                    HorizontalOptions="Center">
-                    <VerticalStackLayout
-                        HorizontalOptions="Center">
-                        <Image
-                            Source="booking.png"
-                            HeightRequest="30"
-                            WidthRequest="30"
-                            Aspect="AspectFit"
-                            Margin="0,20,0,10"/>
-                        <Label
-                            Text="View All"
-                            TextColor="Black"
-                            FontSize="15"
-                            HorizontalOptions="Start"/>
+                <Frame CornerRadius="15" Padding="0" Background="White" 
+                       HeightRequest="100" WidthRequest="110" HorizontalOptions="Center">
+                    <VerticalStackLayout HorizontalOptions="Center">
+                        <Image Source="booking.png" HeightRequest="30" WidthRequest="30"
+                               Aspect="AspectFit" Margin="0,20,0,10"/>
+                        <Label Text="View All" TextColor="Black" FontSize="15"/>
                     </VerticalStackLayout>
                 </Frame>
 
                 <!-- Near By Frame -->
-                <Frame
-                    CornerRadius="15"
-                    Padding="0"
-                    Background="White"
-                    HeightRequest="100"
-                    WidthRequest="110"
-                    HorizontalOptions="Center">
+                <Frame CornerRadius="15" Padding="0" Background="White" 
+                       HeightRequest="100" WidthRequest="110" HorizontalOptions="Center">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnNearByTapped"/>
                     </Frame.GestureRecognizers>
-                    <VerticalStackLayout 
-                        HorizontalOptions="Center">
-                        <Image
-                            Source="location.png"
-                            HeightRequest="30"
-                            WidthRequest="30"
-                            Aspect="AspectFit"
-                            Margin="0,20,0,10"/>
-                        <Label
-                            Text="Near By"
-                            TextColor="Black"
-                            FontSize="15"
-                            HorizontalOptions="Start"/>
+                    <VerticalStackLayout HorizontalOptions="Center">
+                        <Image Source="location.png" HeightRequest="30" WidthRequest="30"
+                               Aspect="AspectFit" Margin="0,20,0,10"/>
+                        <Label Text="Near By" TextColor="Black" FontSize="15"/>
                     </VerticalStackLayout>
                 </Frame>
 
                 <!-- Profile Frame -->
-                <Frame
-                    CornerRadius="15"
-                    Padding="0"
-                    Background="White"
-                    HeightRequest="100"
-                    WidthRequest="110"
-                    HorizontalOptions="Center">
+                <Frame CornerRadius="15" Padding="0" Background="White" 
+                       HeightRequest="100" WidthRequest="110" HorizontalOptions="Center">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnAddEventTapped"/>
                     </Frame.GestureRecognizers>
-                    <VerticalStackLayout
-                        HorizontalOptions="Center">
-                        <Image
-                            Source="event.png"
-                            HeightRequest="30"
-                            WidthRequest="30"
-                            Aspect="AspectFit"
-                            Margin="0,20,0,10"/>
-                        <Label
-                            Text="Profile"
-                            TextColor="Black"
-                            FontSize="15"
-                            HorizontalOptions="Start"/>
+                    <VerticalStackLayout HorizontalOptions="Center">
+                        <Image Source="event.png" HeightRequest="30" WidthRequest="30"
+                               Aspect="AspectFit" Margin="0,20,0,10"/>
+                        <Label Text="Profile" TextColor="Black" FontSize="15"/>
                     </VerticalStackLayout>
                 </Frame>
             </HorizontalStackLayout>
 
             <!-- Filter Section -->
-            <Label
-                Text="Filter"
-                TextColor="White"
-                FontSize="25"
-                FontAttributes="Bold"
-                HorizontalTextAlignment="Start"/>
+            <Label Text="Filter" TextColor="White" FontSize="25" 
+                   FontAttributes="Bold" HorizontalTextAlignment="Start"/>
 
-            <HorizontalStackLayout
-                VerticalOptions="Center"
-                Spacing="20"
-                Padding="15">
-                <Button
-                    BorderColor="#76ABAE"
-                    BorderWidth="2"
-                    HeightRequest="40"
-                    CornerRadius="5"
-                    Background="White"
-                    Text="Bachelor"
-                    TextColor="Black"
-                    FontSize="15"
-                    FontAttributes="Bold"
-                    Clicked="OnBachelorClicked"/>
+            <HorizontalStackLayout VerticalOptions="Center" Spacing="20" Padding="15">
+                <Button Text="Bachelor" Clicked="OnBachelorClicked"
+                        BorderColor="#76ABAE" BorderWidth="2"
+                        Background="White" TextColor="Black"
+                        FontSize="15" FontAttributes="Bold"
+                        HeightRequest="40" CornerRadius="5"/>
 
-                <Button
-                    BorderColor="#76ABAE"
-                    BorderWidth="2"
-                    HeightRequest="40"
-                    CornerRadius="5"
-                    Background="White"
-                    Text="Sharing"
-                    TextColor="Black"
-                    FontSize="15"
-                    FontAttributes="Bold"
-                    Clicked="OnSharingClicked"/>
+                <Button Text="Sharing" Clicked="OnSharingClicked"
+                        BorderColor="#76ABAE" BorderWidth="2"
+                        Background="White" TextColor="Black"
+                        FontSize="15" FontAttributes="Bold"
+                        HeightRequest="40" CornerRadius="5"/>
 
-                <Button
-                    BorderColor="#76ABAE"
-                    BorderWidth="2"
-                    HeightRequest="40"
-                    CornerRadius="5"
-                    Background="White"
-                    Text="Single"
-                    TextColor="Black"
-                    FontSize="15"
-                    FontAttributes="Bold"
-                    Clicked="OnSingleClicked"/>
+                <Button Text="Single" Clicked="OnSingleClicked"
+                        BorderColor="#76ABAE" BorderWidth="2"
+                        Background="White" TextColor="Black"
+                        FontSize="15" FontAttributes="Bold"
+                        HeightRequest="40" CornerRadius="5"/>
             </HorizontalStackLayout>
 
             <!-- Room Listings -->
-            <CollectionView 
-                ItemsSource="{Binding Rooms}"
-                EmptyView="No rooms available"
-                Margin="0,10,0,0">
+            <CollectionView x:Name="MainCollectionView"
+                            
+                            ItemsSource="{Binding Rooms}"
+                            EmptyView="No rooms available"
+                            Margin="0,10,0,0">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:RoomLocation">
-                        <Frame 
-                            Margin="0,0,0,15"
-                            Background="White"
-                            BorderColor="#76ABAE"
-                            
-                            Padding="0"
-                            CornerRadius="15">
+                        <Frame Margin="0,0,0,15" Background="White"
+                               BorderColor="#76ABAE" Padding="0" CornerRadius="15">
                             <Grid RowDefinitions="Auto,Auto">
-                                
-                                
-                                <!-- IMAGE CarouselView -->
-                                
-                                <CarouselView Grid.Row="0"
-                                 HeightRequest="200"
-                                 Loop="True"
-                                 ItemsSource="{Binding Images}">
+                                <!-- Image Carousel -->
+                                <CarouselView ItemsSource="{Binding Images}" 
+                                              HeightRequest="200" 
+                                              Grid.Row="0">
                                     <CarouselView.ItemTemplate>
                                         <DataTemplate>
-                                            <Grid>
-                                                <Image Source="{Binding .}"
-                                                  Aspect="AspectFill"
-                                                  HeightRequest="200"/>
-                                            </Grid>
+                                            <Image Source="{Binding ., Converter={StaticResource Base64Converter}}"
+                                                   Aspect="AspectFill"/>
                                         </DataTemplate>
                                     </CarouselView.ItemTemplate>
                                 </CarouselView>
 
                                 <!-- Room Details -->
-                                <VerticalStackLayout 
-                                    Grid.Row="1"
-                                    Padding="15"
-                                    Spacing="8">
+                                <VerticalStackLayout Grid.Row="1" Padding="15" Spacing="8">
                                     <Grid ColumnDefinitions="*,Auto">
-                                        <Label 
-                                            Text="{Binding Type}"
-                                            TextColor="Black"
-                                            FontAttributes="Bold"
-                                            FontSize="16"/>
-                                        <Label 
-                                            Grid.Column="1"
-                                            Text="{Binding FormattedPrice}"
-                                            TextColor="#76ABAE"
-                                            FontAttributes="Bold"
-                                            FontSize="16"/>
+                                        <Label Text="{Binding Type}" 
+                                               TextColor="Black" FontAttributes="Bold" FontSize="16"/>
+                                        <Label Grid.Column="1" Text="{Binding Price, StringFormat='${0}'}"
+                                               TextColor="#76ABAE" FontAttributes="Bold" FontSize="16"/>
                                     </Grid>
 
-                                    <Label 
-                                        Text="{Binding Address}"
-                                        TextColor="Gray"
-                                        FontSize="14"/>
-                                    <Label Text="Available"
-                                           TextColor="Green"
-                                           FontSize="16"/>
+                                    <Label Text="{Binding Address}" TextColor="Gray" FontSize="14"/>
+                                    <Label Text="Available" TextColor="Green" FontSize="16"/>
 
                                     <!-- Amenities -->
-                                    <FlexLayout 
-                                        BindableLayout.ItemsSource="{Binding Amenities}"
-                                        Wrap="Wrap"
-                                        Margin="0,5,0,0">
+                                    <FlexLayout BindableLayout.ItemsSource="{Binding Amenities}"
+                                                Wrap="Wrap" Margin="0,5,0,0">
                                         <BindableLayout.ItemTemplate>
                                             <DataTemplate x:DataType="x:String">
-                                                <Frame 
-                                                    Padding="8,4"
-                                                    Margin="0,0,5,5"
-                                                    Background="#76ABAE"
-                                                    CornerRadius="5"
-                                                    HasShadow="False">
-                                                    <Label 
-                                                        Text="{Binding}"
-                                                        TextColor="White"
-                                                        FontSize="12"/>
+                                                <Frame Padding="8,4" Margin="0,0,5,5"
+                                                       Background="#76ABAE" CornerRadius="5"
+                                                       HasShadow="False">
+                                                    <Label Text="{Binding}" TextColor="White" FontSize="12"/>
                                                 </Frame>
                                             </DataTemplate>
                                         </BindableLayout.ItemTemplate>
                                     </FlexLayout>
-                                    <Button Text="Book for Viewing"
-                                            BackgroundColor="#76ABAE"
-                                            TextColor="White"
-                                            Clicked="OnBookClicked"
-                                               />
+
+                                    <Button Text="Book for Viewing" 
+                                            BackgroundColor="#76ABAE" TextColor="White"
+                                            Clicked="OnBookClicked"/>
                                 </VerticalStackLayout>
                             </Grid>
                         </Frame>
