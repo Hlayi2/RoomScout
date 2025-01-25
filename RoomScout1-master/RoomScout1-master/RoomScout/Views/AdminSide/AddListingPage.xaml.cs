@@ -1,14 +1,21 @@
+using Firebase.Database;
+using Firebase.Database.Query;
 using Microsoft.Maui.Controls.Maps;
 using Microsoft.Maui.Maps;
+using RoomScout.Models.AdminSide;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+
 
 namespace RoomScout.Views.AdminSide
 {
     public partial class AddListingPage : ContentPage
     {
+        private static readonly FirebaseClient firebase = new FirebaseClient("https://roomscout-a194c-default-rtdb.firebaseio.com/");
         public ObservableCollection<Rule> Rules { get; set; }
         private Pin currentPin;
+        public ObservableCollection<string> ImageBase64List { get; set; } = new();
+        private const int MaxImages = 5;
 
         public AddListingPage()
         {
@@ -176,11 +183,27 @@ namespace RoomScout.Views.AdminSide
             {
                 var result = await FilePicker.PickMultipleAsync(new PickOptions
                 {
-                    FileTypes = FilePickerFileType.Images
+                    FileTypes = FilePickerFileType.Images,
+                    PickerTitle = "Select up to 5 images"
                 });
 
-                if (result != null)
+                if (result?.Any() ?? false)
                 {
+                    if (result.Count() > MaxImages)
+                    {
+                        await DisplayAlert("Error", $"Maximum {MaxImages} images allowed", "OK");
+                        return;
+                    }
+
+                    ImageBase64List.Clear();
+                    foreach (var file in result)
+                    {
+                        using var stream = await file.OpenReadAsync();
+                        byte[] bytes = new byte[stream.Length];
+                        await stream.ReadAsync(bytes);
+                        ImageBase64List.Add(Convert.ToBase64String(bytes));
+                    }
+
                     FileNameLabel.Text = result.Count() == 1
                         ? Path.GetFileName(result.First().FullPath)
                         : $"{result.Count()} files selected";
@@ -188,7 +211,7 @@ namespace RoomScout.Views.AdminSide
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Error", "Unable to pick file: " + ex.Message, "OK");
+                await DisplayAlert("Error", ex.Message, "OK");
             }
         }
 
@@ -219,10 +242,12 @@ namespace RoomScout.Views.AdminSide
                 return;
             }
 
-            // Create listing object with all the data
-            var listingData = new
+
+
+
+            var listingData = new Listing // Use your Listing model
             {
-                Location = new
+                Location = new LocationData // Create LocationData class if missing
                 {
                     Coordinates = CoordinatesEntry.Text,
                     Street = StreetEntry.Text,
@@ -230,14 +255,14 @@ namespace RoomScout.Views.AdminSide
                     City = CityEntry.Text,
                     PostalCode = PostalCodeEntry.Text
                 },
-                Contact = new
+                Contact = new ContactData // Create ContactData class if missing
                 {
                     PrimaryPhone = PrimaryPhoneEntry.Text,
                     AlternativePhone = AlternativePhoneEntry.Text
                 },
                 RoomType = RoomTypePicker.SelectedItem?.ToString(),
                 Price = decimal.Parse(PriceEntry.Text),
-                Amenities = new
+                Amenities = new AmenitiesData // Create AmenitiesData class if missing
                 {
                     Wifi = WifiCheck.IsChecked,
                     FreeElectricity = FreeElectricityCheck.IsChecked,
@@ -246,53 +271,63 @@ namespace RoomScout.Views.AdminSide
                     StudyTable = StudyTableCheck.IsChecked,
                     Showers = ShowersCheck.IsChecked
                 },
-                Rules = Rules.ToList()
+                Rules = Rules.ToList(),
+                Images = ImageBase64List.ToList(),
+                DateAdded = DateTime.UtcNow
             };
+            try
+            {
+                // Push to Firebase
+                var response = await firebase
+                    .Child("listings")
+                    .PostAsync(listingData);
 
-            // Here you would typically save the listing to your database
+                await DisplayAlert("Success", "Listing saved!", "OK");
+                await Navigation.PushAsync(new DashboardProfile());
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.Message, "OK");
+            }
+        }
+    }
+}
 
-            await DisplayAlert("Success", "Room Listing uploaded successfully! You will be redirected in 2 seconds", "OK");
-            await Task.Delay(2000);
-            await Navigation.PushAsync(new DashboardProfile());
+public class Rule : INotifyPropertyChanged
+{
+    private string number;
+    private string text;
+
+    public string Number
+    {
+        get => number;
+        set
+        {
+            if (number != value)
+            {
+                number = value;
+                OnPropertyChanged(nameof(Number));
+            }
         }
     }
 
-    public class Rule : INotifyPropertyChanged
+    public string Text
     {
-        private string number;
-        private string text;
-
-        public string Number
+        get => text;
+        set
         {
-            get => number;
-            set
+            if (text != value)
             {
-                if (number != value)
-                {
-                    number = value;
-                    OnPropertyChanged(nameof(Number));
-                }
+                text = value;
+                OnPropertyChanged(nameof(Text));
             }
         }
+    }
 
-        public string Text
-        {
-            get => text;
-            set
-            {
-                if (text != value)
-                {
-                    text = value;
-                    OnPropertyChanged(nameof(Text));
-                }
-            }
-        }
+    public event PropertyChangedEventHandler PropertyChanged;
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+    protected virtual void OnPropertyChanged(string propertyName)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

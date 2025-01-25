@@ -1,46 +1,78 @@
-using RoomScout.Models.Location;
-using RoomScout.ViewModels.Auth;
-using RoomScout.ViewModels.StudentSide;
-using RoomType = RoomScout.Models.Location.RoomType;
+using Firebase.Database;
+using RoomScout.Models.AdminSide;
+using System.Collections.ObjectModel;
 
 namespace RoomScout.Views.StudentSide
 {
     public partial class BrowseListingsPage : ContentPage
     {
-       
+        private static readonly FirebaseClient firebase = new FirebaseClient("https://roomscout-a194c-default-rtdb.firebaseio.com/");
+        private ObservableCollection<Listing> _listings = new();
+        private string _selectedRoomType;
 
         public BrowseListingsPage()
         {
             InitializeComponent();
         }
 
-        private async void OnViewBookingTapped(Object sender, EventArgs e)
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            await LoadListings();
+        }
+
+        private async Task LoadListings()
+        {
+            try
+            {
+                var firebaseListings = (await firebase
+                    .Child("listings")
+                    .OnceAsync<Listing>())
+                    .Select(item => new Listing
+                    {
+                        Key = item.Key,
+                        RoomType = item.Object.RoomType,
+                        Images = item.Object.Images,
+                        Price = item.Object.Price
+                    });
+
+                _listings = new ObservableCollection<Listing>(firebaseListings);
+                MainCollectionView.ItemsSource = _listings;
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.Message, "OK");
+            }
+        }
+
+        private void OnBachelorClicked(object sender, EventArgs e) => Filter("Bachelor");
+        private void OnSharingClicked(object sender, EventArgs e) => Filter("Sharing");
+        private void OnSingleClicked(object sender, EventArgs e) => Filter("Single");
+
+        private void Filter(string roomType)
+        {
+            _selectedRoomType = roomType;
+            FilterListings();
+        }
+
+        private void FilterListings()
+        {
+            var filtered = _listings
+                .Where(l => l.RoomType == _selectedRoomType)
+                .ToList();
+
+            // Use ObservableCollection for UI reactivity
+            MainCollectionView.ItemsSource = new ObservableCollection<Listing>(filtered);
+        }
+
+        private async void OnViewBookingTapped(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new ViewBooking());
         }
 
-
-        // Update your existing click handlers to use the ViewModel
-        private void OnBachelorClicked(object sender, EventArgs e)
-        {
-          
-        }
-
-        private void OnSharingClicked(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void OnSingleClicked(object sender, EventArgs e)
-        {
-           
-        }
-
-        // Keep your existing navigation handlers
         private async void OnNearByTapped(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new NearByPage());
-
         }
 
         private async void OnAddEventTapped(object sender, EventArgs e)
@@ -52,6 +84,5 @@ namespace RoomScout.Views.StudentSide
         {
             await DisplayAlert("Success", "Booking request submitted!", "OK");
         }
-
     }
 }
