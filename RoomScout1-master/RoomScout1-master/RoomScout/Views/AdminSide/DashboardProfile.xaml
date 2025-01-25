@@ -136,13 +136,14 @@
                         <Button BackgroundColor="#059212" 
                                 TextColor="White" 
                                 FontAttributes="Bold" 
-                                HorizontalOptions="FillAndExpand" />
+                                HorizontalOptions="FillAndExpand"
+                                Clicked="OnProClicked"/>
                         <HorizontalStackLayout Spacing="10" Padding="10" VerticalOptions="Center">
                             <Image Source="premium.png" 
                                    HeightRequest="20" 
                                    WidthRequest="20" 
                                    VerticalOptions="Center" />
-                            <Label Text="Upgrade to Premium" 
+                            <Label Text="Upgrade to Pro" 
                                    VerticalOptions="Center" 
                                    TextColor="White" 
                                    FontAttributes="Bold" />

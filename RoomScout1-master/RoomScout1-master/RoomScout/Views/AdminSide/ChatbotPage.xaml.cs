@@ -86,9 +86,9 @@ namespace RoomScout.Views.AdminSide
 
             premiumResponses = new Dictionary<int, string>
             {
-                { 1, "A premium listing highlights your property with better visibility and priority." },
-                { 2, "To upgrade, go to your dashboard and select 'Upgrade to Premium'." },
-                { 3, "Premium listings offer better visibility, priority in searches, and more detailed property insights." }
+                { 1, "RoomScout premium is a powerful yet convinient upgrade for landlords who want to maximiza their rental success.It provides more features including a verified bedge and lots more" },
+                { 2, "You can simply go to the premium page scroll to your current plan and then click cancel subscription. " },
+                { 3, "With RoomScout premium you can get listing ratings, teanants can pay directly to you on the app, you can control you listing availabilty and many more. Go to the premium page to find out more!" }
             };
         }
 
@@ -226,9 +226,9 @@ namespace RoomScout.Views.AdminSide
         private async Task AskPremiumQuestions()
         {
             AddMessage("You have selected **Premium Features**. Please enter the number corresponding to your question:\n" +
-                       "1. What is a premium listing?\n" +
-                       "2. How do I upgrade to premium?\n" +
-                       "3. What are the benefits of premium listings?", false);
+                       "1. Why upgrade to premium?\n" +
+                       "2. How do i cancel premium subscription?\n" +
+                       "3. How is premium different from freemium?", false);
         }
 
         private async Task HandleSubQuestion(string userInput)

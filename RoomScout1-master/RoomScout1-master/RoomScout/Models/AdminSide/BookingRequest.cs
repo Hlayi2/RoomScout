@@ -11,12 +11,13 @@ namespace RoomScout.Models.AdminSide
     public class BookingRequest : INotifyPropertyChanged
     {
         private bool _isDateTimeVisible;
-        private string _date;
-        private string _time;
         private string _confirmationMessage;
 
         public string Name { get; set; }
         public string ProfilePicture { get; set; }
+        public string AdditionalInformation { get; set; }
+        public DateTime Date { get; set; }
+        public TimeSpan Time { get; set; }
 
         public bool IsDateTimeVisible
         {
@@ -28,23 +29,25 @@ namespace RoomScout.Models.AdminSide
             }
         }
 
-        public string Date
+        private bool _isImageVisible = true;
+        public bool IsImageVisible
         {
-            get => _date;
+            get => _isImageVisible;
             set
             {
-                _date = value;
-                OnPropertyChanged();
+                _isImageVisible = value;
+                OnPropertyChanged(nameof(IsImageVisible));
             }
         }
 
-        public string Time
+        private bool _areButtonsVisible = true;
+        public bool AreButtonsVisible
         {
-            get => _time;
+            get => _areButtonsVisible;
             set
             {
-                _time = value;
-                OnPropertyChanged();
+                _areButtonsVisible = value;
+                OnPropertyChanged(nameof(AreButtonsVisible));
             }
         }
 
