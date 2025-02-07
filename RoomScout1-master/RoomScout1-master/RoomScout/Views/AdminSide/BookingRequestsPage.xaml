@@ -1,7 +1,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RoomScout.Views.AdminSide.BookingRequestsPage"
-             Shell.NavBarIsVisible="True"
+             Shell.NavBarIsVisible="False"
              Title="Booking Requests"
              BackgroundColor="#1A1F25">
 
@@ -11,13 +11,13 @@
         <HorizontalStackLayout Padding="20" Spacing="10" VerticalOptions="Start" Margin="20,50,0,0">
             <!-- Icon -->
             <Image Source="viewbookings.png" 
-                WidthRequest="50"
-                   HeightRequest="50"
+                WidthRequest="60"
+                   HeightRequest="60"
                    VerticalOptions="Center" />
 
                 <!-- Heading -->
                 <Label Text="Your Booking Requests"
-                   FontSize="16"
+                   FontSize="18"
                    FontAttributes="Bold"
                    TextColor="White"
                    VerticalOptions="Center"
@@ -37,7 +37,7 @@
                                HorizontalOptions="Start"
                                Padding="10"
                                WidthRequest="350"
-                               Margin="20,0,0,0">
+                               Margin="10,0,0,0">
                             <Grid>
                                 <VerticalStackLayout Spacing="10">
                                     <!-- Profile Picture and Name -->
@@ -45,6 +45,7 @@
                                         <Image Source="{Binding ProfilePicture}"
                                                WidthRequest="50"
                                                HeightRequest="50"
+                                               Margin="20,0,0,0"
                                                Aspect="AspectFill"
                                                Clip="Ellipse" />
 
@@ -66,7 +67,7 @@
                                         <Button Text="Accept"
                                                 FontSize="14"
                                                 CornerRadius="15"
-                                                WidthRequest="75"
+                                                WidthRequest="85"
                                                 HeightRequest="45"
                                                 Margin="90,0,0,0"
                                                 BackgroundColor="#27AE60"
@@ -79,7 +80,7 @@
                                                 BackgroundColor="#E74C3C"
                                                 TextColor="White"
                                                 CornerRadius="15"
-                                                WidthRequest="80"
+                                                WidthRequest="90"
                                                 HeightRequest="45"
                                                 FontSize="14"
                                                 Clicked="OnRemoveButtonClicked"

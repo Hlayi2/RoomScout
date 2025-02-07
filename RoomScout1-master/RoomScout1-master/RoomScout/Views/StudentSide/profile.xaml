@@ -2,35 +2,47 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RoomScout.Views.StudentSide.profile"
-              Shell.NavBarIsVisible="False"
+             Shell.NavBarIsVisible="False"
              Title="profile"
              BackgroundColor="#1A1F25">
 
-
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="20">
-            <!-- Profile Section -->
-            <Frame CornerRadius="30" Padding="10" HasShadow="True" BackgroundColor="#F3F8FF">
-                <VerticalStackLayout Spacing="10" HorizontalOptions="Center">
-                    <Image Source="profiles.png" 
-                        HeightRequest="100"
-                        WidthRequest="100" 
-                        Aspect="AspectFill" 
-                        Margin="0,10,0,0"/>
-                    <Label Text="Moloko" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" />
-                    <Label Text="Looking for Accomodation/Rooms" FontAttributes="Bold" FontSize="16" />
-                </VerticalStackLayout>
-            </Frame>
+        <Grid>
+            <!-- Main Content -->
+            <VerticalStackLayout Padding="20" Spacing="20">
+                <!-- Profile Section -->
+                <Frame CornerRadius="30" Padding="10" HasShadow="True" BackgroundColor="#F3F8FF">
+                    <VerticalStackLayout Spacing="10" HorizontalOptions="Center">
+                        <Image Source="profiles.png" 
+                               HeightRequest="100"
+                               WidthRequest="100" 
+                               Aspect="AspectFill" 
+                               Margin="0,10,0,0"/>
+                        <Label Text="Moloko" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" />
+                        <Label Text="Looking for Accomodation/Rooms" FontAttributes="Bold" FontSize="16" />
+                    </VerticalStackLayout>
+                </Frame>
 
-            <!-- Buttons Section -->
-            <VerticalStackLayout Spacing="10">
-                <Button Text="Update My Profile" BackgroundColor="#76ABAE" TextColor="White" FontAttributes="Bold" Clicked="OnUpdateProfileClicked" />
-                <Button Text="Appointments" BackgroundColor="#76ABAE" TextColor="White" FontAttributes="Bold" Clicked="OnAppointmentClicked"/>
-                <Button Text="Report an Issue" BackgroundColor="#E85C0D" TextColor="White" FontAttributes="Bold" Clicked="OnReportIssueClicked"/>
-                <Button Text="Logout" BackgroundColor="#FF3B30" TextColor="White" FontAttributes="Bold" Clicked="OnLogoutButtonClicked"/>
-                <Button Text="Delete My Account" BackgroundColor="#C40C0C" TextColor="White" FontAttributes="Bold" />
+                <!-- Buttons Section -->
+                <VerticalStackLayout Spacing="10">
+                    <Button Text="Update My Profile" BackgroundColor="#76ABAE" TextColor="White" FontAttributes="Bold" Clicked="OnUpdateProfileClicked" />
+                    <Button Text="Appointments" BackgroundColor="#76ABAE" TextColor="White" FontAttributes="Bold" Clicked="OnAppointmentClicked"/>
+                    <Button Text="Report an Issue" BackgroundColor="#E85C0D" TextColor="White" FontAttributes="Bold" Clicked="OnReportIssueClicked"/>
+                    <Button Text="Logout" BackgroundColor="#FF3B30" TextColor="White" FontAttributes="Bold" Clicked="OnLogoutButtonClicked"/>
+                    <Button Text="Delete My Account" BackgroundColor="#C40C0C" TextColor="White" FontAttributes="Bold" />
+                </VerticalStackLayout>
             </VerticalStackLayout>
-        </VerticalStackLayout>
+
+            <!-- Image Button Overlay -->
+            <ImageButton Source="bot.png" 
+                         BackgroundColor="Transparent" 
+                         HeightRequest="90" 
+                         WidthRequest="100" 
+                         HorizontalOptions="End" 
+                         VerticalOptions="Start"
+                         Margin="0,360,20,0"
+                         Clicked="OnChatButtonClicked"/>
+        </Grid>
     </ScrollView>
 
 </ContentPage>
