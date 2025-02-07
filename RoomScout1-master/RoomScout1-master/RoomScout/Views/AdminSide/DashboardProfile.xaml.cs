@@ -33,12 +33,6 @@ public partial class DashboardProfile : ContentPage
         await Navigation.PushAsync(new ChatbotPage());
     }
 
-    private async void OnViewListingsClicked(object sender, EventArgs e)
-    {
-        // Navigate to LandlordDashboardPage
-       await Navigation.PushAsync(new ManageListingsPage());
-
-    }
 
     private async void OnReportTechnicalIssueClicked(object sender, EventArgs e)
     {
@@ -76,13 +70,7 @@ public partial class DashboardProfile : ContentPage
         return true; // Return true if the complaint was sent successfully
     }
 
-    private async void OnViewBookingsClicked(object sender, EventArgs eventArgs)
-    {
-        await Navigation.PushAsync(new BookingRequestsPage());
-
-      
-    }
-
+   
     private async void OnProClicked(object sender, EventArgs eventArgs)
     {
         await Navigation.PushAsync(new PremiumPage());

@@ -4,9 +4,9 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Microsoft.Maui.Controls;
 
-namespace RoomScout.Views.AdminSide
+namespace RoomScout.Views.StudentSide
 {
-    public partial class ChatbotPage : ContentPage
+    public partial class ChatPage : ContentPage
     {
         public class ChatMessage
         {
@@ -17,20 +17,16 @@ namespace RoomScout.Views.AdminSide
 
         private ObservableCollection<ChatMessage> Messages { get; } = new();
         private Dictionary<int, string> listingResponses = new();
-        private Dictionary<int, string> requiredDocumentsResponses = new();
+        private Dictionary<int, string> bookingsResponses = new();
         private Dictionary<int, string> accountResponses = new();
-        private Dictionary<int, string> premiumResponses = new();
 
         // State variable to track conversation context
         private string _currentContext = "Welcome";
-
-        public ChatbotPage()
+        public ChatPage()
         {
             InitializeComponent();
             ChatHistoryList.ItemsSource = Messages;
             InitializeResponses();
-
-            // Display the welcome message when the page loads
             DisplayWelcomeMessage();
 
             // Attach a single event handler for user input
@@ -39,7 +35,7 @@ namespace RoomScout.Views.AdminSide
 
         private void DisplayWelcomeMessage()
         {
-            AddMessage("Hello, I'm Roomy, RoomScout's chatbot. How may I assist you today?", false);
+            AddMessage("Hello, I'm Roomy, RoomScout's chatbot. Here for your every need. How may I assist you today?", false);
         }
 
         private void AddMessage(string message, bool isUser)
@@ -59,36 +55,28 @@ namespace RoomScout.Views.AdminSide
             });
         }
 
-        private void InitializeResponses()
+        private async void InitializeResponses()
         {
             listingResponses = new Dictionary<int, string>
             {
-                { 1, "On Profile, navigate to 'Add new Listing'. That is where you can add your accommodation." },
-                { 2, "Yes, you can edit your listing by selecting 'View Listings' and clicking 'Edit' next to the desired listing." },
-                { 3, "You cannot remove a listing as yet, you can only select if it is available or not." },
-                { 4, "On profile click on 'View my Listings' where you will find the listings you have added." }
+                { 1, "A listing is a room/accomodation that landlords add and advertise to you tenants." },
+                { 2, "Yes, you can book to view as many listings as you wish. Remember, viewing rooms/accomodations is subject to whether the landlord accepts your booking requests or not." },
+                { 3, "You can report a suspicious listing that will be reviewed to verify its legitimacy. As it stands all accomodations listed on RoomScout are verified to give ou tenants the best of the best." },
+                { 4, "If a Landlord is subscribed to premium there will be an option for you to pay for your new accomodation through RoomScout." }
             };
 
-            requiredDocumentsResponses = new Dictionary<int, string>
+            bookingsResponses = new Dictionary<int, string>
             {
-                { 1, "Yes you can do so by emailing: info@roomscout.co.za and requesting to update documents." },
-                { 2, "Document verification can take up to 2 working days. An email will be sent to you regarding the next steps." },
-                { 3, "Your account won't be verified. To avoid this make sure you upload the correct and valid documents" }
+                { 1, "You book a viewing by clicking on the Book to view button in your home page." },
+                { 2, "You will get a notification with information wheather your booking request had been approved or rejected from the landlord." },
+                { 3, "Your cannot canel once a booking request had been approved you can only contact the landlord directly if there are any changes." }
             };
 
             accountResponses = new Dictionary<int, string>
             {
-                { 1, "Yes. If your account is reported a number of times it will get banned and you can no longer use RoomScout." },
-                { 2, "You cannot necessarily report tenants, you are only allowed to accept or reject a tenant's booking request." },
-                { 3, "You can interact with tenants through booking requests. They can also contact you based on the information you would have shared on RoomScout." },
-                { 4, "Yes, you can retrieve your account within 30 days of deleting it. However, when 30 days have passed your account will be permanently deleted." }
-            };
-
-            premiumResponses = new Dictionary<int, string>
-            {
-                { 1, "RoomScout premium is a powerful yet convinient upgrade for landlords who want to maximize their rental success.It provides more features including a verified bedge and lots more" },
-                { 2, "You can simply go to the premium page scroll to your current plan and then click cancel subscription. " },
-                { 3, "With RoomScout premium you can get listing ratings, teanants can pay directly to you on the app, you can control you listing availabilty and many more. Go to the premium page to find out more!" }
+                { 1, "Yes, by clicking 'Delete My Account' on your profile and confirming that you want to permanently delete your account. It will be scheduled for permanent deletion in 30 days and you can only create a new one after the 30 day period has passed." },
+                { 2, "No, you cannot register as a landlord and also as a tenant as your information is captured in our database and you cannot register again once your information is captured." },
+                { 3, "An email with a link to verify your account is sent to you." }
             };
         }
 
@@ -129,9 +117,8 @@ namespace RoomScout.Views.AdminSide
                         break;
 
                     case "Listings":
-                    case "RequiredDocuments":
+                    case "Bookings":
                     case "Account":
-                    case "Premium":
                         // Handle sub-questions based on the current context
                         await HandleSubQuestion(userMessage);
                         break;
@@ -153,7 +140,7 @@ namespace RoomScout.Views.AdminSide
 
         private async Task HandleMainMenuSelection(string userInput)
         {
-            if (int.TryParse(userInput, out int option) && option >= 1 && option <= 5)
+            if (int.TryParse(userInput, out int option) && option >= 1 && option <= 4)
             {
                 switch (option)
                 {
@@ -162,18 +149,14 @@ namespace RoomScout.Views.AdminSide
                         await AskListingQuestions();
                         break;
                     case 2:
-                        _currentContext = "RequiredDocuments";
-                        await AskRequiredDocumentsQuestions();
+                        _currentContext = "Bookings";
+                        await AskBookingsQuestions();
                         break;
                     case 3:
                         _currentContext = "Account";
                         await AskAccountQuestions();
                         break;
                     case 4:
-                        _currentContext = "Premium";
-                        await AskPremiumQuestions();
-                        break;
-                    case 5:
                         _currentContext = "Other";
                         await HandleOtherOption();
                         break;
@@ -181,54 +164,44 @@ namespace RoomScout.Views.AdminSide
             }
             else
             {
-                AddMessage("Invalid input. Please type a number between 1 and 5.", false);
+                AddMessage("Invalid input. Please type a number between 1 and 4.", false);
                 ShowMainMenu();
             }
         }
 
         private void ShowMainMenu()
         {
-            AddMessage("Please select an option by typing a number between 1 and 5:\n" +
+            AddMessage("Please select an option by typing a number between 1 and 4:\n" +
                        "1. Listings\n" +
-                       "2. Required Documents\n" +
+                       "2. Bookings\n" +
                        "3. Account\n" +
-                       "4. Premium Features\n" +
-                       "5. Other", false);
+                       "4. Other", false);
             _currentContext = "MainMenu";
         }
 
         private async Task AskListingQuestions()
         {
             AddMessage("You have selected **Listings**. Please enter the number corresponding to your question:\n" +
-                       "1. How do I add a listing?\n" +
-                       "2. Can I edit my listing?\n" +
-                       "3. How do I remove a listing?\n" +
-                       "4. Where do I find my listings?", false);
+                       "1. What is a listing?\n" +
+                       "2. Can I view more than one listing?\n" +
+                       "3. Can i report a listing?\n" +
+                       "4. Can i pay for a room using RoomScout listings?", false);
         }
 
-        private async Task AskRequiredDocumentsQuestions()
+        private async Task AskBookingsQuestions()
         {
             AddMessage("You have selected **Required Documents**. Please enter the number corresponding to your question:\n" +
-                       "1. Can I update documents I have already uploaded?\n" +
-                       "2. How long does it take to get verified?\n" +
-                       "3. What happens if I upload invalid documents?", false);
+                       "1. How do i book a viewing?\n" +
+                       "2. How will i know if my booking request has been approved or not?\n" +
+                       "3. Can i cancel my booking once it has been approved?", false);
         }
 
         private async Task AskAccountQuestions()
         {
-            AddMessage("You have selected **Account**. Please enter the number corresponding to your question:\n" +
-                       "1. Can my account be banned?\n" +
-                       "2. Can I report tenants?\n" +
-                       "3. How do I interact with tenants?\n" +
-                       "4. Can I retrieve my account if it is permanently deleted?", false);
-        }
-
-        private async Task AskPremiumQuestions()
-        {
             AddMessage("You have selected **Premium Features**. Please enter the number corresponding to your question:\n" +
-                       "1. Why upgrade to premium?\n" +
-                       "2. How do i cancel premium subscription?\n" +
-                       "3. How is premium different from freemium?", false);
+                       "1. Can i permanently delete my account?\n" +
+                       "2. Can i register and a landlord and also as a tenant?\n" +
+                       "3. How is my account verified?", false);
         }
 
         private async Task HandleSubQuestion(string userInput)
@@ -236,9 +209,8 @@ namespace RoomScout.Views.AdminSide
             Dictionary<int, string> responses = _currentContext switch
             {
                 "Listings" => listingResponses,
-                "RequiredDocuments" => requiredDocumentsResponses,
+                "Bookings" => bookingsResponses,
                 "Account" => accountResponses,
-                "Premium" => premiumResponses,
                 _ => null
             };
 
@@ -250,8 +222,8 @@ namespace RoomScout.Views.AdminSide
             {
                 AddMessage("Please enter a valid number from the list provided.", false);
             }
-
-            await Task.Delay(2000);
+            await Task.Delay(2500);
+            // Ask if the user still needs help
             await AskIfUserNeedsHelp();
         }
 

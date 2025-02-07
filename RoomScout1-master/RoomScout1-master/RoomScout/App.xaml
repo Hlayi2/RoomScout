@@ -4,19 +4,20 @@
              xmlns:local="clr-namespace:RoomScout"
              xmlns:converters="clr-namespace:RoomScout.Converters"
              x:Class="RoomScout.App">
+
     <Application.Resources>
         <ResourceDictionary>
-            <!-- Register Converter -->
+            <!-- Register Converters -->
             <converters:Base64ToImageConverter x:Key="Base64Converter" />
             <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
+            <converters:ReadStatusToColorConverter x:Key="ReadStatusToColorConverter" />
 
+            <!-- Merge Additional Resource Dictionaries -->
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
-
         </ResourceDictionary>
     </Application.Resources>
-    
-    
+
 </Application>
