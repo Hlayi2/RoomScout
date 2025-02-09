@@ -58,6 +58,16 @@
                     </VerticalStackLayout>
                 </Frame>
 
+                <!-- Profile Frame -->
+                <Frame CornerRadius="15" Padding="0" Background="White" 
+                       HeightRequest="100" WidthRequest="110" HorizontalOptions="Center">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnAddEventTapped"/>
+                    </Frame.GestureRecognizers>
+                    <VerticalStackLayout HorizontalOptions="Center">
+                        <Image Source="prof.png" HeightRequest="40" WidthRequest="40"
+                               Aspect="AspectFit" Margin="0,20,0,10"/>
+                        <Label Text="Profile" TextColor="Black" FontSize="15"/>
                 <!-- Profile -->
                 <Frame CornerRadius="15"
                        Padding="0"

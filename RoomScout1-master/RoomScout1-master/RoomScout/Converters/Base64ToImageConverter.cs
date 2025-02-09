@@ -1,4 +1,5 @@
-﻿// RoomScout/Converters/Base64ToImageConverter.cs
+﻿
+    // RoomScout/Converters/Base64ToImageConverter.cs
 using System.Globalization;
 
 namespace RoomScout.Converters

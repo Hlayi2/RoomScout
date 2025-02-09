@@ -24,10 +24,12 @@
         </Shell.BackButtonBehavior>
     </ShellContent>
 
+    
+    
     <!--Landlord Tab Navigation-->
     <!--Landlord Tab Navigation-->
-    <TabBar Route="landlord">
-        <Tab Title="Listings" Icon="add.png">
+    <TabBar Route="landlord" >
+        <Tab Title="Listings" Icon="listings.png">
             <ShellContent 
             ContentTemplate="{DataTemplate adminViews:ManageListingsPage}"
             Route="listings" />
@@ -37,12 +39,12 @@
             ContentTemplate="{DataTemplate adminViews:BookingRequestsPage}"
             Route="bookings" />
         </Tab>
-        <Tab Title="Notifications" Icon="notification.png">
+        <Tab Title="Notifications" Icon="bells.png">
             <ShellContent 
             ContentTemplate="{DataTemplate adminViews:NotificationsPage}"
             Route="notifications" />
         </Tab>
-        <Tab Title="Profile" Icon="profile.png">
+        <Tab Title="Settings" Icon="settings.png">
             <ShellContent 
             ContentTemplate="{DataTemplate adminViews:DashboardProfile}"
             Route="landlordProfile" />
@@ -56,6 +58,7 @@
             <Setter Property="Shell.ForegroundColor" Value="White"/>
             <Setter Property="Shell.UnselectedColor" Value="#95a5a6"/>
             <Setter Property="Shell.TitleColor" Value="White"/>
+            <Setter Property="Shell.TabBarBackgroundColor" Value="#76ABAE" />
         </Style>
     </Shell.Resources>
 </Shell>
