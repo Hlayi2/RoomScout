@@ -50,6 +50,11 @@ namespace RoomScout.Views.StudentSide
             }
         }
 
+        private void OnFilterImageClicked(object sender, EventArgs e)
+        {
+
+        }
+
         private void OnBachelorClicked(object sender, EventArgs e) => Filter("Bachelor");
         private void OnSharingClicked(object sender, EventArgs e) => Filter("Sharing");
         private void OnSingleClicked(object sender, EventArgs e) => Filter("Single");
