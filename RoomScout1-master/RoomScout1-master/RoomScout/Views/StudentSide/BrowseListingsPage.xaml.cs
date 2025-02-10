@@ -8,7 +8,7 @@ namespace RoomScout.Views.StudentSide
     {
         private static readonly FirebaseClient firebase = new FirebaseClient("https://roomscout-a194c-default-rtdb.firebaseio.com/");
         private ObservableCollection<Listing> _listings = new();
-        private string _selectedRoomType;
+        private ObservableCollection<Listing> _filteredListings = new();
 
         public BrowseListingsPage()
         {
@@ -33,11 +33,16 @@ namespace RoomScout.Views.StudentSide
                         Key = item.Key,
                         RoomType = item.Object.RoomType,
                         Images = item.Object.Images,
-                        Price = item.Object.Price
-                    });
+                        Price = item.Object.Price,
+
+
+                    })
+                    .ToList();
 
                 _listings = new ObservableCollection<Listing>(firebaseListings);
-                MainCollectionView.ItemsSource = _listings;
+
+                _filteredListings = new ObservableCollection<Listing>(_listings);
+                MainCollectionView.ItemsSource = _filteredListings;
             }
             catch (Exception ex)
             {
@@ -51,18 +56,20 @@ namespace RoomScout.Views.StudentSide
 
         private void Filter(string roomType)
         {
-            _selectedRoomType = roomType;
-            FilterListings();
-        }
+            if (_listings == null || !_listings.Any()) return;
 
-        private void FilterListings()
-        {
             var filtered = _listings
-                .Where(l => l.RoomType == _selectedRoomType)
+                .Where(l => l.RoomType.ToLower() == roomType.ToLower())
                 .ToList();
 
-            // Use ObservableCollection for UI reactivity
-            MainCollectionView.ItemsSource = new ObservableCollection<Listing>(filtered);
+            _filteredListings.Clear(); 
+            foreach (var item in filtered)
+            {
+                _filteredListings.Add(item);
+            }
+
+            MainCollectionView.ItemsSource = _filteredListings; 
+
         }
 
         private async void OnViewBookingTapped(object sender, EventArgs e)
