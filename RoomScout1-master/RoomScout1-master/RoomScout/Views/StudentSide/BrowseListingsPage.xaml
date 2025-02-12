@@ -54,21 +54,21 @@
             </HorizontalStackLayout>
 
             <VerticalStackLayout Padding="20">
-                <Label Text="Filter" TextColor="White" FontSize="25" Margin="15,0,0,0"
-                   FontAttributes="Bold" HorizontalTextAlignment="Start"/>
-                <ImageButton x:Name="filterImageButton"
-                             Source="filter.png"
-                             WidthRequest="40"
-                             HeightRequest="40"
-                             Clicked="OnFilterImageClicked"/>
-                <StackLayout x:Name="buttonStack" IsVisible="False" Spacing="10">
-                    <Button Text="Bachelor" Clicked="OnBachelorClicked" BorderColor="#76ABAE" BorderWidth="2"
-          Background="White" TextColor="Black" FontSize="15" FontAttributes="Bold" HeightRequest="40" CornerRadius="5"/>
+                <Frame BackgroundColor="Transparent" HorizontalOptions="Start" BorderColor="Transparent">
+                    <VerticalStackLayout>
+                        <ImageButton x:Name="filterImageButton" Source="filter.png" Margin="62,0,0,0" WidthRequest="25" HeightRequest="25" Clicked="OnFilterImageClicked"/>
+                        <Label Text="Filter" TextColor="White" FontSize="25" Margin="0,-30,0,0" FontAttributes="Bold" HorizontalTextAlignment="Start"/>
+                        <Label x:Name="selectedFilterLabel" Text="Filtered by: None" FontSize="18" TextColor="White" IsVisible="False"/>
+                    </VerticalStackLayout>
+                </Frame>
 
+                <StackLayout x:Name="buttonStack" IsVisible="False" Spacing="10">
+                    <Button Text="Bachelor" Clicked="OnBachelorClicked" BorderColor="#76ABAE" BorderWidth="2" Background="White" TextColor="Black" FontSize="15" FontAttributes="Bold" HeightRequest="40" CornerRadius="5"/>
                     <Button Text="Sharing" Clicked="OnSharingClicked" BorderColor="#76ABAE" BorderWidth="2" Background="White" TextColor="Black" FontSize="15" FontAttributes="Bold" HeightRequest="40" CornerRadius="5"/>
                     <Button Text="Single" Clicked="OnSingleClicked" BorderColor="#76ABAE" BorderWidth="2" Background="White" TextColor="Black" FontSize="15" FontAttributes="Bold" HeightRequest="40" CornerRadius="5"/>
                 </StackLayout>
             </VerticalStackLayout>
+
 
             <!-- Room Listings -->
             <CollectionView x:Name="MainCollectionView"

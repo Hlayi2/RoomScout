@@ -52,12 +52,28 @@ namespace RoomScout.Views.StudentSide
 
         private void OnFilterImageClicked(object sender, EventArgs e)
         {
+            buttonStack.IsVisible = !buttonStack.IsVisible;
 
         }
 
-        private void OnBachelorClicked(object sender, EventArgs e) => Filter("Bachelor");
-        private void OnSharingClicked(object sender, EventArgs e) => Filter("Sharing");
-        private void OnSingleClicked(object sender, EventArgs e) => Filter("Single");
+        private void OnBachelorClicked(object sender, EventArgs e) => ApplyFilter("Bachelor");
+        private void OnSharingClicked(object sender, EventArgs e) => ApplyFilter("Sharing");
+        private void OnSingleClicked(object sender, EventArgs e) => ApplyFilter("Single");
+
+        private void ApplyFilter(string roomType)
+        {
+            // Call existing filter method to update the listing
+            Filter(roomType);
+
+            // Update the label to reflect the applied filter
+            selectedFilterLabel.Text = $"Filtered by: {roomType}";
+
+            // Make the label visible after selection
+            selectedFilterLabel.IsVisible = true;
+
+            // Hide filter buttons after selection
+            buttonStack.IsVisible = false;
+        }
 
         private void Filter(string roomType)
         {
@@ -67,15 +83,16 @@ namespace RoomScout.Views.StudentSide
                 .Where(l => l.RoomType.ToLower() == roomType.ToLower())
                 .ToList();
 
-            _filteredListings.Clear(); 
+            _filteredListings.Clear();
             foreach (var item in filtered)
             {
                 _filteredListings.Add(item);
             }
 
-            MainCollectionView.ItemsSource = _filteredListings; 
+            MainCollectionView.ItemsSource = _filteredListings;
 
         }
+
 
         private async void OnViewBookingTapped(object sender, EventArgs e)
         {
