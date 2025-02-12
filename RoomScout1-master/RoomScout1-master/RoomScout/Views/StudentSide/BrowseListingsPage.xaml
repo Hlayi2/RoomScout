@@ -53,6 +53,7 @@
                 </Frame>
             </HorizontalStackLayout>
 
+            <!-- Filter Section -->
             <VerticalStackLayout Padding="20">
                 <Frame BackgroundColor="Transparent" HorizontalOptions="Start" BorderColor="Transparent">
                     <VerticalStackLayout>

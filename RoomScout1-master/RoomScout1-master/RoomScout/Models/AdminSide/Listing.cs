@@ -16,9 +16,7 @@ namespace RoomScout.Models.AdminSide
         public DateTime DateAdded { get; set; }
         public LocationData Location { get; internal set; }
         public ContactData Contact { get; internal set; }
-        public AmenitiesData Amenities { get; set; }
+        public AmenitiesData Amenities { get; internal set; }
         public List<Rule> Rules { get; internal set; }
-        public object Address { get; internal set; }
-        public string Id { get; internal set; }
     }
 }

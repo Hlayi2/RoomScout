@@ -15,9 +15,6 @@ namespace RoomScout.Views.AdminSide
 
 
 
-        public static implicit operator Dictionary<object, object>(AmenitiesData v)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

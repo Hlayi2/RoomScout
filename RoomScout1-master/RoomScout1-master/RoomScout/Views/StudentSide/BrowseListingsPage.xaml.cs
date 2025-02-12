@@ -1,6 +1,9 @@
 using Firebase.Database;
 using RoomScout.Models.AdminSide;
 using System.Collections.ObjectModel;
+using Microsoft.Maui.Controls;
+using System;
+using System.Threading.Tasks;
 
 namespace RoomScout.Views.StudentSide
 {
@@ -8,7 +11,7 @@ namespace RoomScout.Views.StudentSide
     {
         private static readonly FirebaseClient firebase = new FirebaseClient("https://roomscout-a194c-default-rtdb.firebaseio.com/");
         private ObservableCollection<Listing> _listings = new();
-        private ObservableCollection<Listing> _filteredListings = new();
+        private string _selectedRoomType;
 
         public BrowseListingsPage()
         {
@@ -34,15 +37,15 @@ namespace RoomScout.Views.StudentSide
                         RoomType = item.Object.RoomType,
                         Images = item.Object.Images,
                         Price = item.Object.Price,
+                        Amenities =item.Object.Amenities,
 
 
                     })
                     .ToList();
 
                 _listings = new ObservableCollection<Listing>(firebaseListings);
-
-                _filteredListings = new ObservableCollection<Listing>(_listings);
-                MainCollectionView.ItemsSource = _filteredListings;
+                MainCollectionView.ItemsSource = _listings;
+              
             }
             catch (Exception ex)
             {
@@ -50,52 +53,31 @@ namespace RoomScout.Views.StudentSide
             }
         }
 
-        private void OnFilterImageClicked(object sender, EventArgs e)
-        {
-            buttonStack.IsVisible = !buttonStack.IsVisible;
+      
 
-        }
+        private void OnBachelorClicked(object sender, EventArgs e) => Filter("Bachelor");
+        private void OnSharingClicked(object sender, EventArgs e) => Filter("Sharing");
+        private void OnSingleClicked(object sender, EventArgs e) => Filter("Single");
 
-        private void OnBachelorClicked(object sender, EventArgs e) => ApplyFilter("Bachelor");
-        private void OnSharingClicked(object sender, EventArgs e) => ApplyFilter("Sharing");
-        private void OnSingleClicked(object sender, EventArgs e) => ApplyFilter("Single");
-
-        private void ApplyFilter(string roomType)
-        {
-            // Call existing filter method to update the listing
-            Filter(roomType);
-
-            // Update the label to reflect the applied filter
-            selectedFilterLabel.Text = $"Filtered by: {roomType}";
-
-            // Make the label visible after selection
-            selectedFilterLabel.IsVisible = true;
-
-            // Hide filter buttons after selection
-            buttonStack.IsVisible = false;
-        }
 
         private void Filter(string roomType)
         {
-            if (_listings == null || !_listings.Any()) return;
-
-            var filtered = _listings
-                .Where(l => l.RoomType.ToLower() == roomType.ToLower())
-                .ToList();
-
-            _filteredListings.Clear();
-            foreach (var item in filtered)
-            {
-                _filteredListings.Add(item);
-            }
-
-            MainCollectionView.ItemsSource = _filteredListings;
-
+            _selectedRoomType = roomType;
+            FilterListings();
         }
 
+        private void FilterListings ()
+        {
+            var filtered = _listings
+                 .Where(l => l.RoomType == _selectedRoomType)
+                 .ToList();
+            // Use ObservableCollection for UI reactivity
+            MainCollectionView.ItemsSource = new ObservableCollection<Listing>(filtered);
+        }
 
         private async void OnViewBookingTapped(object sender, EventArgs e)
         {
+
             await Navigation.PushAsync(new ViewBooking());
         }
 
@@ -113,5 +95,11 @@ namespace RoomScout.Views.StudentSide
         {
             await DisplayAlert("Success", "Booking request submitted!", "OK");
         }
+        private void OnFilterImageClicked(object sender, EventArgs e)
+        {
+            buttonStack.IsVisible = !buttonStack.IsVisible;
+
+        }
+
     }
 }

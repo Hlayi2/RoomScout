@@ -4,11 +4,11 @@ namespace RoomScout.Models.Location
     public class RoomLocation
     {
         internal string Location;
-       // internal string RoomType;
+        internal string RoomType;
 
         public string Title { get; set; }
 
-        public string RoomType { get; set; }
+        
         public double Latitude { get; set; }
         public double Longitude { get; set; }
         public string Price { get; set; }
