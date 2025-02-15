@@ -1,16 +1,24 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using RoomScout.Views.StudentSide;
+using RoomScout.Interfaces;
+using RoomScout.Views.Auth;
+using System.Threading.Tasks;
 
 namespace RoomScout.ViewModels.Auth
 {
     public partial class LoginViewModel : ObservableObject
     {
+        private readonly IFirebaseAuthService _authService;
+        private readonly IFirebaseDataService _dataService;
+
         [ObservableProperty]
-        private string username = string.Empty;
+        private string email = string.Empty;
 
         [ObservableProperty]
         private string password = string.Empty;
+
+        [ObservableProperty]
+        private bool isLoggingIn;
 
         [ObservableProperty]
         private bool isPasswordHidden = true;
@@ -18,19 +26,11 @@ namespace RoomScout.ViewModels.Auth
         [ObservableProperty]
         private string eyeIcon = "eyeclosed.png";
 
-        [ObservableProperty]
-        private bool isLandlord;
-
-        [ObservableProperty]
-        private bool isTenant;
-
-        private readonly Dictionary<string, (string password, string role)> userCredentials = new Dictionary<string, (string password, string role)>
+        public LoginViewModel(IFirebaseAuthService authService, IFirebaseDataService dataService)
         {
-            { "Chantelle", ("123456", "Landlord") },
-            { "Katlego", ("kat@123", "Tenant") },
-            { "Marvin", ("Moagi", "Landlord") },
-            { "Moloko", ("1234", "Tenant") },
-        };
+            _authService = authService;
+            _dataService = dataService;
+        }
 
         [RelayCommand]
         private void TogglePassword()
@@ -40,66 +40,73 @@ namespace RoomScout.ViewModels.Auth
         }
 
         [RelayCommand]
+        private async Task NavigateToSignUp()
+        {
+            await Shell.Current.GoToAsync(nameof(RegisterPage));
+        }
+
+        [RelayCommand]
         private async Task LoginAsync()
         {
-            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(Password))
-            {
-                await App.Current.MainPage.DisplayAlert("Error", "Please enter both username and password.", "OK");
+            if (IsLoggingIn) return;
+
+            if (!ValidateInputs())
                 return;
-            }
 
-            if (!userCredentials.ContainsKey(username))
+            try
             {
-                await App.Current.MainPage.DisplayAlert("Error", "Invalid username.", "OK");
-                return;
+                IsLoggingIn = true;
+                var authResult = await _authService.SignInWithEmailAndPasswordAsync(Email.Trim(), Password);
+                await SecureStorage.SetAsync("uid", authResult.User.LocalId);
+                var profile = await _dataService.GetUserProfileAsync(authResult.User.LocalId);
+                await SecureStorage.SetAsync("userRole", profile.Role);
+                var route = profile.Role == "Landlord" ? "///landlord" : "///tenant";
+                await Shell.Current.GoToAsync(route);
             }
-
-            var user = userCredentials[username];
-            if (user.password != password)
+            catch (Exception ex)
             {
-                await App.Current.MainPage.DisplayAlert("Error", "Invalid password.", "OK");
-                return;
+                await App.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
             }
-
-            await App.Current.MainPage.DisplayAlert("Success", $"Logged in as {user.role}.", "OK");
-
-            if (user.role == "Landlord")
+            finally
             {
-                await Shell.Current.GoToAsync("///landlord");
-            }
-            else if (user.role == "Tenant")
-            {
-                await Shell.Current.GoToAsync("///student");
+                IsLoggingIn = false;
             }
         }
 
         [RelayCommand]
         private async Task ForgotPasswordAsync()
         {
-            await App.Current.MainPage.DisplayAlert("Forgot Password", "Redirecting to password recovery page.", "OK");
+            if (string.IsNullOrWhiteSpace(Email))
+            {
+                await App.Current.MainPage.DisplayAlert("Error", "Please enter your email", "OK");
+                return;
+            }
+            try
+            {
+                await _authService.SendPasswordResetEmailAsync(Email);
+                await App.Current.MainPage.DisplayAlert("Success", "Password reset email sent", "OK");
+            }
+            catch (Exception ex)
+            {
+                await App.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
+            }
         }
 
-        [RelayCommand]
-        private async Task GoogleLoginAsync()
+        private bool ValidateInputs()
         {
-            await App.Current.MainPage.DisplayAlert("Google Login", "You will be redirected in 2 seconds.", "OK");
-        }
+            if (string.IsNullOrWhiteSpace(Email))
+            {
+                App.Current.MainPage.DisplayAlert("Error", "Please enter your email", "OK");
+                return false;
+            }
 
-        [RelayCommand]
-        private async Task FacebookLoginAsync()
-        {
-            await App.Current.MainPage.DisplayAlert("Facebook Login", "You will be redirected in 2 seconds.", "OK");
-        }
+            if (string.IsNullOrWhiteSpace(Password))
+            {
+                App.Current.MainPage.DisplayAlert("Error", "Please enter your password", "OK");
+                return false;
+            }
 
-        [RelayCommand]
-        private async Task NavigateToSignUpAsync()
-        {
-            await Shell.Current.GoToAsync("register");
+            return true;
         }
     }
 }
-
-
-
-
-

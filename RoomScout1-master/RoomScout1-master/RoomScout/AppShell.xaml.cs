@@ -12,8 +12,8 @@ namespace RoomScout
 
             // Auth Routes
             Routing.RegisterRoute(nameof(LandingPage), typeof(LandingPage));
-            Routing.RegisterRoute("register", typeof(RoomScout.Views.Auth.RegisterPage));
-            Routing.RegisterRoute("login", typeof(RoomScout.Views.Auth.LoginPage));
+            Routing.RegisterRoute(nameof(RegisterPage), typeof(RoomScout.Views.Auth.RegisterPage));
+            Routing.RegisterRoute(nameof(LoginPage), typeof(RoomScout.Views.Auth.LoginPage));
             Routing.RegisterRoute("landlordDashboard", typeof(RoomScout.Views.AdminSide.LandlordDashboardPage));
             Routing.RegisterRoute("browseListings", typeof(RoomScout.Views.StudentSide.BrowseListingsPage));
             Routing.RegisterRoute("nearby", typeof(RoomScout.Views.StudentSide.NearByPage));

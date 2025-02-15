@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RoomScout.Services.Auth
+namespace RoomScout.Interfaces
 {
     internal class IAuthService
     {

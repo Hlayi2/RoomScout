@@ -1,147 +1,192 @@
-﻿using CommunityToolkit.Mvvm.Input;
-using RoomScout.Views.Auth;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using RoomScout.Interfaces;
+using RoomScout.Models;
+using RoomScout.Models.Enums;
+using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
-using System.Windows.Input;
 
 namespace RoomScout.ViewModels.Auth
 {
-    public partial class RegisterViewModel : BindableObject
+    public partial class RegisterViewModel : ObservableObject
     {
+        private readonly IFirebaseAuthService _authService;
+        private readonly IFirebaseDataService _dataService;
 
+        [ObservableProperty]
+        private string email = string.Empty;
 
-        // Bindable properties
-        public string Email { get; set; } = string.Empty;
-        public string Phone { get; set; } = string.Empty;
-        public string Password { get; set; } = string.Empty;
-        public string ConfirmPassword { get; set; } = string.Empty;
-        public string Role { get; set; }
+        [ObservableProperty]
+        private string password = string.Empty;
 
-        private bool _isPasswordHidden = true;
+        [ObservableProperty]
+        private string confirmPassword = string.Empty;
 
-        private bool _isConfirmPasswordHidden = true;
+        [ObservableProperty]
+        private string phoneNumber = string.Empty;
 
-        private string _passwordEyeIcon = "eyeclosed.png";
+        [ObservableProperty]
+        private string selectedRole = "Tenant";
 
-        private string _confirmPasswordEyeIcon = "eyeclosed.png";
+        [ObservableProperty]
+        private bool isRegistering;
 
+        [ObservableProperty]
+        private bool isPasswordVisible;
 
-        public bool IsPasswordHidden
+        [ObservableProperty]
+        private bool isConfirmPasswordVisible;
+
+        [ObservableProperty]
+        private string eyeIcon = "eyeclosed.png";
+
+        public ObservableCollection<string> AvailableRoles { get; } = new ObservableCollection<string>
         {
-            get => _isPasswordHidden;
-            set
+            "Tenant",
+            "Landlord"
+        };
+
+        public RegisterViewModel(IFirebaseAuthService authService, IFirebaseDataService dataService)
+        {
+            _authService = authService;
+            _dataService = dataService;
+        }
+
+        [RelayCommand]
+        private async Task NavigateToLogin()
+        {
+            await Shell.Current.GoToAsync("..");
+        }
+
+        [RelayCommand]
+        private void TogglePasswordVisibility()
+        {
+            IsPasswordVisible = !IsPasswordVisible;
+            EyeIcon = IsPasswordVisible ? "eyeopen.png" : "eyeclosed.png";
+        }
+
+        [RelayCommand]
+        private async Task RegisterAsync()
+        {
+            if (IsRegistering) return;
+
+            if (!ValidateInputs())
+                return;
+
+            try
             {
-                _isPasswordHidden = value;
-                OnPropertyChanged(nameof(IsPasswordHidden));
-                EyeIcon = _isPasswordHidden ? "eyeclosed.png" : "eyeopen.png";
+                IsRegistering = true;
+
+                var authResult = await _authService.RegisterWithEmailAndPasswordAsync(
+                    Email.Trim(),
+                    Password
+                );
+
+                var request = new RegisterRequest
+                {
+                    Email = Email.Trim(),
+                    PhoneNumber = PhoneNumber.Trim(),
+                    Role = SelectedRole == "Landlord" ? UserRole.Landlord : UserRole.Tenant,
+                    CreatedAt = DateTime.UtcNow
+                };
+
+                await _dataService.CreateUserProfileAsync(authResult.User.LocalId, request);
+                await SecureStorage.SetAsync("uid", authResult.User.LocalId);
+                await SecureStorage.SetAsync("userRole", SelectedRole);
+
+                var route = SelectedRole == "Landlord" ? "///landlord" : "///tenant";
+                await Shell.Current.GoToAsync(route);
+            }
+            catch (Exception ex)
+            {
+                await App.Current.MainPage.DisplayAlert("Registration Error", GetUserFriendlyErrorMessage(ex.Message), "OK");
+            }
+            finally
+            {
+                IsRegistering = false;
             }
         }
 
-        public string EyeIcon
+        private bool ValidateInputs()
         {
-            get => _passwordEyeIcon;
-            set
+            // Email validation
+            if (string.IsNullOrWhiteSpace(Email))
             {
-                _passwordEyeIcon = value;
-                OnPropertyChanged(nameof(EyeIcon));
-            }
-        }
-
-        public bool IsConfirmPasswordHidden
-        {
-            get => _isConfirmPasswordHidden;
-            set
-            {
-                _isConfirmPasswordHidden = value;
-                OnPropertyChanged(nameof(IsConfirmPasswordHidden));
-                ConfirmPasswordEyeIcon = _isConfirmPasswordHidden ? "eyeclosed.png" : "eyeopen.png";
-            }
-        }
-
-        public string ConfirmPasswordEyeIcon
-        {
-            get => _confirmPasswordEyeIcon;
-            set
-            {
-                _confirmPasswordEyeIcon = value;
-                OnPropertyChanged(nameof(ConfirmPasswordEyeIcon));
-            }
-        }
-
-        // Commands for toggling visibility
-        public ICommand TogglePasswordVisibilityCommand { get; }
-        public ICommand ToggleConfirmPasswordVisibilityCommand { get; }
-
-        // Constructor
-        public RegisterViewModel()
-        {
-            TogglePasswordVisibilityCommand = new RelayCommand(() => IsPasswordHidden = !IsPasswordHidden);
-            ToggleConfirmPasswordVisibilityCommand = new RelayCommand(() => IsConfirmPasswordHidden = !IsConfirmPasswordHidden);
-        }
-        // Validate the form data
-        public bool ValidateForm()
-        {
-            // Validate Email
-            if (string.IsNullOrEmpty(Email) || !IsValidEmail(Email))
-            {
-                Application.Current.MainPage.DisplayAlert("Error", "Please enter a valid email address.", "OK");
+                ShowError("Please enter your email address.");
                 return false;
             }
 
-            // Validate Phone
-            if (string.IsNullOrEmpty(Phone) || !IsValidPhone(Phone))
+            var emailPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+            if (!Regex.IsMatch(Email, emailPattern))
             {
-                Application.Current.MainPage.DisplayAlert("Error", "Please enter a valid phone number.", "OK");
+                ShowError("Please enter a valid email address.");
                 return false;
             }
 
-            // Validate Password match
+            // Phone validation
+            if (string.IsNullOrWhiteSpace(PhoneNumber))
+            {
+                ShowError("Please enter your phone number.");
+                return false;
+            }
+
+            var phonePattern = @"^\+?[\d\s-]{10,}$";
+            if (!Regex.IsMatch(PhoneNumber, phonePattern))
+            {
+                ShowError("Please enter a valid phone number.");
+                return false;
+            }
+
+            // Password validation
+            if (string.IsNullOrWhiteSpace(Password))
+            {
+                ShowError("Please enter a password.");
+                return false;
+            }
+
+            if (Password.Length < 6)
+            {
+                ShowError("Password must be at least 6 characters long.");
+                return false;
+            }
+
             if (Password != ConfirmPassword)
             {
-                Application.Current.MainPage.DisplayAlert("Error", "Passwords do not match.", "OK");
+                ShowError("Passwords do not match.");
                 return false;
             }
 
-            // Validate Password strength
-            if (string.IsNullOrEmpty(Password) || Password.Length < 6)
+            // Role validation
+            if (string.IsNullOrWhiteSpace(SelectedRole))
             {
-                Application.Current.MainPage.DisplayAlert("Error", "Password must be at least 6 characters.", "OK");
+                ShowError("Please select a role.");
                 return false;
             }
 
             return true;
         }
 
-        // Validate email format using regex
-        private bool IsValidEmail(string email)
+        private async void ShowError(string message)
         {
-            string emailPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
-            return Regex.IsMatch(email, emailPattern);
+            await App.Current.MainPage.DisplayAlert("Error", message, "OK");
         }
 
-        // Validate phone number format using regex
-        private bool IsValidPhone(string phone)
+        private string GetUserFriendlyErrorMessage(string errorMessage)
         {
-            if (!phone.StartsWith("+27"))
+            return errorMessage switch
             {
-                phone = "+27" + phone.TrimStart('0'); 
-            }
-
-            string phonePattern = @"^\+27\d{9}$"; 
-            return Regex.IsMatch(phone, phonePattern);
-        }
-
-        // Handle user registration
-        public async Task RegisterUser()
-        {
-            if (!ValidateForm()) return;  // Validate form first
-
-            // Simulate registration success 
-            await Application.Current.MainPage.DisplayAlert("Success", "Registration Successful", "OK");
-
-            // Navigate to the login page after registration
-            await Application.Current.MainPage.Navigation.PushAsync(new LoginPage());
+                var msg when msg.Contains("EMAIL_EXISTS") =>
+                    "This email is already registered. Please use a different email or try logging in.",
+                var msg when msg.Contains("INVALID_EMAIL") =>
+                    "Please enter a valid email address.",
+                var msg when msg.Contains("WEAK_PASSWORD") =>
+                    "Please choose a stronger password. It should be at least 6 characters long.",
+                var msg when msg.Contains("OPERATION_NOT_ALLOWED") =>
+                    "Account creation is currently disabled. Please try again later.",
+                var msg when msg.Contains("TOO_MANY_ATTEMPTS_TRY_LATER") =>
+                    "Too many attempts. Please try again later.",
+                _ => "An error occurred during registration. Please try again."
+            };
         }
     }
-
 }
-

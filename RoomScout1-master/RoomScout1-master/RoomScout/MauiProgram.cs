@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
+using RoomScout.Interfaces;
+using RoomScout.Services.Auth;
 using RoomScout.ViewModels.Auth;
 using RoomScout.ViewModels.StudentSide;
 using RoomScout.Views.Auth;
@@ -19,11 +21,17 @@ namespace RoomScout
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+            builder.Services.AddSingleton<IFirebaseAuthService, FirebaseAuthService>();
+            builder.Services.AddSingleton<IFirebaseDataService, FirebaseDataService>();
 
 
             builder.Services.AddSingleton<BrowseListingsViewModel>();
             builder.Services.AddSingleton<BrowseListingsPage>();
-           
+            builder.Services.AddTransient<LoginPage>();
+            builder.Services.AddTransient<LoginViewModel>();
+            builder.Services.AddTransient<RegisterPage>();
+            builder.Services.AddTransient<RegisterViewModel>();
+
 #if DEBUG
             builder.Logging.AddDebug();
 #endif

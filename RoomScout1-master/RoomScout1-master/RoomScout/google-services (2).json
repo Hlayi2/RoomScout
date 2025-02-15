@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "879885682345",
+    "firebase_url": "https://roomscout-a194c-default-rtdb.firebaseio.com",
+    "project_id": "roomscout-a194c",
+    "storage_bucket": "roomscout-a194c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:879885682345:android:1d17ba29eb965cfd1a4bb8",
+        "android_client_info": {
+          "package_name": "SHA.APP.ROOMSCOUT"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDCTC30yoZRMFqBEuM_vAL5Y1uqkwE4Bo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

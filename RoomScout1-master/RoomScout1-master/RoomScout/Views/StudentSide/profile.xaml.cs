@@ -80,7 +80,7 @@ public partial class profile : ContentPage
             // For example, you might want to clear user data or token if using authentication
 
             // Navigate to the LoginPage
-            await Navigation.PushAsync(new LoginPage());
+            await Shell.Current.GoToAsync(nameof(LoginPage));
         }
     }
 

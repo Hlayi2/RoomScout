@@ -1,71 +1,30 @@
 using RoomScout.ViewModels.Auth;
-using RoomScout.Views.AdminSide;
-namespace RoomScout.Views.Auth;
+using Microsoft.Maui.Controls;
 
-public partial class RegisterPage : ContentPage
+namespace RoomScout.Views.Auth
 {
-  
-
-    // Constructor for the RegisterPage
-    public RegisterPage()
+    public partial class RegisterPage : ContentPage
     {
-        InitializeComponent();
-
-        BindingContext = new RegisterViewModel();
-
-    }
-
-
-    // Event handler for Register button
-    private async void OnRegisterButtonClicked(object sender, EventArgs e)
-    {
-        if (RolePicker.SelectedItem == null)
+        public RegisterPage()
         {
-            await DisplayAlert("Error", "Please select a role to register.", "OK");
-            return;
+            InitializeComponent();
+            BindingContext = new RegisterViewModel(
+                App.AuthService,
+                App.DataService
+            );
         }
 
-        string selectedRole = RolePicker.SelectedItem.ToString();
-        if (selectedRole == "Register as a Landlord")
+        private void OnPasswordVisibilityToggle(object sender, EventArgs e)
         {
-            await DisplayAlert("Success", "You have successfully registered as a Landlord", "OK");
-            await Shell.Current.GoToAsync("///landlord"); // Navigate to TabBar
-        }
-        else if (selectedRole == "Register as a Tenant")
-        {
-            await DisplayAlert("Success", "You have successfully registered as a Tenant", "OK");
-            await Shell.Current.GoToAsync("browseListings");
-        }
-        else
-        {
-            await DisplayAlert("Error", "Invalid role selected.", "OK");
-        }
-    }
-
-    // Event handler for SignIn button
-    private async void OnSignInClicked(object sender, EventArgs e)
-    {
-        await Navigation.PushAsync(new LoginPage());
-    }
-
-    // Event handler for password visibility toggle
-    private void OnPasswordVisibilityToggle(object sender, EventArgs e)
-    {
-        if (sender is ImageButton button)
-        {
-            var targetEntry = button.CommandParameter as Entry;
-            if (targetEntry != null)
+            if (sender is ImageButton button && button.CommandParameter is Entry targetEntry)
             {
                 targetEntry.IsPassword = !targetEntry.IsPassword;
                 button.Source = targetEntry.IsPassword ? "eyeclosed.png" : "eyeopen.png";
             }
-
         }
-
+        private async void OnSignInClicked(object sender, System.EventArgs e)
+        {
+            await Shell.Current.GoToAsync(nameof(LoginPage));
+        }
     }
-   
-
 }
-
-
-

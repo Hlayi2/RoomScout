@@ -1,22 +1,21 @@
-namespace RoomScout.Views.Auth;
-
 using RoomScout.ViewModels.Auth;
+using RoomScout.Services.Auth;
+using Microsoft.Maui.Controls;
 
-
-
-public partial class LoginPage : ContentPage
+namespace RoomScout.Views.Auth
 {
-    public LoginPage()
+    public partial class LoginPage : ContentPage
     {
-        InitializeComponent();
-        BindingContext = new LoginViewModel();
-    }
+        public LoginPage(LoginViewModel viewModel)
+        {
+            InitializeComponent();
+            BindingContext = viewModel;
+        }
 
-    protected override void OnAppearing()
-    {
-        base.OnAppearing();
-        Shell.Current.FlyoutBehavior = FlyoutBehavior.Disabled;
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            Shell.Current.FlyoutBehavior = FlyoutBehavior.Disabled;
+        }
     }
-
 }
-
