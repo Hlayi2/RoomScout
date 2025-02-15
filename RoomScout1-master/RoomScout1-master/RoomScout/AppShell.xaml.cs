@@ -15,7 +15,7 @@ namespace RoomScout
             Routing.RegisterRoute(nameof(RegisterPage), typeof(RoomScout.Views.Auth.RegisterPage));
             Routing.RegisterRoute(nameof(LoginPage), typeof(RoomScout.Views.Auth.LoginPage));
             Routing.RegisterRoute("landlordDashboard", typeof(RoomScout.Views.AdminSide.LandlordDashboardPage));
-            Routing.RegisterRoute("browseListings", typeof(RoomScout.Views.StudentSide.BrowseListingsPage));
+            Routing.RegisterRoute("BrowseListingsPage", typeof(RoomScout.Views.StudentSide.BrowseListingsPage));
             Routing.RegisterRoute("nearby", typeof(RoomScout.Views.StudentSide.NearByPage));
             Routing.RegisterRoute("updateProfile", typeof(RoomScout.Views.StudentSide.UpdateProfilePage));
             Routing.RegisterRoute("appointments", typeof(RoomScout.Views.StudentSide.Appointments));

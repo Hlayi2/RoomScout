@@ -1,4 +1,5 @@
 ﻿using RoomScout.Interfaces;
+using RoomScout.Services;
 using RoomScout.Services.Auth;
 using RoomScout.Views.Auth;
 

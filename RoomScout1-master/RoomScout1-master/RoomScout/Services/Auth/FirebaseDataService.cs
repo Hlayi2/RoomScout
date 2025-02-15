@@ -24,7 +24,7 @@ namespace RoomScout.Services.Auth
             {
                 Uid = userId,
                 Email = request.Email,
-                FullName = request.FullName,
+                PhoneNumber = request.PhoneNumber,
                 Role = request.Role.ToString(),
                 CreatedAt = DateTime.UtcNow
             };

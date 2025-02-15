@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using RoomScout.Interfaces;
+using RoomScout.Services;
 using RoomScout.Services.Auth;
 using RoomScout.ViewModels.Auth;
 using RoomScout.ViewModels.StudentSide;
