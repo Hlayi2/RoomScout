@@ -221,45 +221,7 @@
                            Grid.Row="1" Grid.Column="5" 
                            Margin="-20,0,0,0"/>
 
-                    <!-- Row 2 -->
-                    <CheckBox Grid.Row="2" Grid.Column="0" x:Name="ChairCheck" VerticalOptions="Center"/>
-                    <Label Text="Chair" TextColor="White" VerticalOptions="Center" Grid.Row="2" Grid.Column="1"/>
-
-                    <CheckBox Grid.Row="2" Grid.Column="2" x:Name="SinkCheck" VerticalOptions="Center"/>
-                    <Label Text="Sink" TextColor="White" VerticalOptions="Center" Grid.Row="2" Grid.Column="3"/>
-
-                    <CheckBox Grid.Row="2" Grid.Column="4" x:Name="SharedKitchenCheck" VerticalOptions="Center"/>
-                    <Label Text="Shared Kitchen" TextColor="White" VerticalOptions="Center" Grid.Row="2" Grid.Column="5"/>
-
-                    <!-- Row 3 -->
-                    <CheckBox Grid.Row="3" Grid.Column="0" x:Name="KitchenetteCheck" VerticalOptions="Center"/>
-                    <Label Text="Kitchenette" TextColor="White" VerticalOptions="Center" Grid.Row="3" Grid.Column="1"/>
-
-                    <CheckBox Grid.Row="3" Grid.Column="2" x:Name="SecurityCheck" VerticalOptions="Center"/>
-                    <Label Text="Security" TextColor="White" VerticalOptions="Center" Grid.Row="3" Grid.Column="3"/>
-
-                    <CheckBox Grid.Row="3" Grid.Column="4" x:Name=" BackUpWaterCheck" VerticalOptions="Center"/>
-                    <Label Text="Back-Up Water" TextColor="White" VerticalOptions="Center" Grid.Row="3" Grid.Column="5"/>
-
-                    <!-- Row 4 -->
-                    <CheckBox Grid.Row="4" Grid.Column="0" x:Name="BackUpElectrictyCheck" VerticalOptions="Center"/>
-                    <Label Text="Back-Up Electricty" TextColor="White" VerticalOptions="Center" Grid.Row="4" Grid.Column="1"/>
-
-                    <CheckBox Grid.Row="4" Grid.Column="2" x:Name="NoShowersCheck" VerticalOptions="Center"/>
-                    <Label Text="NoShowers" TextColor="White" VerticalOptions="Center" Grid.Row="4" Grid.Column="3"/>
-
-                    <CheckBox Grid.Row="4" Grid.Column="4" x:Name="PayWifiCheck" VerticalOptions="Center"/>
-                    <Label Text="No Wifi" TextColor="White" VerticalOptions="Center" Grid.Row="4" Grid.Column="5"/>
-
-                    <!-- Row 5 -->
-                    <CheckBox Grid.Row="5" Grid.Column="0" x:Name="NoChairCheck" VerticalOptions="Center"/>
-                    <Label Text="No Chair" TextColor="White" VerticalOptions="Center" Grid.Row="5" Grid.Column="1"/>
-
-                    <CheckBox Grid.Row="5" Grid.Column="2" x:Name="NoStudyTableCheck" VerticalOptions="Center"/>
-                    <Label Text="No Study table" TextColor="White" VerticalOptions="Center" Grid.Row="5" Grid.Column="3"/>
-
-                    <CheckBox Grid.Row="5" Grid.Column="4" x:Name="BringOwnBedCheck" VerticalOptions="Center"/>
-                    <Label Text="Bring own bed" TextColor="White" VerticalOptions="Center" Grid.Row="5" Grid.Column="5"/>
+                    <!-- Add remaining pros rows... -->
                 </Grid>
             </Frame>
 
