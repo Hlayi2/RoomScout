@@ -221,7 +221,7 @@
                            Grid.Row="1" Grid.Column="5" 
                            Margin="-20,0,0,0"/>
 
-                    <!-- Add remaining pros rows... -->
+                    
                 </Grid>
             </Frame>
 
