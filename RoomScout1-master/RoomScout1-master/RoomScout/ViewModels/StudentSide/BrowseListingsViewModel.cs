@@ -1,8 +1,10 @@
 ﻿using System.Collections.ObjectModel;
+using RoomScout.Models.AdminSide;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.Controls.Compatibility;
 using RoomScout.Models.Location;
+using RoomScout.Views.AdminSide;
 
 namespace RoomScout.ViewModels.StudentSide
 {
@@ -60,7 +62,7 @@ namespace RoomScout.ViewModels.StudentSide
                     Price = "1000.00",
                     Images = new List<string> { "single10.png", "single11.png" },
                     Description = "Comfortable single room near campus",
-                    Amenities = new List<string> { "WiFi", "Furnished" }
+                    Amenities = new AmenitiesData { Wifi = true, BackUpElectricty = true ,Bed = true } ,
                 },
                 // Add other rooms following the same pattern
                 new RoomLocation
@@ -72,7 +74,7 @@ namespace RoomScout.ViewModels.StudentSide
                     Price = "1600.00",
                     Images = new List<string> { "img10.png", "img11.png" },
                     Description = "Spacious bachelor apartment",
-                    Amenities = new List<string> { "Kitchen", "Parking" }
+                    Amenities = new AmenitiesData {Bed = true, Kitchenette = true, FreeElectricity = true }
                 }
             });
         }

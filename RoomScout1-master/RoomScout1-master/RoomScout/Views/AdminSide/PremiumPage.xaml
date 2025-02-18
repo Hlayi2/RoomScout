@@ -134,6 +134,8 @@
                                TextColor="White" />
                         <Label Text="• In-app Communication with potential tenants."
                                TextColor="White" />
+                        <Label Text="• Upload lease agreement for signing."
+                               TextColor="White" />
                         <Label Text="• Control listing availability."
                                TextColor="White" />
                         <Label Text="• Get listing Ratings"

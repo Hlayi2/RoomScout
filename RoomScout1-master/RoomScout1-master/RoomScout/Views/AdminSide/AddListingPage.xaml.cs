@@ -247,7 +247,7 @@ namespace RoomScout.Views.AdminSide
 
             var listingData = new Listing // Use your Listing model
             {
-                Location = new LocationData // Create LocationData class if missing
+                Address = new LocationData // Create LocationData class if missing
                 {
                     Coordinates = CoordinatesEntry.Text,
                     Street = StreetEntry.Text,

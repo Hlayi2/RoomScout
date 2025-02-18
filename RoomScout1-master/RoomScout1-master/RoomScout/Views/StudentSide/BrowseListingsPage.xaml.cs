@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using Microsoft.Maui.Controls;
 using System;
 using System.Threading.Tasks;
+using RoomScout.Views.AdminSide;
+using RoomScout.Models.Location;
 
 namespace RoomScout.Views.StudentSide
 {
@@ -37,13 +39,14 @@ namespace RoomScout.Views.StudentSide
                         RoomType = item.Object.RoomType,
                         Images = item.Object.Images,
                         Price = item.Object.Price,
-                        Amenities =item.Object.Amenities,
+                       Address = item.Object.Address ?? new LocationData(),
+                        Amenities = item.Object.Amenities ?? new AmenitiesData()
 
 
                     })
                     .ToList();
 
-                _listings = new ObservableCollection<Listing>(firebaseListings);
+                _listings = new ObservableCollection<Listing>((IEnumerable<Listing>)firebaseListings);
                 MainCollectionView.ItemsSource = _listings;
               
             }
