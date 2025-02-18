@@ -4,6 +4,7 @@ using Firebase.Database.Query;
 using RoomScout.Interfaces;
 using RoomScout.Models;
 using System;
+using System.Diagnostics;
 
 namespace RoomScout.Services
 {
@@ -44,7 +45,13 @@ namespace RoomScout.Services
             }
             catch (FirebaseAuthException ex)
             {
+                Debug.WriteLine($"Firebase Auth Error: {ex.Message}");
                 throw new Exception(GetFriendlyError(ex.Reason.ToString()));
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"General Error: {ex.Message}");
+                throw new Exception("Registration failed. Please try again.");
             }
         }
 

@@ -22,10 +22,17 @@
         <Shell.BackButtonBehavior>
             <BackButtonBehavior IsEnabled="False" />
         </Shell.BackButtonBehavior>
+      
     </ShellContent>
 
-    
-    
+    <ShellContent
+            Title="tenant"
+            ContentTemplate="{DataTemplate studentViews:BrowseListingsPage}"
+            Route="browselistingsPage" />
+
+
+
+
     <!--Landlord Tab Navigation-->
     <!--Landlord Tab Navigation-->
     <TabBar Route="landlord" >
@@ -48,6 +55,30 @@
             <ShellContent 
             ContentTemplate="{DataTemplate adminViews:DashboardProfile}"
             Route="landlordProfile" />
+        </Tab>
+    </TabBar>
+
+    <!-- Tenant Tab Navigation -->
+    <TabBar Route="tenant">
+        <Tab Title="Listings" Icon="listings.png">
+            <ShellContent 
+            ContentTemplate="{DataTemplate studentViews:BrowseListingsPage}"
+            Route="browseListing" />
+        </Tab>
+        <Tab Title="Nearby" Icon="map.png">
+            <ShellContent 
+            ContentTemplate="{DataTemplate studentViews:NearByPage}"
+            Route="nearby" />
+        </Tab>
+        <Tab Title="Appointments" Icon="calendar.png">
+            <ShellContent 
+            ContentTemplate="{DataTemplate studentViews:Appointments}"
+            Route="appointments" />
+        </Tab>
+        <Tab Title="Profile" Icon="profile.png">
+            <ShellContent 
+            ContentTemplate="{DataTemplate studentViews:profile}"
+            Route="profile" />
         </Tab>
     </TabBar>
 

@@ -2,6 +2,7 @@ namespace RoomScout.Views.AdminSide;
 using RoomScout.Models.AdminSide;
 using RoomScout.ViewModels.AdminSide;
 using RoomScout.Views.Auth;
+using System.Diagnostics;
 
 public partial class DashboardProfile : ContentPage
 {
@@ -78,22 +79,34 @@ public partial class DashboardProfile : ContentPage
 
     private async void OnLogoutButtonClicked(object sender, EventArgs e)
     {
-        // Display the confirmation popup
-        bool isConfirmed = await DisplayAlert(
-            "Confirm Logout",  // Title of the dialog
-            "Are you sure you want to logout?",  // Message in the dialog
-            "Yes",  // Text for the confirmation button
-            "No"   // Text for the cancel button
-        );
-
-        // If the user clicked "Yes", navigate to the LoginPage
-        if (isConfirmed)
+        try
         {
-            // Perform logout (clear any session or authentication data here)
-            // For example, you might want to clear user data or token if using authentication
+            // Display the confirmation popup
+            bool isConfirmed = await DisplayAlert(
+                "Confirm Logout",  // Title of the dialog
+                "Are you sure you want to logout?",  // Message in the dialog
+                "Yes",  // Text for the confirmation button
+                "No"   // Text for the cancel button
+            );
 
-            // Navigate to the LoginPage
-            await Navigation.PushAsync(new ());
+            // If the user clicked "Yes", logout and navigate to login page
+            if (isConfirmed)
+            {
+                // Clear secure storage
+                SecureStorage.RemoveAll();
+
+                // Use Shell navigation to return to login page
+                await Shell.Current.GoToAsync("//login");
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Logout error: {ex.Message}");
+            Debug.WriteLine($"Stack trace: {ex.StackTrace}");
+
+            // Fallback to resetting the application if navigation fails
+            await DisplayAlert("Error", "An error occurred during logout. The app will restart.", "OK");
+            Application.Current.MainPage = new AppShell();
         }
     }
 

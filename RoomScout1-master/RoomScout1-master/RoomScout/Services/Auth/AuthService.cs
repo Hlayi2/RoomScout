@@ -5,7 +5,7 @@ using RoomScout.Services.Auth;
 
 namespace RoomScout.Services
 {
-    public class AuthService
+    public partial class AuthService
     {
         // Explicitly use Firebase.Auth.FirebaseConfig
         private readonly FirebaseAuthProvider _authProvider = new FirebaseAuthProvider(

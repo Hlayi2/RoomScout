@@ -24,7 +24,7 @@
                     Padding="20,5">
              <Entry Placeholder="Username"
                     PlaceholderColor="#6B7280"
-                    Text="{Binding Username}"
+                    Text="{Binding Email}"
                     TextColor="Black"/>
             </Border>
 

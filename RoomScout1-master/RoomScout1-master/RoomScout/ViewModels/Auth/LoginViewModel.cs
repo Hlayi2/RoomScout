@@ -60,7 +60,7 @@ namespace RoomScout.ViewModels.Auth
                 await SecureStorage.SetAsync("uid", authResult.User.LocalId);
                 var profile = await _dataService.GetUserProfileAsync(authResult.User.LocalId);
                 await SecureStorage.SetAsync("userRole", profile.Role);
-                var route = profile.Role == "Landlord" ? "///landlord" : "///tenant";
+                var route = profile.Role == "Landlord" ? "//landlord" : "//tenant";
                 await Shell.Current.GoToAsync(route);
             }
             catch (Exception ex)
