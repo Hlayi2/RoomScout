@@ -235,6 +235,7 @@
                        HorizontalOptions="Center" />
                             <Button Text="Start 7-day free trial"
                         BackgroundColor="#27AE60"
+                         Clicked="OnUpgradeButtonClicked"           
                         TextColor="White"
                         FontSize="16"
                         CornerRadius="10"

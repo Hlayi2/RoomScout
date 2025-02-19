@@ -44,6 +44,9 @@ namespace RoomScout
             Routing.RegisterRoute("settings", typeof(DashboardProfile));
             Routing.RegisterRoute("AddListingPage", typeof(AddListingPage));
 
+            // Registering Payment GateWay
+            Routing.RegisterRoute("paypal", typeof(RoomScout.Views.PayPalPage));
+
             CurrentItem = new ShellContent
             {
                 Content = new LandingPage()
