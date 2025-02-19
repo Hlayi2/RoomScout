@@ -146,6 +146,9 @@
 	  <MauiXaml Update="Views\CategoryPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\PayPalPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\StudentSide\Appointments.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

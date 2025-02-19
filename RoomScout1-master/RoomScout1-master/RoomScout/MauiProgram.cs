@@ -2,8 +2,10 @@
 using RoomScout.Interfaces;
 using RoomScout.Services;
 using RoomScout.Services.Auth;
+using RoomScout.ViewModels;
 using RoomScout.ViewModels.Auth;
 using RoomScout.ViewModels.StudentSide;
+using RoomScout.Views;
 using RoomScout.Views.Auth;
 using RoomScout.Views.StudentSide;
 
@@ -33,6 +35,10 @@ namespace RoomScout
             builder.Services.AddTransient<RegisterPage>();
             builder.Services.AddTransient<RegisterViewModel>();
 
+            builder.Services.AddTransient<PayPalViewModel>();
+            builder.Services.AddTransient<PayPalPage>();
+            // Register the PayPal service implementation
+            builder.Services.AddSingleton<IPayPalService, PayPalService>();
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
