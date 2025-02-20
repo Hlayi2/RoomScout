@@ -93,6 +93,13 @@
               TextColor="White"
               FontAttributes="Bold"/>
         </Grid>
+        <Button Text="Back"
+        BackgroundColor="#7ED4AD"
+         WidthRequest="70"
+         CornerRadius="10"
+         HeightRequest="35"
+         Margin="-310,0,0,0"
+         Clicked="OnBackClicked"/>
     </VerticalStackLayout>
 
 </ContentPage>

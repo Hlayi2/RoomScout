@@ -78,7 +78,7 @@
             </Frame>
 
             <!-- Contact Numbers Section -->
-            <Label Text="Contact Numbers:" 
+            <Label Text="Contact Number:" 
                    TextColor="White"
                    FontAttributes="Bold"/>
             <Frame BackgroundColor="#333333" 
@@ -87,43 +87,20 @@
                    CornerRadius="10">
                 <VerticalStackLayout Spacing="10">
                     <!-- Primary Contact -->
-                    <Grid ColumnDefinitions="*, Auto">
-                        <Entry Grid.Column="0"
-                               x:Name="PrimaryPhoneEntry"
-                               Placeholder="Primary Contact Number"
-                               PlaceholderColor="#666666"
-                               TextColor="White"
-                               BackgroundColor="#444444"
-                               Keyboard="Telephone"
-                               MaxLength="10"/>
-
-                        <Button Grid.Column="1"
+                    <Grid ColumnDefinitions="Auto, *">
+                        <Button Grid.Column="0"
                                 Text="📞"
                                 BackgroundColor="Transparent"
                                 TextColor="White"
-                                Margin="5,0,0,0"
-                                Clicked="OnDialNumberClicked"
-                                CommandParameter="{Binding Source={x:Reference PrimaryPhoneEntry}, Path=Text}"/>
-                    </Grid>
-
-                    <!-- Alternative Contact -->
-                    <Grid ColumnDefinitions="*, Auto">
-                        <Entry Grid.Column="0"
+                                Margin="5,0,0,0"/>
+                        <Entry Grid.Column="1"
                                x:Name="AlternativePhoneEntry"
-                               Placeholder="Alternative Contact Number (Optional)"
+                               Placeholder="Primary phone number"
                                PlaceholderColor="#666666"
                                TextColor="White"
                                BackgroundColor="#444444"
                                Keyboard="Telephone"
                                MaxLength="10"/>
-
-                        <Button Grid.Column="1"
-                                Text="📞"
-                                BackgroundColor="Transparent"
-                                TextColor="White"
-                                Margin="5,0,0,0"
-                                Clicked="OnDialNumberClicked"
-                                CommandParameter="{Binding Source={x:Reference AlternativePhoneEntry}, Path=Text}"/>
                     </Grid>
                 </VerticalStackLayout>
             </Frame>
@@ -297,6 +274,13 @@
                     FontAttributes="Bold"
                     Margin="0,20,0,0"
                     Clicked="OnSubmitClicked"/>
+
+            <Button Text="Back" 
+                    BackgroundColor="#81B7B7" 
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    Margin="0,20,0,0"
+                    Clicked="OnBackClicked"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

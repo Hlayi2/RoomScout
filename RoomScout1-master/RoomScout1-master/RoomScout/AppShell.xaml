@@ -65,15 +65,10 @@
             ContentTemplate="{DataTemplate studentViews:BrowseListingsPage}"
             Route="browseListing" />
         </Tab>
-        <Tab Title="Nearby" Icon="map.png">
-            <ShellContent 
-            ContentTemplate="{DataTemplate studentViews:NearByPage}"
-            Route="nearby" />
-        </Tab>
-        <Tab Title="Appointments" Icon="calendar.png">
+        <Tab Title="Activity" Icon="booking.png">
             <ShellContent 
             ContentTemplate="{DataTemplate studentViews:Appointments}"
-            Route="appointments" />
+            Route="appointments" /> 
         </Tab>
         <Tab Title="Profile" Icon="profile.png">
             <ShellContent 

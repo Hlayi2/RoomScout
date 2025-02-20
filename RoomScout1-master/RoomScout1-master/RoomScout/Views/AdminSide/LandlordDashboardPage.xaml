@@ -53,7 +53,7 @@
                     StrokeShape="RoundRectangle 15"
                     Margin="4"
                     Padding="5,5">
-                <Entry Text="{Binding FullNames}" BackgroundColor="White" Placeholder="Enter full names"/>
+                <Entry Text="{Binding FullNames}" BackgroundColor="White" Placeholder="Enter full names" TextColor="Black"/>
             </Border>
           
             <Label Text="Email Address:" TextColor="White"/>
@@ -63,7 +63,7 @@
                     StrokeShape="RoundRectangle 15"
                     Margin="4"
                     Padding="5,5">
-                <Entry Text="{Binding Email}" BackgroundColor="White" Placeholder="Enter email"/>
+                <Entry Text="{Binding Email}" BackgroundColor="White" Placeholder="Enter email" TextColor="Black"/>
             </Border>
 
             <Label Text="ID or Passport No:" TextColor="White"/>
@@ -73,7 +73,7 @@
                     StrokeShape="RoundRectangle 15"
                     Margin="4"
                     Padding="5,5">
-                <Entry Text="{Binding  IdOrPassportNo}" BackgroundColor="White" Placeholder="Enter ID/Passport number"/>
+                <Entry Text="{Binding  IdOrPassportNo}" BackgroundColor="White" Placeholder="Enter ID/Passport number" TextColor="Black"/>
             </Border>
            
 
@@ -95,7 +95,7 @@
                     StrokeShape="RoundRectangle 15"
                     Margin="4"
                     Padding="5,5">
-                <Entry Text="{Binding AccommodationName}" BackgroundColor="White" Placeholder="Enter accommodation name"/>
+                <Entry Text="{Binding AccommodationName}" BackgroundColor="White" Placeholder="Enter accommodation name" TextColor="Black"/>
             </Border>
           
             <Label Text="Physical Address" TextColor="White"/>
@@ -105,7 +105,7 @@
                     StrokeShape="RoundRectangle 15"
                     Margin="4"
                     Padding="5,5">
-                <Entry Text="{Binding Address}"  BackgroundColor="White" Placeholder="Enter address"/>
+                <Entry Text="{Binding Address}"  BackgroundColor="White" Placeholder="Enter address" TextColor="Black"/>
             </Border>
            
 
