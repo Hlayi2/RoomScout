@@ -1,56 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RoomScout.Models.AdminSide
 {
     public class BookingRequest : INotifyPropertyChanged
     {
-        private bool _isDateTimeVisible;
+        private string _status;
         private string _confirmationMessage;
+        private Color _statusColor;
+        private bool _isDateTimeVisible;
+        private string _additionalInformation;
 
-        public string Name { get; set; }
-        public string ProfilePicture { get; set; }
-        public string AdditionalInformation { get; set; }
-        public DateTime Date { get; set; }
-        public TimeSpan Time { get; set; }
-
-        public bool IsDateTimeVisible
+        public string Key { get; set; }
+        public string RoomId { get; set; }
+        public string UserId { get; set; }
+        public string Status
         {
-            get => _isDateTimeVisible;
+            get => _status;
             set
             {
-                _isDateTimeVisible = value;
+                _status = value;
                 OnPropertyChanged();
             }
         }
-
-        private bool _isImageVisible = true;
-        public bool IsImageVisible
-        {
-            get => _isImageVisible;
-            set
-            {
-                _isImageVisible = value;
-                OnPropertyChanged(nameof(IsImageVisible));
-            }
-        }
-
-        private bool _areButtonsVisible = true;
-        public bool AreButtonsVisible
-        {
-            get => _areButtonsVisible;
-            set
-            {
-                _areButtonsVisible = value;
-                OnPropertyChanged(nameof(AreButtonsVisible));
-            }
-        }
-
+        public DateTime Timestamp { get; set; }
+        public string Name { get; set; }
+        public string ProfilePicture { get; set; }
         public string ConfirmationMessage
         {
             get => _confirmationMessage;
@@ -60,13 +36,40 @@ namespace RoomScout.Models.AdminSide
                 OnPropertyChanged();
             }
         }
+        public DateTime Date { get; set; }
+        public TimeSpan Time { get; set; }
+        public Color StatusColor
+        {
+            get => _statusColor;
+            set
+            {
+                _statusColor = value;
+                OnPropertyChanged();
+            }
+        }
+        public bool IsDateTimeVisible
+        {
+            get => _isDateTimeVisible;
+            set
+            {
+                _isDateTimeVisible = value;
+                OnPropertyChanged();
+            }
+        }
+        public string AdditionalInformation
+        {
+            get => _additionalInformation;
+            set
+            {
+                _additionalInformation = value;
+                OnPropertyChanged();
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
-
 }

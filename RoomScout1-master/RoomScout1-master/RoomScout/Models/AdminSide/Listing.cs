@@ -1,4 +1,4 @@
-﻿using RoomScout.Views.AdminSide;
+﻿using RoomScout.Models.Location;
 using System;
 using System.Collections.Generic;
 using System.Linq;

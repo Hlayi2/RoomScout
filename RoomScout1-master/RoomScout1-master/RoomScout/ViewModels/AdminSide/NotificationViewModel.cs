@@ -8,6 +8,7 @@ namespace RoomScout.ViewModels.AdminSide
 {
     public class NotificationViewModel : INotifyPropertyChanged
     {
+       
         public ObservableCollection<Notification> Notifications { get; set; }
 
         public NotificationViewModel()

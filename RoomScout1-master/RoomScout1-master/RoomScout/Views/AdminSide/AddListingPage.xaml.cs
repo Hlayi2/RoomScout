@@ -5,6 +5,7 @@ using Microsoft.Maui.Maps;
 using RoomScout.Models.AdminSide;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using RoomScout.Models.Location;
 
 
 namespace RoomScout.Views.AdminSide

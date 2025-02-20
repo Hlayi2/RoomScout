@@ -1,4 +1,6 @@
 using System.Collections.ObjectModel;
+using Firebase.Database;
+using Firebase.Database.Query;
 using RoomScout.Models.AdminSide;
 using RoomScout.ViewModels.AdminSide;
 
@@ -6,48 +8,119 @@ namespace RoomScout.Views.AdminSide;
 
 public partial class BookingRequestsPage : ContentPage
 {
-
+    private static readonly FirebaseClient firebase = new FirebaseClient("https://roomscout-a194c-default-rtdb.firebaseio.com/");
     public ObservableCollection<BookingRequest> BookingRequests { get; set; }
+
     public BookingRequestsPage()
     {
         InitializeComponent();
-        MessagingCenter.Subscribe<BookingRequestsViewModel, string>(this, "ShowAlert", (sender, message) =>
-        {
-            DisplayAlert("Error", message, "OK");
-        });
-        BookingRequests = new ObservableCollection<BookingRequest>
-            {
-                // Add sample data or bind to your actual data source
-                new BookingRequest { Name = "John Doe", ProfilePicture = "male.png" },
-                new BookingRequest { Name = "Jane Smith", ProfilePicture = "female.png" },
-                new BookingRequest { Name = "Chantelle Mathye", ProfilePicture = "female.png" }
-            };
+        BookingRequests = new ObservableCollection<BookingRequest>();
         BindingContext = this;
+        LoadBookingRequests();
+    }
+
+    private async void LoadBookingRequests()
+    {
+        try
+        {
+            var firebaseBookingRequests = (await firebase
+                .Child("bookingRequests")
+                .OnceAsync<BookingRequest>())
+                .Select(item => new BookingRequest
+                {
+                    Key = item.Key,
+                    RoomId = item.Object.RoomId,
+                    UserId = item.Object.UserId,
+                    Status = item.Object.Status,
+                    Timestamp = item.Object.Timestamp
+                })
+                .ToList();
+
+            BookingRequests.Clear();
+            foreach (var request in firebaseBookingRequests)
+            {
+                BookingRequests.Add(request);
+            }
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", ex.Message, "OK");
+        }
+
     }
 
 
-    private void OnAcceptButtonClicked(object sender, EventArgs e)
+    private async void OnAcceptButtonClicked(object sender, EventArgs e)
     {
         var button = sender as Button;
         var bookingRequest = button?.CommandParameter as BookingRequest;
 
         if (bookingRequest != null)
         {
-            bookingRequest.IsDateTimeVisible = true;
-            bookingRequest.IsImageVisible = false; // Hide the image
+            try
+            {
+                
+
+                await firebase
+                    .Child("bookingRequests")
+                    .Child(bookingRequest.Key)
+                    .PatchAsync(new { Status = "Approved" });
+
+                // Notifying the student if they are approved
+                await NotifyStudent(bookingRequest.UserId, "Your booking request has been approved!");
+
+                await DisplayAlert("Success", "Booking request approved!", "OK");
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.Message, "OK");
+            }
         }
     }
 
-    private void OnRemoveButtonClicked(object sender, EventArgs e)
+    private async void OnRemoveButtonClicked(object sender, EventArgs e)
     {
-        // Remove the frame or update the data source
         var button = sender as Button;
-        var frame = button?.Parent?.Parent?.Parent as Frame;
+        var bookingRequest = button?.CommandParameter as BookingRequest;
 
-        if (frame != null)
+        if (bookingRequest != null)
         {
-            frame.IsVisible = false;
+            try
+            {
+               
+
+                await firebase
+                    .Child("bookingRequests")
+                    .Child(bookingRequest.Key)
+                    .PatchAsync(new { Status = "Declined" });
+
+                // Notifying the student if they are declined
+                await NotifyStudent(bookingRequest.UserId, "Your booking request has been declined.");
+
+                await DisplayAlert("Success", "Booking request declined!", "OK");
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.Message, "OK");
+            }
         }
+    }
+
+    private async Task NotifyStudent(string userId, string message)
+    {
+        
+
+        var notification = new Notification
+        {
+            Message = message,
+            Timestamp = DateTime.UtcNow,
+            IsRead = false
+        };
+
+        await firebase
+            .Child("notifications")
+            .Child(userId)
+            .PostAsync(notification);
     }
 
     private void OnSaveButtonClicked(object sender, EventArgs e)
@@ -57,26 +130,9 @@ public partial class BookingRequestsPage : ContentPage
 
         if (bookingRequest != null)
         {
-            // Check if Date and Time are valid
-            if (bookingRequest.Date != default && bookingRequest.Time != default)
-            {
-                // Format the date and time for the confirmation message
-                string formattedDate = bookingRequest.Date.ToString("yyyy-MM-dd");
-                string formattedTime = bookingRequest.Time.ToString(@"hh\:mm");
-
-                // Include additional information in the confirmation message
-                bookingRequest.ConfirmationMessage = $"Booking confirmed for {formattedDate} at {formattedTime}. " +
-                                                    $"Additional Information: {bookingRequest.AdditionalInformation}";
-                bookingRequest.IsDateTimeVisible = false;
-                bookingRequest.AreButtonsVisible = false;
-            }
-            else
-            {
-                // Use DisplayAlert directly
-                DisplayAlert("Error", "Please select a date and time.", "OK");
-            }
+           
+           
+            DisplayAlert("Success", "Booking request saved!", "OK");
         }
     }
-
-
 }
