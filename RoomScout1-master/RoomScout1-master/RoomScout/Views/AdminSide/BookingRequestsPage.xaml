@@ -31,7 +31,7 @@
 
                         <!-- Main Booking Request Frame -->
                         <Frame BackgroundColor="#6B7AA1"
-                               CornerRadius="24"
+                               CornerRadius="20"
                                HasShadow="True"
                                HorizontalOptions="Start"
                                Padding="10"
@@ -50,38 +50,29 @@
 
                         <!-- Profile Picture and Name -->
                         <Grid>
-                            <VerticalStackLayout Spacing="10">
-                                <HorizontalStackLayout Spacing="10">
-                                    <Image Source="{Binding ProfilePicture}"
+                                <VerticalStackLayout Spacing="10">
+                                    <HorizontalStackLayout Spacing="10">
+                                        <Image Source="{Binding ProfilePicture}"
                                            WidthRequest="50"
                                            HeightRequest="50"
                                            Margin="20,0,0,0"
                                            Aspect="AspectFill"
                                            Clip="Ellipse" />
 
-                                    <Label Text="{Binding Name}"
+                                        <Label Text="{Binding Name}"
                                            FontSize="18"
                                            FontAttributes="Bold"
                                            VerticalOptions="Center"
                                            TextColor="White" />
-                                </HorizontalStackLayout>
+                                    </HorizontalStackLayout>
 
-                                <Label Text="{Binding ConfirmationMessage}"
+                                    <Label Text="{Binding ConfirmationMessage}"
                                        FontSize="16"
                                        FontAttributes="Italic"
                                        TextColor="#11324D"
                                        IsVisible="{Binding ConfirmationMessage, Converter={StaticResource StringNotEmptyConverter}}" />
-                            </VerticalStackLayout>
-
-                            <Image x:Name="TopRightImage"
-                                   Source="exclamation.png"
-                                   WidthRequest="40"
-                                   HeightRequest="40"
-                                   HorizontalOptions="End"
-                                   VerticalOptions="Start"
-                                   Margin="0,10,10,0"
-                                   IsVisible="{Binding IsImageVisible}" />
-                        </Grid>
+                                </VerticalStackLayout>
+                            </Grid>
 
                         <!-- Date, Time, and Additional Information Frame -->
                         <Frame BackgroundColor="#A6AEBF"

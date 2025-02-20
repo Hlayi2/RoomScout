@@ -1,5 +1,6 @@
 using RoomScout.ViewModels;
 using Microsoft.Maui.Controls;
+using RoomScout.Views.AdminSide;
 namespace RoomScout.Views
 {
     public partial class PayPalPage : ContentPage
@@ -26,6 +27,13 @@ namespace RoomScout.Views
             {
                 vm.IsLoading = false;
             }
+        }
+
+        private async void OnBackClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync(nameof(PremiumPage));
+
+
         }
     }
 }
