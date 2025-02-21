@@ -3,7 +3,6 @@ using RoomScout.Models.AdminSide;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
-
 namespace RoomScout.Views.StudentSide
 {
     public partial class Appointments : ContentPage
@@ -12,6 +11,7 @@ namespace RoomScout.Views.StudentSide
         public ObservableCollection<BookingRequest> BookingRequests { get; set; }
         public bool IsRefreshing { get; set; }
         public ICommand RefreshCommand { get; }
+        private IDisposable notificationSubscription;
 
         public Appointments()
         {
@@ -19,15 +19,58 @@ namespace RoomScout.Views.StudentSide
             BookingRequests = new ObservableCollection<BookingRequest>();
             BindingContext = this;
 
-           
-
             RefreshCommand = new Command(async () => await LoadBookingRequests());
             LoadBookingRequests();
 
             AddFirebaseListener();
+            AddNotificationListener();
         }
 
-       
+        private void AddNotificationListener()
+        {
+            notificationSubscription = firebase
+                .Child("notifications")
+                .AsObservable<NotificationModel>()
+                .Subscribe(notification =>
+                {
+                    MainThread.BeginInvokeOnMainThread(async () =>  // Changed to async
+                    {
+                        if (!notification.Object.IsRead)
+                        {
+                            try
+                            {
+                                // Show notification with animation
+                                NotificationPanel.Opacity = 0;
+                                NotificationPanel.IsVisible = true;
+                                NotificationMessage.Text = notification.Object.Message ?? "New notification received";
+                                NotificationTimestamp.Text = DateTime.Now.ToString("g");
+
+                                // Fade in
+                                await NotificationPanel.FadeTo(1, 500);
+
+                               
+
+                               
+                             
+                            }
+                            catch (Exception ex)
+                            {
+                                System.Diagnostics.Debug.WriteLine($"Notification error: {ex.Message}");
+                            }
+                        }
+                    });
+                });
+        }
+
+        private async void OnNotificationTapped(object sender, EventArgs e)
+        {
+            if (NotificationPanel.IsVisible)
+            {
+                // Fade out when tapped
+                await NotificationPanel.FadeTo(0, 500);
+                NotificationPanel.IsVisible = false;
+            }
+        }
         private void AddFirebaseListener()
         {
             firebase
@@ -35,19 +78,30 @@ namespace RoomScout.Views.StudentSide
                 .AsObservable<BookingRequest>()
                 .Subscribe(item =>
                 {
-                    
                     var updatedRequest = BookingRequests.FirstOrDefault(r => r.Key == item.Key);
 
                     if (updatedRequest != null)
                     {
-                        
-                        updatedRequest.Status = item.Object.Status;
-                        updatedRequest.ConfirmationMessage = GetConfirmationMessage(item.Object);
-                        updatedRequest.StatusColor = GetStatusColor(item.Object.Status);
+                        MainThread.BeginInvokeOnMainThread(async () =>
+                        {
+                            updatedRequest.Status = item.Object.Status;
+                            updatedRequest.ConfirmationMessage = GetConfirmationMessage(item.Object);
+                            updatedRequest.StatusColor = GetStatusColor(item.Object.Status);
+
+                            // Show notification for status changes
+                            NotificationPanel.Opacity = 0;
+                            NotificationPanel.IsVisible = true;
+                            NotificationMessage.Text = GetConfirmationMessage(item.Object);
+                            NotificationTimestamp.Text = DateTime.Now.ToString("g");
+
+                            await NotificationPanel.FadeTo(1, 500);
+
+                         
+
+                        });
                     }
                     else
                     {
-                       
                         BookingRequests.Add(new BookingRequest
                         {
                             Key = item.Key,
@@ -99,7 +153,6 @@ namespace RoomScout.Views.StudentSide
                     BookingRequests.Add(request);
                 }
 
-               
                 AppointmentsCollectionView.ItemsSource = BookingRequests;
             }
             catch (Exception ex)
@@ -114,8 +167,6 @@ namespace RoomScout.Views.StudentSide
 
         private async void OnRefreshClicked(object sender, EventArgs e)
         {
-           
-
             await LoadBookingRequests();
         }
 
@@ -146,10 +197,22 @@ namespace RoomScout.Views.StudentSide
             {
                 "Approved" => Colors.Green,
                 "Declined" => Colors.Red,
-
-                _ => Colors.Gray 
-
+                _ => Colors.Gray
             };
+        }
+
+        public class NotificationModel
+        {
+            public string Message { get; set; }
+            public string Timestamp { get; set; }
+            public bool IsRead { get; set; }
+            public string UserId { get; set; }
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            notificationSubscription?.Dispose();
         }
     }
 }

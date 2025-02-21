@@ -13,6 +13,7 @@
             <converters:AmenityToIconConverter x:Key="AmenityToIconConverter"/>
             <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
             <converters:ReadStatusToColorConverter x:Key="ReadStatusToColorConverter" />
+            <converters:StringNotEmptyConverter x:Key="StringNotEmptyConverter"/>
 
             <!-- Merge Additional Resource Dictionaries -->
             <ResourceDictionary.MergedDictionaries>

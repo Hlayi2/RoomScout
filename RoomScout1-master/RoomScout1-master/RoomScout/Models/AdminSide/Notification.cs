@@ -10,4 +10,5 @@ public class Notification
     public string Description { get; set; }
     public bool IsExpanded { get; set; }
     public string Icon { get; set; }
+    public string Type { get; set; } = "booking_update";
 }

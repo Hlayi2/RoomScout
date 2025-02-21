@@ -4,8 +4,30 @@
              Title="Appointments"
              Shell.NavBarIsVisible="False"
              BackgroundColor="#1A1F25">
-
     <VerticalStackLayout Spacing="20" Padding="20">
+        <!-- Notification Panel -->
+        <Frame x:Name="NotificationPanel"
+               BackgroundColor="#76ABAE"
+               IsVisible="False"
+               CornerRadius="10"
+               Margin="0,0,0,10"
+               Padding="15">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer x:Name="NotificationTapGesture" 
+                             Tapped="OnNotificationTapped"/>
+            </Frame.GestureRecognizers>
+            <VerticalStackLayout>
+                <Label x:Name="NotificationMessage"
+                       TextColor="White"
+                       FontSize="14"
+                       FontAttributes="Bold"/>
+                <Label x:Name="NotificationTimestamp"
+                       TextColor="White"
+                       FontSize="12"
+                       Opacity="0.8"/>
+            </VerticalStackLayout>
+        </Frame>
+
         <!-- Refresh Button -->
         <Button Text="Refresh"
                 BackgroundColor="#76ABAE"
@@ -17,39 +39,55 @@
 
         <!-- List of Appointments -->
         <RefreshView IsRefreshing="{Binding IsRefreshing}"
-             Command="{Binding RefreshCommand}">
+                    Command="{Binding RefreshCommand}">
             <CollectionView x:Name="AppointmentsCollectionView"
-                        SelectionMode="None">
+                          SelectionMode="None">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame BackgroundColor="White" CornerRadius="10" HasShadow="True" Padding="10">
+                        <Frame BackgroundColor="White" 
+                               CornerRadius="10" 
+                               HasShadow="True" 
+                               Padding="10"
+                               Margin="0,0,0,10">
                             <VerticalStackLayout Spacing="10">
                                 <!-- Profile Picture and Name -->
                                 <HorizontalStackLayout Spacing="10">
                                     <Image Source="{Binding ProfilePicture}"
-                                       WidthRequest="50"
-                                       HeightRequest="50"
-                                       Aspect="AspectFill"
-                                       Clip="Ellipse" />
-
+                                           WidthRequest="50"
+                                           HeightRequest="50"
+                                           Aspect="AspectFill"
+                                           Clip="Ellipse" />
                                     <Label Text="{Binding Name}"
-                                       FontSize="18"
-                                       FontAttributes="Bold"
-                                       VerticalOptions="Center" />
+                                           FontSize="18"
+                                           FontAttributes="Bold"
+                                           VerticalOptions="Center" />
                                 </HorizontalStackLayout>
-
+                                <!-- Landlord Feedback -->
+                                <Label Text="{Binding LandlordFeedback}"
+                                       FontSize="14"
+                                       TextColor="Gray"
+                                       IsVisible="{Binding LandlordFeedback, Converter={StaticResource StringNotEmptyConverter}}"
+                                       Margin="0,5,0,0"/>
                                 <!-- Confirmation Message -->
                                 <Label Text="{Binding ConfirmationMessage}"
-                                   FontSize="14"
-                                   FontAttributes="Italic"
-                                   TextColor="{Binding StatusColor}"
-                                   Padding="10" />
+                                       FontSize="14"
+                                       FontAttributes="Italic"
+                                       TextColor="{Binding StatusColor}"
+                                       Padding="10" />
                             </VerticalStackLayout>
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
+                <CollectionView.EmptyView>
+                    <VerticalStackLayout HorizontalOptions="Center" 
+                                       VerticalOptions="Center">
+                        <Label Text="No appointments found"
+                               TextColor="White"
+                               FontSize="16"
+                               HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+                </CollectionView.EmptyView>
             </CollectionView>
         </RefreshView>
     </VerticalStackLayout>
-   
 </ContentPage>
