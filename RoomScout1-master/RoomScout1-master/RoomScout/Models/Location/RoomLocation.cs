@@ -1,4 +1,6 @@
 ﻿
+using RoomScout.Models.AdminSide;
+
 namespace RoomScout.Models.Location
 {
     public class RoomLocation
@@ -23,9 +25,11 @@ namespace RoomScout.Models.Location
         
         public string ImageUrl { get; internal set; }
         public string Description { get; set; }
-        public List<string> Amenities { get; set; }
+        public AmenitiesData Amenities { get; set; } = new AmenitiesData();
         public List<string> Images { get; set; } = new List<string>();
         public ViewModels.StudentSide.RoomType Type { get; internal set; }
+
+        public string Key { get; set; }
     }
 
         public enum RoomType

@@ -266,5 +266,10 @@ namespace RoomScout.Views.StudentSide
             // Add a farewell message
             AddMessage("I am happy I could help. I am here if you need further assistance.", false);
         }
+
+        public async void OnBackClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("..");
+        }
     }
 }

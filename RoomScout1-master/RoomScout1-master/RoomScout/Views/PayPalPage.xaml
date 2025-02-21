@@ -17,5 +17,13 @@
                  WidthRequest="400"
                  HorizontalOptions="Center"
                  VerticalOptions="Center"/>
+
+        <Button Text="Back"
+          BackgroundColor="#7ED4AD"
+          Clicked="OnBackClicked"
+          HeightRequest="40"
+          WidthRequest="100"
+          Margin="-250,0,0,0"
+          CornerRadius="10"/>
     </Grid>
 </ContentPage>

@@ -1,4 +1,4 @@
-﻿namespace RoomScout.Views.AdminSide
+﻿namespace RoomScout.Models.Location
 {
     internal class ContactData
     {

@@ -5,6 +5,7 @@ using Microsoft.Maui.Maps;
 using RoomScout.Models.AdminSide;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using RoomScout.Models.Location;
 
 
 namespace RoomScout.Views.AdminSide
@@ -88,27 +89,7 @@ namespace RoomScout.Views.AdminSide
             }
         }
 
-        private void OnDialNumberClicked(object sender, EventArgs e)
-        {
-            if (sender is Button button && button.CommandParameter is string number)
-            {
-                if (!string.IsNullOrWhiteSpace(number))
-                {
-                    try
-                    {
-                        PhoneDialer.Open(number);
-                    }
-                    catch
-                    {
-                        DisplayAlert("Error", "Unable to open phone dialer", "OK");
-                    }
-                }
-                else
-                {
-                    DisplayAlert("Error", "Please enter a valid phone number", "OK");
-                }
-            }
-        }
+    
 
         private void OnPriceTextChanged(object sender, TextChangedEventArgs e)
         {
@@ -215,6 +196,11 @@ namespace RoomScout.Views.AdminSide
             }
         }
 
+        public async void OnBackClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("..");
+        }
+
         private async void OnSubmitClicked(object sender, EventArgs e)
         {
             // Validate required fields
@@ -224,11 +210,6 @@ namespace RoomScout.Views.AdminSide
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(PrimaryPhoneEntry.Text))
-            {
-                await DisplayAlert("Error", "Primary contact number is required", "OK");
-                return;
-            }
 
             if (RoomTypePicker.SelectedIndex <= 0)
             {
@@ -247,7 +228,7 @@ namespace RoomScout.Views.AdminSide
 
             var listingData = new Listing // Use your Listing model
             {
-                Location = new LocationData // Create LocationData class if missing
+                Address = new LocationData // Create LocationData class if missing
                 {
                     Coordinates = CoordinatesEntry.Text,
                     Street = StreetEntry.Text,
@@ -257,7 +238,6 @@ namespace RoomScout.Views.AdminSide
                 },
                 Contact = new ContactData // Create ContactData class if missing
                 {
-                    PrimaryPhone = PrimaryPhoneEntry.Text,
                     AlternativePhone = AlternativePhoneEntry.Text
                 },
                 RoomType = RoomTypePicker.SelectedItem?.ToString(),

@@ -9,6 +9,8 @@
         <ResourceDictionary>
             <!-- Register Converters -->
             <converters:Base64ToImageConverter x:Key="Base64Converter" />
+            <converters:StringToBoolConverter x:Key="StringToBoolConverter"/>
+            <converters:AmenityToIconConverter x:Key="AmenityToIconConverter"/>
             <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
             <converters:ReadStatusToColorConverter x:Key="ReadStatusToColorConverter" />
 

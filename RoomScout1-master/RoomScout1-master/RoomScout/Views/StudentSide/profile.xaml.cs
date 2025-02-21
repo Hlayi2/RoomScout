@@ -15,12 +15,6 @@ public partial class profile : ContentPage
         await Navigation.PushAsync(new UpdateProfilePage());
     }
 
-    private async void OnAppointmentClicked(object sender, EventArgs e)
-    {
-        
-        await Navigation.PushAsync(new Appointments());
-    }
-
     private async void OnReportIssueClicked(object sender, EventArgs eventArgs)
     {
         string complaint = await DisplayPromptAsync(

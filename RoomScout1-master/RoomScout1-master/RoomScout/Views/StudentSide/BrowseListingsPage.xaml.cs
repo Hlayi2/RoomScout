@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using Microsoft.Maui.Controls;
 using System;
 using System.Threading.Tasks;
+using RoomScout.Views.AdminSide;
+using RoomScout.Models.Location;
 
 namespace RoomScout.Views.StudentSide
 {
@@ -37,13 +39,14 @@ namespace RoomScout.Views.StudentSide
                         RoomType = item.Object.RoomType,
                         Images = item.Object.Images,
                         Price = item.Object.Price,
-                        Amenities =item.Object.Amenities,
+                       Address = item.Object.Address,
+                        Amenities = item.Object.Amenities 
 
 
                     })
                     .ToList();
 
-                _listings = new ObservableCollection<Listing>(firebaseListings);
+                _listings = new ObservableCollection<Listing>((IEnumerable<Listing>)firebaseListings);
                 MainCollectionView.ItemsSource = _listings;
               
             }
@@ -61,7 +64,7 @@ namespace RoomScout.Views.StudentSide
 
 
         private void Filter(string roomType)
-        {
+        { 
             _selectedRoomType = roomType;
             FilterListings();
         }
@@ -71,7 +74,8 @@ namespace RoomScout.Views.StudentSide
             var filtered = _listings
                  .Where(l => l.RoomType == _selectedRoomType)
                  .ToList();
-            // Use ObservableCollection for UI reactivity
+            
+
             MainCollectionView.ItemsSource = new ObservableCollection<Listing>(filtered);
         }
 
@@ -91,14 +95,40 @@ namespace RoomScout.Views.StudentSide
             await Navigation.PushAsync(new profile());
         }
 
-        private async void OnBookClicked(object sender, EventArgs e)
-        {
-            await DisplayAlert("Success", "Booking request submitted!", "OK");
-        }
         private void OnFilterImageClicked(object sender, EventArgs e)
         {
             buttonStack.IsVisible = !buttonStack.IsVisible;
 
+        }
+
+        private async void OnBookClicked(object sender, EventArgs e)
+        {
+            var button = sender as Button;
+            var room = button?.BindingContext as Listing;
+
+            if (room != null)
+            {
+                var bookingRequest = new BookingRequest
+                {
+                    RoomId = room.Key,
+                    UserId = "studentUserId", 
+                    Status = "pending",
+                    Timestamp = DateTime.UtcNow
+                };
+
+                try
+                {
+                    await firebase
+                        .Child("bookingRequests")
+                        .PostAsync(bookingRequest);
+
+                    await DisplayAlert("Success", "Booking request submitted!", "OK");
+                }
+                catch (Exception ex)
+                {
+                    await DisplayAlert("Error", ex.Message, "OK");
+                }
+            }
         }
 
     }

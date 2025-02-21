@@ -1,6 +1,6 @@
-﻿namespace RoomScout.Views.AdminSide
+﻿namespace RoomScout.Models.Location
 {
-    internal class LocationData
+    public class LocationData
     {
         public string Coordinates { get; set; }
         public string Street { get; set; }

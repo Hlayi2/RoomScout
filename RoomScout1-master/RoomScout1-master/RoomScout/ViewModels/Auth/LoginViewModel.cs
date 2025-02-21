@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using RoomScout.Interfaces;
 using RoomScout.Views.Auth;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace RoomScout.ViewModels.Auth
 {
@@ -25,6 +26,9 @@ namespace RoomScout.ViewModels.Auth
 
         [ObservableProperty]
         private string eyeIcon = "eyeclosed.png";
+
+        public ICommand GoogleLoginCommand { get; }
+        public ICommand FacebookLoginCommand { get; }
 
         public LoginViewModel(IFirebaseAuthService authService, IFirebaseDataService dataService)
         {
