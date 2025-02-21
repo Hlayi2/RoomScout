@@ -52,7 +52,7 @@ namespace RoomScout.ViewModels.StudentSide
         {
             return Task.FromResult(new List<RoomLocation>
             {
-                // Your mock data here
+                //mock data here
                 new RoomLocation
                 {
                     Id = "Gate 1",
