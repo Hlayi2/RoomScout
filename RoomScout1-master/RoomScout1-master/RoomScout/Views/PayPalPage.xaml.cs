@@ -3,8 +3,23 @@ using Microsoft.Maui.Controls;
 using RoomScout.Views.AdminSide;
 namespace RoomScout.Views
 {
+    [QueryProperty(nameof(Amount), "amount")]
     public partial class PayPalPage : ContentPage
     {
+        private decimal amount;
+        public decimal Amount
+        {
+            get => amount;
+            set
+            {
+                amount = value;
+                if (BindingContext is PayPalViewModel vm)
+                {
+                    vm.InitializePayment(amount);
+                }
+            }
+        }
+
         public PayPalPage(PayPalViewModel viewModel)
         {
             InitializeComponent();
