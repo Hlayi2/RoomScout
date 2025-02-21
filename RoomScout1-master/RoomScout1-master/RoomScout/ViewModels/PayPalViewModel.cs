@@ -8,26 +8,28 @@ namespace RoomScout.ViewModels
     public partial class PayPalViewModel : ObservableObject
     {
         private readonly IPayPalService _payPalService;
+
         [ObservableProperty]
         private bool isLoading;
+
         [ObservableProperty]
         private WebViewSource webViewSource;
+
         public PayPalViewModel(IPayPalService payPalService)
         {
             _payPalService = payPalService;
-            InitializePayment();
         }
-        private async void InitializePayment()
+
+        public async void InitializePayment(decimal amount)
         {
             try
             {
                 IsLoading = true;
-                var htmlContent = await _payPalService.GetPaymentContent(10.00m);
+                var htmlContent = await _payPalService.GetPaymentContent(amount);
                 WebViewSource = new HtmlWebViewSource
                 {
                     Html = htmlContent
                 };
-                Debug.WriteLine($"HTML content loaded successfully");
             }
             catch (Exception ex)
             {

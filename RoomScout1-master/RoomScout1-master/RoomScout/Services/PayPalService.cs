@@ -6,9 +6,9 @@ namespace RoomScout.Services
 {
     public class PayPalService : IPayPalService
     {
-        public async Task<string> GetPaymentContent(decimal amount)
-        {
-            return await Task.FromResult($@"
+public async Task<string> GetPaymentContent(decimal amount)
+{
+    return await Task.FromResult($@"
 <html>
     <head>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
@@ -42,7 +42,7 @@ namespace RoomScout.Services
         </script>
     </body>
 </html>");
-        }
+}
         public async Task<bool> VerifyPayment(string paymentId)
         {
             using var client = new HttpClient();

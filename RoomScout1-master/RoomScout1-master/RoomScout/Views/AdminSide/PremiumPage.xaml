@@ -200,7 +200,12 @@
                        FontAttributes="Bold"
                        TextColor="White"
                        HorizontalOptions="Center" />
-                            <Button Text="Start 7-day free trial"
+                            
+                            
+                            
+                            <Button Text="Pay R99.99" 
+                        Clicked="OnUpgradeButtonClicked1"
+                        CommandParameter="99" 
                         BackgroundColor="#27AE60"
                         TextColor="White"
                         FontSize="16"
@@ -208,7 +213,10 @@
                         HeightRequest="40"
                         HorizontalOptions="Fill" />
                         </VerticalStackLayout>
-                    </Frame>
+                    </Frame>   
+                    
+                    
+                    
 
                     <!-- Premium Plan 2 -->
                     <Frame BackgroundColor="#2C3E50"
@@ -233,9 +241,12 @@
                        FontAttributes="Bold"
                        TextColor="White"
                        HorizontalOptions="Center" />
-                            <Button Text="Start 7-day free trial"
-                        BackgroundColor="#27AE60"
-                         Clicked="OnUpgradeButtonClicked"           
+                            
+
+                            <Button Text="Pay R549.99 " 
+                        Clicked="OnUpgradeButtonClicked2"
+                        CommandParameter="549"
+                        BackgroundColor="#27AE60"          
                         TextColor="White"
                         FontSize="16"
                         CornerRadius="10"
@@ -267,7 +278,9 @@
                        FontAttributes="Bold"
                        TextColor="White"
                        HorizontalOptions="Center" />
-                            <Button Text="Start 7-day free trial"
+                            <Button Text="Pay R1019.99" 
+                        Clicked="OnUpgradeButtonClicked3"
+                        CommandParameter="1019"
                         BackgroundColor="#27AE60"
                         TextColor="White"
                         FontSize="16"
