@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RoomScout.Models.AdminSide
 {
-    internal class Listing
+    public class Listing
     {
         public string Key { get; set; }
         public string RoomType { get; set; }

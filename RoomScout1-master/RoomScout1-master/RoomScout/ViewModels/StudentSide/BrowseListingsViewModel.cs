@@ -3,8 +3,9 @@ using RoomScout.Models.AdminSide;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.Controls.Compatibility;
-using RoomScout.Models.Location;
 using RoomScout.Views.AdminSide;
+using RoomScout.Models;
+using RoomScout.Models.Location;
 
 namespace RoomScout.ViewModels.StudentSide
 {
@@ -31,14 +32,13 @@ namespace RoomScout.ViewModels.StudentSide
             Forms = new ObservableCollection<RoomLocation>(_allRooms);
         }
 
-        [RelayCommand]
-        private void FilterRooms(RoomType? type)
-        {
-            SelectedType = type;
-            Rooms = type == null
-                ? new ObservableCollection<RoomLocation>(_allRooms)
-                : new ObservableCollection<RoomLocation>(_allRooms.Where(r => r.Type == type.Value));
-        }
+       // [RelayCommand]
+      //  private void FilterRooms(RoomType? type)
+     //       SelectedType = type;
+        //    Rooms = type == null
+        //        ? new ObservableCollection<RoomLocation>(_allRooms)
+       //         : new ObservableCollection<RoomLocation>(_allRooms.Where(r => r.Type == type.Value));
+      //  }
     }
 
     public interface IRoomService
@@ -57,7 +57,7 @@ namespace RoomScout.ViewModels.StudentSide
                 {
                     Id = "Gate 1",
                     Title = "Cozy Single Room",
-                    Type = RoomType.Single,
+                    Type = (Models.Location.RoomType)RoomType.Single,
                     Address = "123 Main St",
                     Price = "1000.00",
                     Images = new List<string> { "single10.png", "single11.png" },
@@ -69,12 +69,12 @@ namespace RoomScout.ViewModels.StudentSide
                 {
                     Id = "Gate 1",
                     Title = "Bachelor Suite",
-                    Type = RoomType.Bachelor,
+                    Type = (Models.Location.RoomType)RoomType.Bachelor,
                     Address = "456 Oak St",
                     Price = "1600.00",
                     Images = new List<string> { "img10.png", "img11.png" },
                     Description = "Spacious bachelor apartment",
-                    Amenities = new AmenitiesData {Bed = true, Kitchenette = true, FreeElectricity = true }
+                    Amenities = new AmenitiesData {Bed = true, Chair= true, FreeElectricity = true }
                 }
             });
         }

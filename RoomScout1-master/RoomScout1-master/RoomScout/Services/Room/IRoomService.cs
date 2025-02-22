@@ -1,4 +1,5 @@
-﻿using RoomScout.Models.Location;
+﻿using RoomScout.Models;
+using RoomScout.Models.Location;
 
 public interface IRoomService
 {

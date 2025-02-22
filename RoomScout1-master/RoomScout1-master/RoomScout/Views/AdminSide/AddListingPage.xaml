@@ -143,7 +143,7 @@
                 </Grid>
             </Frame>
 
-            <!-- Pros Section -->
+            <!-- Amenities -->
             <Label Text="Features" 
                    TextColor="White"/>
             <Frame BackgroundColor="#333333" 
