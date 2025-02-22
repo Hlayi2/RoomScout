@@ -122,25 +122,25 @@
                                             <StackLayout Orientation="Horizontal" Spacing="5" 
                                                     IsVisible="{Binding Amenities.Bed, Converter={StaticResource StringToBoolConverter}}">
                                                 <Image Source="bed.png" HeightRequest="20" WidthRequest="20"/>
-                                                <Label Text="Showers" FontSize="14" VerticalOptions="Center"/>
+                                                <Label Text="Bed" FontSize="14" VerticalOptions="Center"/>
                                             </StackLayout>
 
                                             <StackLayout Orientation="Horizontal" Spacing="5" 
                                                     IsVisible="{Binding Amenities.Showers, Converter={StaticResource StringToBoolConverter}}">
                                                                 <Image Source="shower.png" HeightRequest="20" WidthRequest="20"/>
-                                                                <Label Text="Showers" FontSize="14" VerticalOptions="Center"/>
+                                                                <Label Text="Shower" FontSize="14" VerticalOptions="Center"/>
                                                             </StackLayout>
 
                                                             <StackLayout Orientation="Horizontal" Spacing="5" 
                                                     IsVisible="{Binding Amenities.StudyTable, Converter={StaticResource StringToBoolConverter}}">
                                                                 <Image Source="table.png" HeightRequest="20" WidthRequest="20"/>
-                                                                <Label Text="Showers" FontSize="14" VerticalOptions="Center"/>
+                                                                <Label Text="Table" FontSize="14" VerticalOptions="Center"/>
                                                             </StackLayout>
 
                                     <StackLayout Orientation="Horizontal" Spacing="5" 
                                                     IsVisible="{Binding Amenities.Chair, Converter={StaticResource StringToBoolConverter}}">
                                         <Image Source="chair.png" HeightRequest="20" WidthRequest="20"/>
-                                        <Label Text="Bed" FontSize="14" VerticalOptions="Center"/>
+                                        <Label Text="Chair" FontSize="14" VerticalOptions="Center"/>
                                     </StackLayout>
                                     </HorizontalStackLayout>
                                     </StackLayout>

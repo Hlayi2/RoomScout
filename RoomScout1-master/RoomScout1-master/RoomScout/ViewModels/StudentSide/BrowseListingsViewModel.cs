@@ -6,6 +6,8 @@ using Microsoft.Maui.Controls.Compatibility;
 using RoomScout.Views.AdminSide;
 using RoomScout.Models;
 using RoomScout.Models.Location;
+using System.Diagnostics;
+using LocationRoomType = RoomScout.Models.Location.RoomType;
 
 namespace RoomScout.ViewModels.StudentSide
 {
@@ -13,70 +15,122 @@ namespace RoomScout.ViewModels.StudentSide
     {
         private readonly IRoomService _roomService;
         private List<RoomLocation> _allRooms;
-        private ObservableCollection<RoomLocation> Forms;
+
         [ObservableProperty]
         private ObservableCollection<RoomLocation> _rooms;
 
         [ObservableProperty]
         private RoomType? _selectedType;
 
+        [ObservableProperty]
+        private bool _hasWifi;
+
+        [ObservableProperty]
+        private bool _hasFreeElectricity;
+
+        [ObservableProperty]
+        private bool _hasBed;
+
+        [ObservableProperty]
+        private bool _hasWashingMachine;
+
+        [ObservableProperty]
+        private bool _hasStudyTable;
+
+        [ObservableProperty]
+        private bool _hasShowers;
+
+        [ObservableProperty]
+        private bool _isLoading;
+
         public BrowseListingsViewModel(IRoomService roomService)
         {
             _roomService = roomService;
+            _rooms = new ObservableCollection<RoomLocation>();
             InitializeData();
         }
 
         private async void InitializeData()
         {
-            _allRooms = await _roomService.GetRoomsAsync();
-            Forms = new ObservableCollection<RoomLocation>(_allRooms);
+            try
+            {
+                _isLoading = true;
+                _allRooms = await _roomService.GetAllRooms();
+                Rooms = new ObservableCollection<RoomLocation>(_allRooms);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error loading data: {ex.Message}");
+                // Handle error appropriately
+            }
+            finally
+            {
+                _isLoading = false;
+            }
         }
 
-       // [RelayCommand]
-      //  private void FilterRooms(RoomType? type)
-     //       SelectedType = type;
-        //    Rooms = type == null
-        //        ? new ObservableCollection<RoomLocation>(_allRooms)
-       //         : new ObservableCollection<RoomLocation>(_allRooms.Where(r => r.Type == type.Value));
-      //  }
-    }
-
-    public interface IRoomService
-    {
-        Task<List<RoomLocation>> GetRoomsAsync();
-    }
-
-    public class MockRoomService : IRoomService
-    {
-        public Task<List<RoomLocation>> GetRoomsAsync()
+        [RelayCommand]
+        private async Task RefreshRooms()
         {
-            return Task.FromResult(new List<RoomLocation>
+            try
             {
-                //mock data here
-                new RoomLocation
+                _isLoading = true;
+                await ApplyFilters();
+            }
+            finally
+            {
+                _isLoading = false;
+            }
+        }
+
+        private async Task ApplyFilters()
+        {
+            var filteredRooms = _allRooms;
+
+            // Apply room type filter
+            if (SelectedType.HasValue)
+            {
+                filteredRooms = await _roomService.GetRoomsByType((LocationRoomType)SelectedType.Value);
+            }
+
+            // Apply amenities filter
+            if (HasWifi || HasFreeElectricity || HasBed || HasWashingMachine || HasStudyTable || HasShowers)
+            {
+                var amenitiesFilter = new AmenitiesData
                 {
-                    Id = "Gate 1",
-                    Title = "Cozy Single Room",
-                    Type = (Models.Location.RoomType)RoomType.Single,
-                    Address = "123 Main St",
-                    Price = "1000.00",
-                    Images = new List<string> { "single10.png", "single11.png" },
-                    Description = "Comfortable single room near campus",
-                    Amenities = new AmenitiesData { Wifi = true, BackUpElectricty = true ,Bed = true } ,
-                },
-                // Add other rooms following the same pattern
-                new RoomLocation
-                {
-                    Id = "Gate 1",
-                    Title = "Bachelor Suite",
-                    Type = (Models.Location.RoomType)RoomType.Bachelor,
-                    Address = "456 Oak St",
-                    Price = "1600.00",
-                    Images = new List<string> { "img10.png", "img11.png" },
-                    Description = "Spacious bachelor apartment",
-                    Amenities = new AmenitiesData {Bed = true, Chair= true, FreeElectricity = true }
-                }
-            });
+                    Wifi = HasWifi,
+                    FreeElectricity = HasFreeElectricity,
+                    Bed = HasBed,
+                    WashingMachine = HasWashingMachine,
+                    StudyTable = HasStudyTable,
+                    Showers = HasShowers
+                };
+
+                filteredRooms = await _roomService.GetAllRoomsWithAmenities(amenitiesFilter);
+            }
+
+            Rooms = new ObservableCollection<RoomLocation>(filteredRooms);
+        }
+
+        // Property changed handlers
+        partial void OnSelectedTypeChanged(RoomType? value) => _ = ApplyFilters();
+        partial void OnHasWifiChanged(bool value) => _ = ApplyFilters();
+        partial void OnHasFreeElectricityChanged(bool value) => _ = ApplyFilters();
+        partial void OnHasBedChanged(bool value) => _ = ApplyFilters();
+        partial void OnHasWashingMachineChanged(bool value) => _ = ApplyFilters();
+        partial void OnHasStudyTableChanged(bool value) => _ = ApplyFilters();
+        partial void OnHasShowersChanged(bool value) => _ = ApplyFilters();
+
+        [RelayCommand]
+        private void ClearFilters()
+        {
+            SelectedType = null;
+            HasWifi = false;
+            HasFreeElectricity = false;
+            HasBed = false;
+            HasWashingMachine = false;
+            HasStudyTable = false;
+            HasShowers = false;
         }
     }
 }
