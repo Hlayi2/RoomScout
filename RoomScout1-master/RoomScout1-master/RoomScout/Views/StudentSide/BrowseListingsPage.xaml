@@ -109,10 +109,14 @@
                                                TextColor="#76ABAE" FontAttributes="Bold" FontSize="16"/>
                                     </Grid>
 
-                                    <Label Text="{Binding Address}" TextColor="Gray" FontSize="14"/>
+                                    <Label Text="{Binding DateAdded}" TextColor="Gray" FontSize="14"/>
                                     <Label Text="Available" TextColor="Green" FontSize="16"/>
+                                    <Label Text="{Binding location}" TextColor="Gray" FontSize="14"/>
+                                    <Label Text="{Binding Id}" TextColor="Gray" FontSize="14"/>
+                                    <Label Text="{Binding Description}" TextColor="Gray" FontSize="14"/>
+                                    <Label Text="{Binding Rules}" TextColor="Gray" FontSize="14"/>
 
-                                    
+
 
                                     <!-- Amenities -->
 
@@ -120,26 +124,26 @@
                                     <StackLayout Orientation="Horizontal" Spacing="8" Margin="0,10,0,15">
                                         <HorizontalStackLayout Spacing="15">
                                             <StackLayout Orientation="Horizontal" Spacing="5" 
-                                                    IsVisible="{Binding Amenities.Bed, Converter={StaticResource StringToBoolConverter}}">
-                                                <Image Source="bed.png" HeightRequest="20" WidthRequest="20"/>
+                                                    IsVisible="{Binding Amenities.Bed,Converter={StaticResource StringToBoolConverter}}">
+                                                <Image Source="bed.png" HeightRequest="40" WidthRequest="40"/>
                                                 <Label Text="Bed" FontSize="14" VerticalOptions="Center"/>
                                             </StackLayout>
 
                                             <StackLayout Orientation="Horizontal" Spacing="5" 
                                                     IsVisible="{Binding Amenities.Showers, Converter={StaticResource StringToBoolConverter}}">
-                                                                <Image Source="shower.png" HeightRequest="20" WidthRequest="20"/>
+                                                                <Image Source="shower.png" HeightRequest="40" WidthRequest="40"/>
                                                                 <Label Text="Shower" FontSize="14" VerticalOptions="Center"/>
                                                             </StackLayout>
 
                                                             <StackLayout Orientation="Horizontal" Spacing="5" 
                                                     IsVisible="{Binding Amenities.StudyTable, Converter={StaticResource StringToBoolConverter}}">
-                                                                <Image Source="table.png" HeightRequest="20" WidthRequest="20"/>
+                                                                <Image Source="study_table.png" HeightRequest="40" WidthRequest="40"/>
                                                                 <Label Text="Table" FontSize="14" VerticalOptions="Center"/>
                                                             </StackLayout>
 
                                     <StackLayout Orientation="Horizontal" Spacing="5" 
                                                     IsVisible="{Binding Amenities.Chair, Converter={StaticResource StringToBoolConverter}}">
-                                        <Image Source="chair.png" HeightRequest="20" WidthRequest="20"/>
+                                        <Image Source="chair.png" HeightRequest="40" WidthRequest="40"/>
                                         <Label Text="Chair" FontSize="14" VerticalOptions="Center"/>
                                     </StackLayout>
                                     </HorizontalStackLayout>

@@ -5,7 +5,7 @@
         public string Id { get; set; }
         public string Title { get; set; }
         public RoomType Type { get; set; }
-        public string Address { get; set; }
+        public string location { get; set; }
         public string Price { get; set; }
         public List<string> Images { get; set; }
         public string Description { get; set; }

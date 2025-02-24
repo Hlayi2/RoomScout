@@ -16,10 +16,13 @@ namespace RoomScout.Views.StudentSide
         private RoomType? _selectedRoomType;
         private List<RoomLocation> _allListings;
         private RoomType? type;
+        private readonly RoomService _roomService;
+
 
         public BrowseListingsPage()
         {
             InitializeComponent();
+            _roomService = new RoomService();
             _allRooms = new List<RoomLocation>();
         }
 
@@ -42,7 +45,7 @@ namespace RoomScout.Views.StudentSide
                         Type = ConvertToRoomType(item.Object.RoomType),
                         Images = item.Object.Images,
                         Price = item.Object.Price.ToString("F2"),
-                        Address = $"{item.Object.Address?.Street}, {item.Object.Address?.Suburb}",
+                        location = $"{item.Object.Address?.Street},Mamontentane Gate 1 {item.Object.Address?.Suburb}",
                         Amenities = item.Object.Amenities,
                         LocationData = item.Object.Address,
                         Contact = item.Object.Contact,
